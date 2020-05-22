@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Swagger generator based in jsdoc",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1",
+    "swagger-parser": "^9.0.1",
+    "swagger-ui-express": "^4.1.4"
+  },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
