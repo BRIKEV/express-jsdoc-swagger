@@ -1,0 +1,36 @@
+{
+  "name": "express-jsdoc-swagger",
+  "version": "1.0.0",
+  "description": "Swagger generator based in jsdoc",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^26.0.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "./node_modules/.bin/eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BRIKEV/express-jsdoc-swagger.git"
+  },
+  "keywords": [
+    "swagger",
+    "jsdoc",
+    "node",
+    "express",
+    "docs",
+    "documentation",
+    "swagger-ui"
+  ],
+  "author": "Kevin Martínez (https://github.com/kevinccbsg)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BRIKEV/express-jsdoc-swagger/issues"
+  },
+  "homepage": "https://github.com/BRIKEV/express-jsdoc-swagger#readme"
+}
