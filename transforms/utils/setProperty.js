@@ -4,11 +4,11 @@ const requiredError = (key, item) => new Error(`Key ${key} is required in item $
 const warnType = (type, value) => console.warn(`${type} is not valid with value ${value}`);
 
 const setProperty = (item, key, options) => {
-  const value = item[key];
   if (!item || !key || !options) {
     const requiredParamsError = new Error('item, key and options para are required');
     throw requiredParamsError;
   }
+  const value = item[key];
   if (options.required && value === undefined) throw requiredError(key, item);
   if (value === undefined) return options.defaultValue;
   // eslint-disable-next-line
