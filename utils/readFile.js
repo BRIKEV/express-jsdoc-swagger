@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const readFile = path => (
   new Promise((resolve, reject) => {
-    let data;
+    let data = '';
     const readStream = fs.createReadStream(path, 'utf8');
     readStream.on('data', chunk => {
       data += chunk;

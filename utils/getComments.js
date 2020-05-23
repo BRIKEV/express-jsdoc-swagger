@@ -6,7 +6,7 @@ const getComments = text => {
   const comments = text.match(COMMENTS_PATTERN);
   if (comments) {
     const filterComments = comments.filter(comment => comment.match(BREAK_LINE));
-    return filterComments;
+    return filterComments.map(comment => comment.trim());
   }
   return [];
 };
