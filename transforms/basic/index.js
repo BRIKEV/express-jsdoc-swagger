@@ -1,9 +1,9 @@
 const info = require('./info');
 
-const getBasicInfo = swaggerObjet => {
+const getBasicInfo = (swaggerObjet = {}) => {
   const updatedOptions = {
     ...swaggerObjet,
-    info: { ...info(swaggerObjet) },
+    info: { ...info(swaggerObjet.info) },
   };
   return updatedOptions;
 };

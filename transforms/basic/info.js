@@ -7,7 +7,7 @@ const getInfo = (options = {}) => ({
     type: 'string',
     required: true,
   }),
-  description: setProperty(options, 'title', {
+  description: setProperty(options, 'description', {
     type: 'string',
     defaultValue: 'Add your description',
   }),

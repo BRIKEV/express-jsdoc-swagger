@@ -34,10 +34,7 @@ const expressJSDocSwagger = app => {
       .then(data => console.log(JSON.stringify(data)))
       .catch(err => console.log(err));
 
-    swaggerObject = {
-      ...swaggerObject,
-      info: getBasicInfo(options.info),
-    };
+    swaggerObject = getBasicInfo(swaggerObject);
 
     app.use('/api-docs', (req, res, next) => {
       swaggerObject = {
