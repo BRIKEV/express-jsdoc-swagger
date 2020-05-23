@@ -23,6 +23,7 @@ const expressJSDocSwagger = app => {
   return options => {
     let swaggerObject = {
       openapi: '3.0.0',
+      info: options.info,
     };
 
     swaggerObject = getBasicInfo(swaggerObject);
@@ -35,6 +36,7 @@ const expressJSDocSwagger = app => {
         swaggerObject = getPaths(swaggerObject, data);
       })
       .catch(err => console.log(err));
+
 
     app.use('/api-docs', (req, res, next) => {
       swaggerObject = {
