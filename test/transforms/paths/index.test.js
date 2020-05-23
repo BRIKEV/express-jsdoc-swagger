@@ -3,20 +3,22 @@ const setPaths = require('../../../transforms/paths');
 
 describe('setPaths method', () => {
   it('should return empty array with not params', () => {
-    const input = undefined;
+    const initialState = {};
+    const paths = undefined;
     const expected = {
       paths: {},
     };
-    const result = setPaths(input);
+    const result = setPaths(initialState, paths);
     expect(result).toEqual(expected);
   });
 
   it('should return empty array with not an array as parameter', () => {
-    const input = 2;
+    const initialState = {};
+    const paths = 2;
     const expected = {
       paths: {},
     };
-    const result = setPaths(input);
+    const result = setPaths(initialState, paths);
     expect(result).toEqual(expected);
   });
 
