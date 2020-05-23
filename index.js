@@ -1,11 +1,31 @@
+const path = require('path');
 const parser = require('swagger-parser');
 const swaggerUi = require('swagger-ui-express');
+const glob = require('glob');
 
 /**
  * Generator options
  * @typedef {Object} Options
  * @property {string} title - The title
  */
+
+const readGlobFiles = (baseDir, filePath) => new Promise((resolve, reject) => {
+  glob(path.resolve(baseDir, filePath), (err, files) => {
+    if (err) {
+      return reject(err);
+    }
+    const filterFiles = files.filter(file => !file.includes('node_modules'));
+    return resolve(filterFiles);
+  });
+});
+
+const readJsDocFiles = (baseDir, filePath) => new Promise((resolve, reject) => {
+  readGlobFiles(baseDir, filePath)
+    .then(files => {
+      return files;
+    })
+    .catch(reject);
+});
 
 /**
  * @param  {instance} Express instance
@@ -17,7 +37,17 @@ const expressJSDocSwagger = app => {
    * @return {object} swaggerInfo - Swagger compiled options
    */
   return options => {
-    let swaggerObject = {};
+    let swaggerObject = {
+      openapi: options.openapi,
+      info: options.info,
+      paths: options.paths,
+    };
+
+    readJsDocFiles(options.baseDir, options.file)
+      .then(files => {
+        console.log(files);
+      });
+
     parser.parse(options, (err, api) => {
       if (!err) {
         swaggerObject = api;
