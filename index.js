@@ -2,6 +2,8 @@ const path = require('path');
 const parser = require('swagger-parser');
 const swaggerUi = require('swagger-ui-express');
 const glob = require('glob');
+const readFile = require('./utils/readFile');
+const getComments = require('./utils/getComments');
 
 /**
  * Generator options
@@ -22,7 +24,7 @@ const readGlobFiles = (baseDir, filePath) => new Promise((resolve, reject) => {
 const readJsDocFiles = (baseDir, filePath) => new Promise((resolve, reject) => {
   readGlobFiles(baseDir, filePath)
     .then(files => {
-      return files;
+      return resolve(files);
     })
     .catch(reject);
 });
@@ -45,8 +47,14 @@ const expressJSDocSwagger = app => {
 
     readJsDocFiles(options.baseDir, options.file)
       .then(files => {
-        console.log(files);
-      });
+        const filesInfo = files.map(file => readFile(file));
+        return Promise.all(filesInfo);
+      })
+      .then(files => {
+        const comments = files.map(getComments);
+        console.log(comments);
+      })
+      .catch(err => console.log(err));
 
     parser.parse(options, (err, api) => {
       if (!err) {
