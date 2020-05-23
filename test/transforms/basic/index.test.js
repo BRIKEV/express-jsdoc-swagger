@@ -13,6 +13,7 @@ describe('basic transform method', () => {
       info: {
         title: 'API 1',
       },
+      servers: [],
     };
     expect(() => {
       getBasicInfo(input);
@@ -37,13 +38,14 @@ describe('basic transform method', () => {
         termsOfService: '',
         description: 'Add your description',
       },
+      servers: [],
     };
     const result = getBasicInfo(input);
     expect(result).toEqual(expected);
   });
 
   it('should send warn type when type is not correct', () => {
-    global.console = { warn: jest.fn() };
+    global.console = { ...global.console, warn: jest.fn() };
     const input = {
       extra: 'extra info',
       info: {
@@ -62,10 +64,79 @@ describe('basic transform method', () => {
         termsOfService: '',
         description: false,
       },
+      servers: [],
     };
     const result = getBasicInfo(input);
     expect(result).toEqual(expected);
     // eslint-disable-next-line
     expect(console.warn).toHaveBeenCalled();
+  });
+
+  it('should throw error for invalid server', () => {
+    const input = {
+      info: {
+        title: 'API 1',
+        version: '1.0.0',
+      },
+      servers: [{ invalid: 'example' }],
+    };
+    expect(() => {
+      getBasicInfo(input);
+    }).toThrow('Key url is required in item {"invalid":"example"}');
+  });
+
+  it('should throw error for invalid variable', () => {
+    const input = {
+      info: {
+        title: 'API 1',
+        version: '1.0.0',
+      },
+      servers: [{
+        url: 'http://url.com',
+        variables: [{ invalid: 'example' }],
+      }],
+    };
+    expect(() => {
+      getBasicInfo(input);
+    }).toThrow('Key enum is required in item {"invalid":"example"}');
+  });
+
+  it('should return valid configuration', () => {
+    const input = {
+      info: {
+        title: 'API 1',
+        version: '1.0.0',
+      },
+      servers: [{
+        url: 'http://url.com',
+        variables: [{
+          enum: ['300', '200'],
+          default: 200,
+        }],
+      }],
+    };
+    const expected = {
+      info: {
+        title: 'API 1',
+        description: 'Add your description',
+        contact: {},
+        license: {},
+        termsOfService: '',
+        version: '1.0.0',
+      },
+      servers: [
+        {
+          url: 'http://url.com',
+          description: '',
+          variables: [{
+            enum: ['300', '200'],
+            default: 200,
+            description: '',
+          }],
+        },
+      ],
+    };
+    const result = getBasicInfo(input);
+    expect(result).toEqual(expected);
   });
 });
