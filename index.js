@@ -3,7 +3,7 @@ const readFiles = require('./consumers/readFiles');
 const globFilesMatches = require('./consumers/globFilesMatches');
 const getOnlyComments = require('./consumers/getOnlyComments');
 const jsdocInfo = require('./consumers/jsdocInfo');
-const { getBasicInfo } = require('./transforms');
+const { getBasicInfo, getPaths } = require('./transforms');
 
 /**
  * Generator options
@@ -22,19 +22,21 @@ const expressJSDocSwagger = app => {
    */
   return options => {
     let swaggerObject = {
-      openapi: options.openapi,
+      openapi: '3.0.0',
       info: options.info,
-      paths: options.paths,
     };
+
+    swaggerObject = getBasicInfo(swaggerObject);
 
     globFilesMatches(options.baseDir, options.file)
       .then(readFiles)
       .then(getOnlyComments)
       .then(jsdocInfo())
-      .then(data => console.log(JSON.stringify(data)))
+      .then(data => {
+        swaggerObject = getPaths(swaggerObject, data);
+      })
       .catch(err => console.log(err));
 
-    swaggerObject = getBasicInfo(swaggerObject);
 
     app.use('/api-docs', (req, res, next) => {
       swaggerObject = {
