@@ -4,19 +4,23 @@ const setPaths = require('../../../transforms/paths');
 describe('setPaths method', () => {
   it('should return empty array with not params', () => {
     const input = undefined;
-    const expected = [];
+    const expected = {
+      paths: {},
+    };
     const result = setPaths(input);
     expect(result).toEqual(expected);
   });
 
   it('should return empty array with not an array as parameter', () => {
     const input = 2;
-    const expected = [];
+    const expected = {
+      paths: {},
+    };
     const result = setPaths(input);
     expect(result).toEqual(expected);
   });
 
-  it.only('should parse jsdoc path spec', () => {
+  it('should parse jsdoc path spec', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
@@ -25,16 +29,18 @@ describe('setPaths method', () => {
        */
     `];
     const expected = {
-      '/api/v1': {
-        get: {
-          summary: 'This is the summary or description of the endpoint',
-          responses: {
-            200: {
-              description: 'success response',
-              content: {
-                'application/json': {
-                  schema: {
-                    type: 'object',
+      paths: {
+        '/api/v1': {
+          get: {
+            summary: 'This is the summary or description of the endpoint',
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
                   },
                 },
               },
@@ -44,7 +50,7 @@ describe('setPaths method', () => {
       },
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
-    const result = setPaths(parsedJSDocs);
+    const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
 });

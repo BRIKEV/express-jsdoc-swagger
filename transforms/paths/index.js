@@ -4,6 +4,7 @@ const getTagInfo = (tags, key) => tags.find(({ title }) => title === key);
 const parsePath = path => {
   if (!path.description || !path.tags) return {};
   const [method, endpoint] = path.description.split(' ');
+  if (!method) return {};
   const lowerCaseMethod = method.toLowerCase();
   const { tags } = path;
   const summary = getTagInfo(tags, 'summary');
@@ -32,12 +33,16 @@ const parsePath = path => {
   };
 };
 
-const parsePaths = (paths = []) => {
+const parsePaths = (swaggerObject = {}, paths = []) => {
   if (!paths || !Array.isArray(paths)) return [];
-  return paths.reduce((acum, item) => {
+  const pathObject = paths.reduce((acum, item) => {
     const newPaths = { ...parsePath(item) };
     return newPaths;
   }, {});
+  return {
+    ...swaggerObject,
+    paths: pathObject,
+  };
 };
 
 module.exports = parsePaths;

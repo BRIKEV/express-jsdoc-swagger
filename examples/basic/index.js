@@ -3,7 +3,6 @@ const express = require('express');
 const expressJSDocSwagger = require('../..');
 
 const options = {
-  openapi: '3.0.0',
   info: {
     version: '1.0.0',
     title: 'Swagger Petstore',
@@ -11,7 +10,6 @@ const options = {
       name: 'MIT',
     },
   },
-  paths: {},
   file: './**/**.js',
   baseDir: __dirname,
 };
@@ -24,9 +22,9 @@ const generator = expressJSDocSwagger(app);
 generator(options);
 
 /**
- * @description endpoint
- * @param  {string} example
- * @return {object} response
+ * GET /api/v1
+ * @summary This is the summary or description of the endpoint
+ * @return {object} 200 - success response - application/json
  */
 app.get('/', (req, res) => res.send('Hello World!'));
 
