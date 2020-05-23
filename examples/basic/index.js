@@ -12,6 +12,8 @@ const options = {
     },
   },
   paths: {},
+  file: './**/**.js',
+  baseDir: __dirname,
 };
 
 const app = express();
@@ -21,6 +23,11 @@ const generator = expressJSDocSwagger(app);
 
 generator(options);
 
+/**
+ * @description endpoint
+ * @param  {string} example
+ * @return {object} response
+ */
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
