@@ -1,9 +1,9 @@
-const parser = require('swagger-parser');
 const swaggerUi = require('swagger-ui-express');
 const readFiles = require('./consumers/readFiles');
 const globFilesMatches = require('./consumers/globFilesMatches');
 const getOnlyComments = require('./consumers/getOnlyComments');
 const jsdocInfo = require('./consumers/jsdocInfo');
+const { getBasicInfo } = require('./transforms');
 
 /**
  * Generator options
@@ -34,11 +34,10 @@ const expressJSDocSwagger = app => {
       .then(data => console.log(JSON.stringify(data)))
       .catch(err => console.log(err));
 
-    parser.parse(options, (err, api) => {
-      if (!err) {
-        swaggerObject = api;
-      }
-    });
+    swaggerObject = {
+      ...swaggerObject,
+      info: getBasicInfo(options.info),
+    };
 
     app.use('/api-docs', (req, res, next) => {
       swaggerObject = {
