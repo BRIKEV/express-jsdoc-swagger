@@ -24,7 +24,7 @@ describe('setPaths method', () => {
        * @return {object} 200 - success response - application/json
        */
     `];
-    const expected = [{
+    const expected = {
       '/api/v1': {
         get: {
           summary: 'This is the summary or description of the endpoint',
@@ -42,7 +42,7 @@ describe('setPaths method', () => {
           },
         },
       },
-    }];
+    };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths(parsedJSDocs);
     expect(result).toEqual(expected);

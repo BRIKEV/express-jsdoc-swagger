@@ -34,7 +34,10 @@ const parsePath = path => {
 
 const parsePaths = (paths = []) => {
   if (!paths || !Array.isArray(paths)) return [];
-  return paths.map(parsePath);
+  return paths.reduce((acum, item) => {
+    const newPaths = { ...parsePath(item) };
+    return newPaths;
+  }, {});
 };
 
 module.exports = parsePaths;
