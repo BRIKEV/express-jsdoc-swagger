@@ -1,4 +1,4 @@
-const getComments = require('../utils/getComments');
+const getComments = require('./utils/getComments');
 
 const flat = array => [].concat(...array);
 

@@ -1,4 +1,4 @@
-const readFile = require('../utils/readFile');
+const readFile = require('./utils/readFile');
 
 const readFiles = files => {
   if (!files || !Array.isArray(files)) return Promise.resolve([]);
