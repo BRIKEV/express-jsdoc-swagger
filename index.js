@@ -5,7 +5,7 @@ const readFiles = require('./consumers/readFiles');
 const globFilesMatches = require('./consumers/globFilesMatches');
 const getOnlyComments = require('./consumers/getOnlyComments');
 const jsdocInfo = require('./consumers/jsdocInfo');
-const { getBasicInfo, getPaths } = require('./transforms');
+const { getBasicInfo, getPaths, getComponents } = require('./transforms');
 
 /**
  * Generator options
@@ -39,6 +39,7 @@ const expressJSDocSwagger = app => {
       .then(jsdocInfo())
       .then(data => {
         swaggerObject = getPaths(swaggerObject, data);
+        swaggerObject = getComponents(swaggerObject, data);
       })
       .catch(err => console.log(err));
 
