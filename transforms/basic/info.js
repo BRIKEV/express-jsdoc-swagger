@@ -1,4 +1,4 @@
-const setProperty = require('../utils/setProperty');
+const setProperty = require('../utils/setProperty')('info');
 const getContact = require('./contact');
 const license = require('./license');
 

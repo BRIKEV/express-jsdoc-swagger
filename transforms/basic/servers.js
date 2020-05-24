@@ -1,4 +1,4 @@
-const setProperty = require('../utils/setProperty');
+const setProperty = require('../utils/setProperty')('servers');
 
 const setVariables = variables => ({
   enum: setProperty(variables, 'enum', {

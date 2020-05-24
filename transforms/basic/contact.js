@@ -1,4 +1,4 @@
-const setProperty = require('../utils/setProperty');
+const setProperty = require('../utils/setProperty')('contact');
 
 const getContact = (options = {}) => ({
   name: setProperty(options, 'name', {
