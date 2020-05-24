@@ -35,6 +35,7 @@ describe('setPaths method', () => {
         '/api/v1': {
           get: {
             summary: 'This is the summary or description of the endpoint',
+            parameters: [],
             responses: {
               200: {
                 description: 'success response',
@@ -56,6 +57,147 @@ describe('setPaths method', () => {
     expect(result).toEqual(expected);
   });
 
+  describe('params tests', () => {
+    it('should parse jsdoc path params', () => {
+      const jsodInput = [`
+        /**
+         * GET /api/v1
+         * @param {string} name.query.required - name param description
+         */
+      `];
+      const expected = {
+        paths: {
+          '/api/v1': {
+            get: {
+              summary: '',
+              responses: {},
+              parameters: [{
+                allowEmptyValue: false,
+                deprecated: false,
+                description: 'name param description',
+                in: 'query',
+                name: 'name',
+                required: true,
+                schema: {
+                  type: 'string',
+                },
+              }],
+            },
+          },
+        },
+      };
+      const parsedJSDocs = jsdocInfo()(jsodInput);
+      const result = setPaths({}, parsedJSDocs);
+      expect(result).toEqual(expected);
+    });
+
+    it('should not parse jsdoc path params with malformed info', () => {
+      const jsodInput = [`
+        /**
+         * GET /api/v1
+         * @param {string} name param description
+         */
+      `];
+      const expected = {
+        paths: {
+          '/api/v1': {
+            get: {
+              summary: '',
+              responses: {},
+              parameters: [],
+            },
+          },
+        },
+      };
+      const parsedJSDocs = jsdocInfo()(jsodInput);
+      const result = setPaths({}, parsedJSDocs);
+      expect(result).toEqual(expected);
+    });
+
+    it('should parse jsdoc path params with array type', () => {
+      const jsodInput = [`
+        /**
+         * GET /api/v1
+         * @param {array<string>} name.query.required.deprecated - name param description
+         */
+      `];
+      const expected = {
+        paths: {
+          '/api/v1': {
+            get: {
+              summary: '',
+              responses: {},
+              parameters: [{
+                allowEmptyValue: false,
+                deprecated: true,
+                description: 'name param description',
+                in: 'query',
+                name: 'name',
+                required: true,
+                schema: {
+                  type: 'array',
+                  items: {
+                    type: 'string',
+                  },
+                },
+              }],
+            },
+          },
+        },
+      };
+      const parsedJSDocs = jsdocInfo()(jsodInput);
+      const result = setPaths({}, parsedJSDocs);
+      expect(result).toEqual(expected);
+    });
+
+    it('should parse jsdoc path multiple params', () => {
+      const jsodInput = [`
+        /**
+         * GET /api/v1
+         * @param {array<string>} name.query.required.deprecated - name param description
+         * @param {number} phone.param
+         */
+      `];
+      const expected = {
+        paths: {
+          '/api/v1': {
+            get: {
+              summary: '',
+              responses: {},
+              parameters: [{
+                allowEmptyValue: false,
+                deprecated: true,
+                description: 'name param description',
+                in: 'query',
+                name: 'name',
+                required: true,
+                schema: {
+                  type: 'array',
+                  items: {
+                    type: 'string',
+                  },
+                },
+              }, {
+                allowEmptyValue: false,
+                deprecated: false,
+                description: '',
+                in: 'param',
+                name: 'phone',
+                required: false,
+                schema: {
+                  type: 'number',
+                },
+              }],
+            },
+          },
+        },
+      };
+      const parsedJSDocs = jsdocInfo()(jsodInput);
+      const result = setPaths({}, parsedJSDocs);
+      expect(result).toEqual(expected);
+    });
+  });
+
   describe('response tests', () => {
     it('should parse jsdoc path spec with more than one response', () => {
       const jsodInput = [`
@@ -71,6 +213,7 @@ describe('setPaths method', () => {
           '/api/v1': {
             get: {
               summary: 'This is the summary or description of the endpoint',
+              parameters: [],
               responses: {
                 200: {
                   description: 'success response',
@@ -117,6 +260,7 @@ describe('setPaths method', () => {
             get: {
               summary: 'This is the summary or description of the endpoint',
               responses: {},
+              parameters: [],
             },
           },
         },
@@ -141,6 +285,7 @@ describe('setPaths method', () => {
           '/api/v1': {
             get: {
               summary: 'This is the summary or description of the endpoint',
+              parameters: [],
               responses: {
                 200: {
                   description: 'success response',
