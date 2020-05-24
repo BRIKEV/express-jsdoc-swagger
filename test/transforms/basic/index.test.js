@@ -17,7 +17,7 @@ describe('basic transform method', () => {
     };
     expect(() => {
       getBasicInfo(input);
-    }).toThrow('Key version is required in item {"title":"API 1"}');
+    }).toThrow('Key version is required in item {"title":"API 1"} for Entity info');
   });
 
   it('should return info object', () => {
@@ -82,7 +82,7 @@ describe('basic transform method', () => {
     };
     expect(() => {
       getBasicInfo(input);
-    }).toThrow('Key url is required in item {"invalid":"example"}');
+    }).toThrow('Key url is required in item {"invalid":"example"} for Entity servers');
   });
 
   it('should throw error for invalid variable', () => {
@@ -98,7 +98,7 @@ describe('basic transform method', () => {
     };
     expect(() => {
       getBasicInfo(input);
-    }).toThrow('Key enum is required in item {"invalid":"example"}');
+    }).toThrow('Key enum is required in item {"invalid":"example"} for Entity servers');
   });
 
   it('should return valid configuration', () => {

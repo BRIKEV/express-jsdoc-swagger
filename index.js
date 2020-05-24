@@ -1,4 +1,6 @@
 const swaggerUi = require('swagger-ui-express');
+const debug = require('debug')('express-jsdoc-swagger');
+
 const readFiles = require('./consumers/readFiles');
 const globFilesMatches = require('./consumers/globFilesMatches');
 const getOnlyComments = require('./consumers/getOnlyComments');
@@ -21,12 +23,15 @@ const expressJSDocSwagger = app => {
    * @return {object} swaggerInfo - Swagger compiled options
    */
   return options => {
+    debug(`Retrieving ${JSON.stringify(options)}`);
     let swaggerObject = {
       openapi: '3.0.0',
       info: options.info,
     };
 
+    debug('Getting basic swagger info');
     swaggerObject = getBasicInfo(swaggerObject);
+    debug(`SwaggerObject with basic info ${JSON.stringify(swaggerObject)}`);
 
     globFilesMatches(options.baseDir, options.file)
       .then(readFiles)
@@ -39,6 +44,7 @@ const expressJSDocSwagger = app => {
 
 
     app.use('/api-docs', (req, res, next) => {
+      debug(`Render express endpoint with SwaggerObject: ${JSON.stringify(swaggerObject)}`);
       swaggerObject = {
         ...swaggerObject,
         host: req.get('host'),

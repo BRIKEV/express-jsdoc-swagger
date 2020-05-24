@@ -1,9 +1,12 @@
+const debug = require('debug')('express-jsdoc-swagger:transforms:paths');
 
 const getTagInfo = (tags, key) => tags.find(({ title }) => title === key);
 
 const parsePath = path => {
+  debug(`Transforms path: ${JSON.stringify(path)}`);
   if (!path.description || !path.tags) return {};
   const [method, endpoint] = path.description.split(' ');
+  // if jsdoc comment des not contain structure <Method> - <Endpoint> is not valid path
   if (!method) return {};
   const lowerCaseMethod = method.toLowerCase();
   const { tags } = path;
