@@ -128,7 +128,7 @@ describe('setPaths method', () => {
       expect(console.warn).toHaveBeenCalled();
     });
 
-    it.only('should parse jsdoc path response with array type', () => {
+    it('should parse jsdoc path response with array type', () => {
       const jsodInput = [`
         /**
          * GET /api/v1
