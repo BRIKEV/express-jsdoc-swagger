@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 
 const STATUS_CODES = require('./validStatusCodes');
+const getSchema = require('./schema');
 
 const DEFAULT_CONTENT_TYPE = 'application/json';
 
@@ -13,22 +14,7 @@ const responsesGenerator = (returnValues = []) => {
       console.warn(chalk.yellow(`Status ${status} is not valid to create a response`));
       return {};
     }
-    let schema = {
-      type: value.type.name,
-    };
-    const notPrimitiveType = !value.type.name;
-    if (notPrimitiveType) {
-      const items = value.type.applications || {};
-      const parseItems = items.reduce((itemAcc, itemTypes) => ({
-        ...itemAcc,
-        type: itemTypes.name,
-      }), {});
-      schema = {
-        ...schema,
-        type: value.type.expression.name,
-        items: parseItems,
-      };
-    }
+    const schema = getSchema(value.type);
     return {
       ...acc,
       [status]: {

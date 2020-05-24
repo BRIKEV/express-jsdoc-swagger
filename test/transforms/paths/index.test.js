@@ -58,20 +58,30 @@ describe('setPaths method', () => {
   });
 
   describe('params tests', () => {
-    it('should parse jsdoc path params', () => {
+    it.only('should parse jsdoc path params', () => {
       const jsodInput = [`
         /**
          * GET /api/v1
-         * @summary This is the summary or description of the endpoint
+         * @param {string} name.query.required - name param description
          */
       `];
       const expected = {
         paths: {
           '/api/v1': {
             get: {
-              summary: 'This is the summary or description of the endpoint',
+              summary: '',
               responses: {},
-              parameters: [],
+              parameters: [{
+                allowEmptyValue: false,
+                deprecated: false,
+                description: 'name param description',
+                in: 'query',
+                name: 'name',
+                required: true,
+                schema: {
+                  type: 'string',
+                },
+              }],
             },
           },
         },

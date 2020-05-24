@@ -16,13 +16,13 @@ const parsePath = path => {
   const { tags } = path;
   const summary = getTagInfo(tags, 'summary');
   const returnValues = getTagsInfo(tags, 'return');
-  const paramValues = getTagsInfo(tags, 'params');
+  const paramValues = getTagsInfo(tags, 'param');
   const responses = responsesGenerator(returnValues);
   const parameters = parametersGenerator(paramValues);
   return {
     [endpoint]: {
       [lowerCaseMethod]: {
-        summary: summary.description || '',
+        summary: summary && summary.description ? summary.description : '',
         responses,
         parameters,
       },
