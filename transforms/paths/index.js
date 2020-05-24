@@ -1,34 +1,10 @@
 const debug = require('debug')('express-jsdoc-swagger:transforms:paths');
 
+const responsesGenerator = require('./responses');
+
 const getTagInfo = (tags, key) => tags.find(({ title }) => title === key);
 
 const getTagsInfo = (tags, key) => tags.filter(({ title }) => title === key);
-
-const DEFAULT_CONTENT_TYPE = 'application/json';
-
-const responsesGenerator = (returnValues = []) => {
-  const mapDescription = description => (
-    description.split(' - ').map(value => value.replace('\n/', ''))
-  );
-  if (!returnValues || !Array.isArray(returnValues)) return {};
-  const response = returnValues.reduce((acc, value) => {
-    const [status, responseDescription, contentType] = mapDescription(value.description);
-    return {
-      ...acc,
-      [status]: {
-        description: responseDescription,
-        content: {
-          [contentType || DEFAULT_CONTENT_TYPE]: {
-            schema: {
-              type: value.type.name,
-            },
-          },
-        },
-      },
-    };
-  }, {});
-  return response;
-};
 
 const parsePath = path => {
   debug(`Transforms path: ${JSON.stringify(path)}`);
