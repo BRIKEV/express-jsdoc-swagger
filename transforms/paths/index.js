@@ -1,10 +1,7 @@
 const debug = require('debug')('express-jsdoc-swagger:transforms:paths');
 const responsesGenerator = require('./responses');
 const parametersGenerator = require('./parameters');
-
-const getTagInfo = (tags, key) => tags.find(({ title }) => title === key);
-
-const getTagsInfo = (tags, key) => tags.filter(({ title }) => title === key);
+const { getTagInfo, getTagsInfo } = require('../utils/tags');
 
 const parsePath = path => {
   debug(`Transforms path: ${JSON.stringify(path)}`);
