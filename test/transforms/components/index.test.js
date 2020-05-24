@@ -176,4 +176,65 @@ describe('parseComponents method', () => {
     const result = parseComponents({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should parse one reference between two jsdoc components', () => {
+    const jsodInput = [`
+      /**
+       * A song
+       * @typedef {object} Song
+       * @property {string} title.required - The title
+       * @property {string} artist - The artist
+       * @property {number} year - The year - int64
+       */
+    `,
+    `
+      /**
+       * Album
+       * @typedef {object} Album
+       * @property {Song} firstSong
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Song: {
+            type: 'object',
+            required: [
+              'title',
+            ],
+            description: 'A song',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              artist: {
+                type: 'string',
+                description: 'The artist',
+              },
+              year: {
+                type: 'number',
+                description: 'The year',
+                format: 'int64',
+              },
+            },
+          },
+          Album: {
+            type: 'object',
+            required: [],
+            description: 'Album',
+            properties: {
+              firstSong: {
+                $ref: '#/components/schemas/Song',
+                description: '',
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
