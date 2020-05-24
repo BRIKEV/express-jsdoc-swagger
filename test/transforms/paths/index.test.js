@@ -35,6 +35,7 @@ describe('setPaths method', () => {
         '/api/v1': {
           get: {
             summary: 'This is the summary or description of the endpoint',
+            parameters: [],
             responses: {
               200: {
                 description: 'success response',
@@ -56,6 +57,31 @@ describe('setPaths method', () => {
     expect(result).toEqual(expected);
   });
 
+  describe('params tests', () => {
+    it('should parse jsdoc path params', () => {
+      const jsodInput = [`
+        /**
+         * GET /api/v1
+         * @summary This is the summary or description of the endpoint
+         */
+      `];
+      const expected = {
+        paths: {
+          '/api/v1': {
+            get: {
+              summary: 'This is the summary or description of the endpoint',
+              responses: {},
+              parameters: [],
+            },
+          },
+        },
+      };
+      const parsedJSDocs = jsdocInfo()(jsodInput);
+      const result = setPaths({}, parsedJSDocs);
+      expect(result).toEqual(expected);
+    });
+  });
+
   describe('response tests', () => {
     it('should parse jsdoc path spec with more than one response', () => {
       const jsodInput = [`
@@ -71,6 +97,7 @@ describe('setPaths method', () => {
           '/api/v1': {
             get: {
               summary: 'This is the summary or description of the endpoint',
+              parameters: [],
               responses: {
                 200: {
                   description: 'success response',
@@ -117,6 +144,7 @@ describe('setPaths method', () => {
             get: {
               summary: 'This is the summary or description of the endpoint',
               responses: {},
+              parameters: [],
             },
           },
         },
@@ -141,6 +169,7 @@ describe('setPaths method', () => {
           '/api/v1': {
             get: {
               summary: 'This is the summary or description of the endpoint',
+              parameters: [],
               responses: {
                 200: {
                   description: 'success response',

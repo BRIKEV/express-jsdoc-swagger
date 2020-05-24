@@ -5,9 +5,7 @@ const STATUS_CODES = require('./validStatusCodes');
 const DEFAULT_CONTENT_TYPE = 'application/json';
 
 const responsesGenerator = (returnValues = []) => {
-  const mapDescription = description => (
-    description.split(' - ').map(value => value.replace('\n/', ''))
-  );
+  const mapDescription = description => description.split(' - ');
   if (!returnValues || !Array.isArray(returnValues)) return {};
   const response = returnValues.reduce((acc, value) => {
     const [status, responseDescription, contentType] = mapDescription(value.description);
@@ -18,8 +16,8 @@ const responsesGenerator = (returnValues = []) => {
     let schema = {
       type: value.type.name,
     };
-    const notObjectType = !value.type.name;
-    if (notObjectType) {
+    const notPrimitiveType = !value.type.name;
+    if (notPrimitiveType) {
       const items = value.type.applications || {};
       const parseItems = items.reduce((itemAcc, itemTypes) => ({
         ...itemAcc,
