@@ -29,10 +29,9 @@ const parsePath = path => {
 
 const parsePaths = (swaggerObject = {}, paths = []) => {
   if (!paths || !Array.isArray(paths)) return { paths: {} };
-  const pathObject = paths.reduce((acum, item) => {
-    const newPaths = { ...parsePath(item) };
-    return newPaths;
-  }, {});
+  const pathObject = paths.reduce((acum, item) => ({
+    ...acum, ...parsePath(item),
+  }), {});
   return {
     ...swaggerObject,
     paths: pathObject,
