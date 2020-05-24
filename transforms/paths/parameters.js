@@ -7,6 +7,9 @@ const IS_DEPRECATED = 'deprecated';
 
 const parseParameter = param => {
   const [name, inOption, ...extraOptions] = param.name.split('.');
+  if (!name || !inOption) {
+    return {};
+  }
   const isRequired = extraOptions.includes(REQUIRED);
   const allowEmptyValue = extraOptions.includes(ALLOW_EMPTY_VALUE);
   const isDeprecated = extraOptions.includes(IS_DEPRECATED);
@@ -49,7 +52,7 @@ const parseParameter = param => {
 
 const parametersGenerator = (paramValues = []) => {
   if (!paramValues || !Array.isArray(paramValues)) return [];
-  const params = paramValues.map(parseParameter);
+  const params = paramValues.map(parseParameter).filter(param => param.name);
   return params;
 };
 

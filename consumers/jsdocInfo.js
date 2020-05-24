@@ -6,7 +6,7 @@ const jsdocInfo = (options = { unwrap: true }) => comments => {
     const parsedValue = doctrine.parse(comment, options);
     const tags = parsedValue.tags.map(tag => ({
       ...tag,
-      description: tag.description ? tag.description.replace('\n/', '') : tag.description,
+      description: tag.description ? tag.description.replace('\n/', '').replace(/\/$/, '') : tag.description,
     }));
     return {
       ...parsedValue,
