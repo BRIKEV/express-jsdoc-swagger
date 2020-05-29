@@ -17,6 +17,7 @@ const { getBasicInfo, getPaths, getComponents } = require('./transforms');
  * @param  {instance} Express instance
  * @return {function} A constructor of expressJSDocSwagger
  */
+// eslint-disable-next-line
 const expressJSDocSwagger = app => {
   /**
    * @param  {object} options - Generator options
