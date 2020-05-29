@@ -115,4 +115,40 @@ describe('response tests', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('should parse jsdoc path response with components', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @summary This is the summary or description of the endpoint
+       * @return {Song} 200 - success response - application/json
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      $ref: '#/components/schemas/Song',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
