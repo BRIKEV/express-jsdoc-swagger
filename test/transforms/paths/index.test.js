@@ -36,6 +36,7 @@ describe('setPaths method', () => {
           get: {
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
+            tags: [],
             responses: {
               200: {
                 description: 'success response',
@@ -71,6 +72,7 @@ describe('setPaths method', () => {
             get: {
               summary: '',
               responses: {},
+              tags: [],
               parameters: [{
                 allowEmptyValue: false,
                 deprecated: false,
@@ -104,6 +106,7 @@ describe('setPaths method', () => {
             get: {
               summary: '',
               responses: {},
+              tags: [],
               parameters: [],
             },
           },
@@ -127,6 +130,7 @@ describe('setPaths method', () => {
             get: {
               summary: '',
               responses: {},
+              tags: [],
               parameters: [{
                 allowEmptyValue: false,
                 deprecated: true,
@@ -164,6 +168,7 @@ describe('setPaths method', () => {
             get: {
               summary: '',
               responses: {},
+              tags: [],
               parameters: [{
                 allowEmptyValue: false,
                 deprecated: true,
@@ -214,6 +219,7 @@ describe('setPaths method', () => {
             get: {
               summary: 'This is the summary or description of the endpoint',
               parameters: [],
+              tags: [],
               responses: {
                 200: {
                   description: 'success response',
@@ -261,6 +267,7 @@ describe('setPaths method', () => {
               summary: 'This is the summary or description of the endpoint',
               responses: {},
               parameters: [],
+              tags: [],
             },
           },
         },
@@ -286,6 +293,7 @@ describe('setPaths method', () => {
             get: {
               summary: 'This is the summary or description of the endpoint',
               parameters: [],
+              tags: [],
               responses: {
                 200: {
                   description: 'success response',

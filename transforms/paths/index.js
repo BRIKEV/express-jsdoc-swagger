@@ -3,6 +3,8 @@ const responsesGenerator = require('./responses');
 const parametersGenerator = require('./parameters');
 const { getTagInfo, getTagsInfo } = require('../utils/tags');
 
+const formatTags = (tags = []) => tags.map(({ description: name }) => name);
+
 const parsePath = path => {
   debug(`Transforms path: ${JSON.stringify(path)}`);
   if (!path.description || !path.tags) return {};
@@ -14,6 +16,7 @@ const parsePath = path => {
   const summary = getTagInfo(tags, 'summary');
   const returnValues = getTagsInfo(tags, 'return');
   const paramValues = getTagsInfo(tags, 'param');
+  const tagsValues = getTagsInfo(tags, 'tags');
   const responses = responsesGenerator(returnValues);
   const parameters = parametersGenerator(paramValues);
   return {
@@ -22,6 +25,7 @@ const parsePath = path => {
         summary: summary && summary.description ? summary.description : '',
         responses,
         parameters,
+        tags: formatTags(tagsValues),
       },
     },
   };
