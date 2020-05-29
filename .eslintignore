@@ -2,3 +2,4 @@
 coverage
 test-results.xml
 node_modules
+.github
