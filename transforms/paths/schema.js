@@ -1,14 +1,16 @@
+const refSchema = require('../utils/refSchema');
 
 const getSchema = type => {
+  const nameType = type.name;
   let schema = {
-    type: type.name,
+    ...refSchema(nameType),
   };
-  const notPrimitiveType = !type.name;
+  const notPrimitiveType = !nameType;
   if (notPrimitiveType) {
     const items = type.applications || {};
     const parseItems = items.reduce((itemAcc, itemTypes) => ({
       ...itemAcc,
-      type: itemTypes.name,
+      ...refSchema(itemTypes.name),
     }), {});
     schema = {
       ...schema,

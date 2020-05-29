@@ -1,8 +1,7 @@
 const { getTagInfo, getTagsInfo } = require('../utils/tags');
-const validateTypes = require('../utils/validateTypes');
+const refSchema = require('../utils/refSchema');
 
 const REQUIRED = 'required';
-const REF_ROUTE = '#/components/schemas/';
 
 const getPropertyName = ({ name: propertyName }) => {
   const [name] = propertyName.split('.');
@@ -13,14 +12,13 @@ const formatProperties = properties => {
   if (!properties || !Array.isArray(properties)) return {};
   return properties.reduce((acum, property) => {
     const name = getPropertyName(property);
-    const isValidType = validateTypes(property.type.name);
-    const [description, format] = property.description.split(' - ');
     const propertyName = property.type.name;
+    const [description, format] = property.description.split(' - ');
     return {
       ...acum,
       [name]: {
         description,
-        ...(isValidType ? { type: propertyName } : { $ref: `${REF_ROUTE}${propertyName}` }),
+        ...refSchema(propertyName),
         ...(format ? { format } : {}),
       },
     };
