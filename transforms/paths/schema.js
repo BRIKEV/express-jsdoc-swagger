@@ -10,7 +10,7 @@ const getSchema = type => {
     const items = type.applications || {};
     const parseItems = items.reduce((itemAcc, itemTypes) => ({
       ...itemAcc,
-      type: itemTypes.name,
+      ...refSchema(itemTypes.name),
     }), {});
     schema = {
       ...schema,
