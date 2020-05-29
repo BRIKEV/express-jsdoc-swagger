@@ -144,4 +144,75 @@ describe('params tests', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('should parse jsdoc path reference params', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @param {Song} name.query.required - name param description
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            summary: '',
+            responses: {},
+            tags: [],
+            parameters: [{
+              allowEmptyValue: false,
+              deprecated: false,
+              description: 'name param description',
+              in: 'query',
+              name: 'name',
+              required: true,
+              schema: {
+                $ref: '#/components/schemas/Song',
+              },
+            }],
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('should parse jsdoc path params with array of references', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @param {array<Song>} name.query.required.deprecated - name param description
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            summary: '',
+            responses: {},
+            tags: [],
+            parameters: [{
+              allowEmptyValue: false,
+              deprecated: true,
+              description: 'name param description',
+              in: 'query',
+              name: 'name',
+              required: true,
+              schema: {
+                type: 'array',
+                items: {
+                  $ref: '#/components/schemas/Song',
+                },
+              },
+            }],
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
