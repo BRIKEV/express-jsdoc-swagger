@@ -12,11 +12,15 @@ const responsesGenerator = (returnValues = []) => {
       console.warn(chalk.yellow(`Status ${status} is not valid to create a response`));
       return {};
     }
+    const hasOldContent = (acc[status] && acc[status].content);
     return {
       ...acc,
       [status]: {
         description: responseDescription,
-        content: getContent(value.type, contentType),
+        content: {
+          ...(hasOldContent ? { ...acc[status].content } : {}),
+          ...getContent(value.type, contentType),
+        },
       },
     };
   }, {});
