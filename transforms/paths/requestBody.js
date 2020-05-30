@@ -1,11 +1,10 @@
 const chalk = require('chalk');
 
 const setProperty = require('../utils/setProperty')('parameter');
-const getSchema = require('./schema');
+const getContent = require('./content');
 const mapDescription = require('../utils/mapDescription');
 
 const REQUIRED = 'required';
-const DEFAULT_CONTENT_TYPE = 'application/json';
 const BODY_PARAM = 'body';
 
 const parseBodyParameter = body => {
@@ -20,7 +19,6 @@ const parseBodyParameter = body => {
     required: isRequired,
     description,
   };
-  const schema = getSchema(body.type);
   return {
     description: setProperty(options, 'description', {
       type: 'string',
@@ -29,11 +27,7 @@ const parseBodyParameter = body => {
       type: 'boolean',
       defaultValue: false,
     }),
-    content: {
-      [contentType || DEFAULT_CONTENT_TYPE]: {
-        schema,
-      },
-    },
+    content: getContent(body.type, contentType),
   };
 };
 
