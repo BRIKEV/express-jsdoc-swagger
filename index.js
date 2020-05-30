@@ -5,7 +5,12 @@ const readFiles = require('./consumers/readFiles');
 const globFilesMatches = require('./consumers/globFilesMatches');
 const getOnlyComments = require('./consumers/getOnlyComments');
 const jsdocInfo = require('./consumers/jsdocInfo');
-const { getBasicInfo, getPaths, getComponents, getTags } = require('./transforms');
+const {
+  getBasicInfo,
+  getPaths,
+  getComponents,
+  getTags,
+} = require('./transforms');
 
 /**
  * Generator options
