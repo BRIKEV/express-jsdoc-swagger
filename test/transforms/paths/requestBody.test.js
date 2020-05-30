@@ -1,5 +1,3 @@
-const chalk = require('chalk');
-
 const jsdocInfo = require('../../../consumers/jsdocInfo');
 const setPaths = require('../../../transforms/paths');
 
@@ -78,12 +76,11 @@ describe('request body tests', () => {
   });
 
   it('should parse jsdoc path multiple bodys', () => {
-    global.console = { ...global.console, warn: jest.fn() };
     const jsodInput = [`
       /**
        * POST /api/v1
-       * @param {array<string>} request.body.required - name body description
        * @param {number} body
+       * @param {array<string>} request.body.required - name body description
        */
     `];
     const expected = {
@@ -115,7 +112,6 @@ describe('request body tests', () => {
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
-    expect(console.warn).toHaveBeenCalledWith(chalk.yellow('You should only provide one request body'));
   });
 
   it('should parse jsdoc path reference bodys', () => {
@@ -178,6 +174,50 @@ describe('request body tests', () => {
                     items: {
                       $ref: '#/components/schemas/Song',
                     },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('should parse jsdoc request body with array of references for different content type', () => {
+    const jsodInput = [`
+      /**
+       * POST /api/v1
+       * @param {array<Song>} request.body.required - name body description
+       * @param {Song} request.body.required - name body description - application/xml
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          post: {
+            summary: '',
+            responses: {},
+            tags: [],
+            parameters: [],
+            requestBody: {
+              description: 'name body description',
+              required: true,
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'array',
+                    items: {
+                      $ref: '#/components/schemas/Song',
+                    },
+                  },
+                },
+                'application/xml': {
+                  schema: {
+                    $ref: '#/components/schemas/Song',
                   },
                 },
               },
