@@ -1,9 +1,7 @@
 const chalk = require('chalk');
 
 const STATUS_CODES = require('./validStatusCodes');
-const getSchema = require('./schema');
-
-const DEFAULT_CONTENT_TYPE = 'application/json';
+const getContent = require('./content');
 
 const responsesGenerator = (returnValues = []) => {
   const mapDescription = description => description.split(' - ');
@@ -14,15 +12,14 @@ const responsesGenerator = (returnValues = []) => {
       console.warn(chalk.yellow(`Status ${status} is not valid to create a response`));
       return {};
     }
-    const schema = getSchema(value.type);
+    const hasOldContent = (acc[status] && acc[status].content);
     return {
       ...acc,
       [status]: {
         description: responseDescription,
         content: {
-          [contentType || DEFAULT_CONTENT_TYPE]: {
-            schema,
-          },
+          ...(hasOldContent ? { ...acc[status].content } : {}),
+          ...getContent(value.type, contentType),
         },
       },
     };

@@ -190,4 +190,57 @@ describe('response tests', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('should parse jsdoc path spec with more than one response and multiple content types', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @summary This is the summary or description of the endpoint
+       * @return {object} 200 - success response - application/json
+       * @return {object} 400 - Bad request response
+       * @return {string} 400 - Bad request response - application/xml
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+              400: {
+                description: 'Bad request response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                  'application/xml': {
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
