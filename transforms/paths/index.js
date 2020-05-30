@@ -1,7 +1,9 @@
 const debug = require('debug')('express-jsdoc-swagger:transforms:paths');
 const responsesGenerator = require('./responses');
 const parametersGenerator = require('./parameters');
+const requestBody = require('./requestBody');
 const { getTagInfo, getTagsInfo } = require('../utils/tags');
+const validBodyMethods = require('./validRequestBodyMethods');
 
 const formatTags = (tags = []) => tags.map(({ description: name }) => name);
 
@@ -26,6 +28,7 @@ const parsePath = path => {
         responses,
         parameters,
         tags: formatTags(tagsValues),
+        ...(validBodyMethods[lowerCaseMethod] ? { requestBody: requestBody(paramValues) } : {}),
       },
     },
   };

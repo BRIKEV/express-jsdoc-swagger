@@ -3,16 +3,22 @@ const getSchema = require('./schema');
 
 const REQUIRED = 'required';
 const ALLOW_EMPTY_VALUE = 'allowEmptyValue';
-const IS_DEPRECATED = 'deprecated';
+const DEPRECATED = 'deprecated';
+const BODY_PARAM = 'body';
+
+const defaultParseParameter = {};
 
 const parseParameter = param => {
   const [name, inOption, ...extraOptions] = param.name.split('.');
   if (!name || !inOption) {
-    return {};
+    return defaultParseParameter;
+  }
+  if (inOption === BODY_PARAM) {
+    return defaultParseParameter;
   }
   const isRequired = extraOptions.includes(REQUIRED);
   const allowEmptyValue = extraOptions.includes(ALLOW_EMPTY_VALUE);
-  const isDeprecated = extraOptions.includes(IS_DEPRECATED);
+  const isDeprecated = extraOptions.includes(DEPRECATED);
   const options = {
     name,
     in: inOption,
