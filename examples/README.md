@@ -2,12 +2,12 @@
 
 This page will includes some examples on how to use this package.
 
-- configuration
-- responses
-- components
-- request body
-- parameters
-- albums API
+- [configuration](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/configuration)
+- [responses](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/responses)
+- components - WIP
+- request body - WIP
+- parameters - WIP
+- albumAPI - WIP
 
 
 ## Run examples
