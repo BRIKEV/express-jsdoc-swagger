@@ -7,7 +7,7 @@ const validBodyMethods = require('./validRequestBodyMethods');
 
 const formatTags = (tags = []) => tags.map(({ description: name }) => name);
 
-const parsePath = path => {
+const parsePath = (path, state) => {
   debug(`Transforms path: ${JSON.stringify(path)}`);
   if (!path.description || !path.tags) return {};
   const [method, endpoint] = path.description.split(' ');
@@ -24,7 +24,9 @@ const parsePath = path => {
   const responses = responsesGenerator(returnValues);
   const parameters = parametersGenerator(paramValues);
   return {
+    ...state,
     [endpoint]: {
+      ...state[endpoint],
       [lowerCaseMethod]: {
         deprecated: isDeprecated,
         summary: summary && summary.description ? summary.description : '',
@@ -40,7 +42,7 @@ const parsePath = path => {
 const parsePaths = (swaggerObject = {}, paths = []) => {
   if (!paths || !Array.isArray(paths)) return { paths: {} };
   const pathObject = paths.reduce((acum, item) => ({
-    ...acum, ...parsePath(item),
+    ...acum, ...parsePath(item, acum),
   }), {});
   return {
     ...swaggerObject,

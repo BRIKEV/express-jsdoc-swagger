@@ -96,4 +96,133 @@ describe('setPaths method', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('should parse jsdoc path spec with multiple endpoints', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @deprecated
+       * @summary This is the summary or description of the endpoint
+       * @return {object} 200 - success response - application/json
+       */
+    `,
+    `
+      /**
+       * GET /api/v1/songs
+       * @summary This is the summary or description of the endpoint
+       * @return {object} 200 - success response - application/json
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: true,
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        '/api/v1/songs': {
+          get: {
+            deprecated: false,
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it.only('should parse jsdoc path spec with multiple methods for one endpoint', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @deprecated
+       * @summary This is the summary or description of the endpoint
+       * @return {object} 200 - success response - application/json
+       */
+    `,
+    `
+      /**
+       * POST /api/v1
+       * @summary This is the summary or description of the endpoint
+       * @return {object} 200 - success response - application/json
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: true,
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+            },
+          },
+          post: {
+            deprecated: false,
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    console.log(result);
+    expect(result).toEqual(expected);
+  });
 });
