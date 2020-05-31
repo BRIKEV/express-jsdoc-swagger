@@ -13,6 +13,7 @@ describe('Paths - tags', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: '',
             tags: [
               'album',
@@ -40,6 +41,7 @@ describe('Paths - tags', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: '',
             tags: [
               'album',

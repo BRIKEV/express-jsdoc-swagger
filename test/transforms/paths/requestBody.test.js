@@ -13,6 +13,7 @@ describe('request body tests', () => {
       paths: {
         '/api/v1': {
           post: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -48,6 +49,7 @@ describe('request body tests', () => {
       paths: {
         '/api/v1': {
           post: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -87,6 +89,7 @@ describe('request body tests', () => {
       paths: {
         '/api/v1': {
           post: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -125,6 +128,7 @@ describe('request body tests', () => {
       paths: {
         '/api/v1': {
           post: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -160,6 +164,7 @@ describe('request body tests', () => {
       paths: {
         '/api/v1': {
           post: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -199,6 +204,7 @@ describe('request body tests', () => {
       paths: {
         '/api/v1': {
           post: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],

@@ -34,6 +34,45 @@ describe('setPaths method', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('should parse jsdoc path spec with deprecated value', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @deprecated
+       * @summary This is the summary or description of the endpoint
+       * @return {object} 200 - success response - application/json
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: true,
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],

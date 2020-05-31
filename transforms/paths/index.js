@@ -16,6 +16,8 @@ const parsePath = path => {
   const lowerCaseMethod = method.toLowerCase();
   const { tags } = path;
   const summary = getTagInfo(tags, 'summary');
+  const deprecated = getTagInfo(tags, 'deprecated');
+  const isDeprecated = !!deprecated;
   const returnValues = getTagsInfo(tags, 'return');
   const paramValues = getTagsInfo(tags, 'param');
   const tagsValues = getTagsInfo(tags, 'tags');
@@ -24,6 +26,7 @@ const parsePath = path => {
   return {
     [endpoint]: {
       [lowerCaseMethod]: {
+        deprecated: isDeprecated,
         summary: summary && summary.description ? summary.description : '',
         responses,
         parameters,
