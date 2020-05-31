@@ -85,22 +85,6 @@ describe('basic transform method', () => {
     }).toThrow('Key url is required in item {"invalid":"example"} for Entity servers');
   });
 
-  it('should throw error for invalid variable', () => {
-    const input = {
-      info: {
-        title: 'API 1',
-        version: '1.0.0',
-      },
-      servers: [{
-        url: 'http://url.com',
-        variables: [{ invalid: 'example' }],
-      }],
-    };
-    expect(() => {
-      getBasicInfo(input);
-    }).toThrow('Key enum is required in item {"invalid":"example"} for Entity servers');
-  });
-
   it('should return valid configuration', () => {
     const input = {
       info: {
@@ -109,10 +93,10 @@ describe('basic transform method', () => {
       },
       servers: [{
         url: 'http://url.com',
-        variables: [{
+        variables: {
           enum: ['300', '200'],
           default: 200,
-        }],
+        },
       }],
     };
     const expected = {
@@ -128,11 +112,10 @@ describe('basic transform method', () => {
         {
           url: 'http://url.com',
           description: '',
-          variables: [{
+          variables: {
             enum: ['300', '200'],
             default: 200,
-            description: '',
-          }],
+          },
         },
       ],
     };
