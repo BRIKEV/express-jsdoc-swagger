@@ -5,7 +5,7 @@ const expressJSDocSwagger = require('../..');
 const options = {
   info: {
     version: '1.0.0',
-    title: 'Swagger Petstore',
+    title: 'Albums store',
     license: {
       name: 'MIT',
     },
@@ -22,7 +22,7 @@ const generator = expressJSDocSwagger(app);
 generator(options);
 
 /**
- * GET /api/v1
+ * GET /api/v1/albums
  * @summary This is the summary or description of the endpoint
  * @return {object} 200 - success response - application/json
  */
