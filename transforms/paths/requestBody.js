@@ -33,14 +33,11 @@ const parseBodyParameter = (currentState, body) => {
   };
 };
 
-const bodyParams = ({ name }) => name.includes('request.body');
-
 const INITIAL_STATE = { content: {} };
 
 const requestBodyGenerator = (params = []) => {
   if (!params || !Array.isArray(params)) return {};
-  const bodyValues = params.filter(bodyParams);
-  const requestBody = bodyValues.reduce((acc, body) => (
+  const requestBody = params.reduce((acc, body) => (
     { ...acc, ...parseBodyParameter(acc, body) }
   ), INITIAL_STATE);
   return requestBody;

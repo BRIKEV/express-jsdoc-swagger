@@ -162,7 +162,7 @@ describe('setPaths method', () => {
     expect(result).toEqual(expected);
   });
 
-  it.only('should parse jsdoc path spec with multiple methods for one endpoint', () => {
+  it('should parse jsdoc path spec with multiple methods for one endpoint', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
@@ -222,7 +222,6 @@ describe('setPaths method', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
-    console.log(result);
     expect(result).toEqual(expected);
   });
 });

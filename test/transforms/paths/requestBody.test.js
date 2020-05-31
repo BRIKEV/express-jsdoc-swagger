@@ -2,6 +2,30 @@ const jsdocInfo = require('../../../consumers/jsdocInfo');
 const setPaths = require('../../../transforms/paths');
 
 describe('request body tests', () => {
+  it('should not add requestBody when there is no body params', () => {
+    const jsodInput = [`
+      /**
+       * POST /api/v1/
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1/': {
+          post: {
+            deprecated: false,
+            summary: '',
+            responses: {},
+            tags: [],
+            parameters: [],
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
   it('should parse jsdoc request body', () => {
     const jsodInput = [`
       /**
