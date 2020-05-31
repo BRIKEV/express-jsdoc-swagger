@@ -9,6 +9,7 @@ const responsesGenerator = (returnValues = []) => {
   const response = returnValues.reduce((acc, value) => {
     const [status, responseDescription, contentType] = mapDescription(value.description);
     if (!STATUS_CODES[Number(status)]) {
+      // eslint-disable-next-line
       console.warn(chalk.yellow(`Status ${status} is not valid to create a response`));
       return {};
     }
