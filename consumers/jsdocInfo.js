@@ -8,10 +8,11 @@ const jsdocInfo = (options = { unwrap: true }) => comments => {
       ...tag,
       description: tag.description ? tag.description.replace('\n/', '').replace(/\/$/, '') : tag.description,
     }));
+    const description = parsedValue.description.replace('/**\n', '').replace('\n/', '');
     return {
       ...parsedValue,
       tags,
-      description: parsedValue.description.replace('/**\n', ''),
+      description,
     };
   });
   return parsed;
