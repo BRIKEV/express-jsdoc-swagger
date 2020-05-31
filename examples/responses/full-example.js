@@ -10,7 +10,7 @@ const options = {
       name: 'MIT',
     },
   },
-  file: './**/**.js',
+  file: './full-example.js',
   baseDir: __dirname,
 };
 
@@ -28,7 +28,7 @@ expressJSDocSwagger(app)(options);
  */
 
 /**
- * GET /api/v1/album
+ * GET /api/v2/album
  * @summary This is the summary or description of the endpoint
  * @tags album
  * @return {object} 200 - success response - application/json

@@ -10,7 +10,7 @@ const options = {
       name: 'MIT',
     },
   },
-  file: './**/**.js',
+  file: './simple.js',
   baseDir: __dirname,
 };
 
