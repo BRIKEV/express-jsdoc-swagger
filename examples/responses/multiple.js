@@ -17,15 +17,18 @@ const options = {
 const app = express();
 const port = 3000;
 
-const generator = expressJSDocSwagger(app);
-
-generator(options);
+expressJSDocSwagger(app)(options);
 
 /**
- * GET /api/v1/albums
+ * GET /api/v1/album
  * @summary This is the summary or description of the endpoint
  * @return {object} 200 - success response - application/json
+ * @return {object} 400 - Bad request response
  */
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/api/v1/album', (req, res) => (
+  res.json({
+    title: 'abum 1',
+  })
+));
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

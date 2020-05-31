@@ -4,7 +4,10 @@
   "description": "A set of examples of the package",
   "main": "index.js",
   "scripts": {
-    "basic": "node basic/index.js"
+    "responses:simple": "node responses/simple.js",
+    "responses:multiple": "node responses/multiple.js",
+    "responses:components": "node responses/components.js",
+    "responses:full-example": "node responses/full-example.js"
   },
   "keywords": [],
   "author": "",
