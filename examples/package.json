@@ -1,10 +1,10 @@
 {
-  "name": "basic",
+  "name": "express-jsdoc-swagger-examples",
   "version": "1.0.0",
-  "description": "",
+  "description": "A set of examples of the package",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "basic": "node basic/index.js"
   },
   "keywords": [],
   "author": "",
