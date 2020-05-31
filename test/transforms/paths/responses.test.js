@@ -15,6 +15,7 @@ describe('response tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],
@@ -62,6 +63,7 @@ describe('response tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: 'This is the summary or description of the endpoint',
             responses: {},
             parameters: [],
@@ -89,6 +91,7 @@ describe('response tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],
@@ -128,6 +131,7 @@ describe('response tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],
@@ -164,6 +168,7 @@ describe('response tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],
@@ -205,6 +210,7 @@ describe('response tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],

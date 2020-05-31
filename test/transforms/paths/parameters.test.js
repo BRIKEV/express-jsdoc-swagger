@@ -13,6 +13,7 @@ describe('params tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -47,6 +48,7 @@ describe('params tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -71,6 +73,7 @@ describe('params tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -109,6 +112,7 @@ describe('params tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -156,6 +160,7 @@ describe('params tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
@@ -190,6 +195,7 @@ describe('params tests', () => {
       paths: {
         '/api/v1': {
           get: {
+            deprecated: false,
             summary: '',
             responses: {},
             tags: [],
