@@ -4,6 +4,7 @@
   "description": "A set of examples of the package",
   "main": "index.js",
   "scripts": {
+    "configuration:main": "node configuration/main.js",
     "responses:simple": "node responses/simple.js",
     "responses:multiple": "node responses/multiple.js",
     "responses:components": "node responses/components.js",
