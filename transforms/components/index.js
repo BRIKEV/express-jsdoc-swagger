@@ -33,6 +33,7 @@ const isPropertyRequired = properties => {
 const parseSchema = schema => {
   const typedef = getTagInfo(schema.tags, 'typedef');
   const propertyValues = getTagsInfo(schema.tags, 'property');
+  if (!typedef || !typedef.name) return {};
   return {
     [typedef.name]: {
       description: schema.description,
