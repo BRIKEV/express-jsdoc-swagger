@@ -1,5 +1,6 @@
 const express = require('express');
 
+const logger = require('../utils/logger');
 const expressJSDocSwagger = require('../..');
 
 const options = {
@@ -31,4 +32,4 @@ app.get('/api/v1/album', (req, res) => (
   })
 ));
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

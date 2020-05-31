@@ -1,5 +1,6 @@
 const express = require('express');
 
+const logger = require('../utils/logger');
 const expressJSDocSwagger = require('../..');
 
 // This is a full set of options
@@ -58,4 +59,4 @@ expressJSDocSwagger(app)(options);
  */
 app.get('/api/v1', (req, res) => res.send('Hello World!'));
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));
