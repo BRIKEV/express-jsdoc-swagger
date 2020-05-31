@@ -1,0 +1,20 @@
+{
+  "name": "express-jsdoc-swagger-examples",
+  "version": "1.0.0",
+  "description": "A set of examples of the package",
+  "main": "index.js",
+  "scripts": {
+    "configuration:main": "node configuration/main.js",
+    "responses:simple": "node responses/simple.js",
+    "responses:multiple": "node responses/multiple.js",
+    "responses:components": "node responses/components.js",
+    "responses:full-example": "node responses/full-example.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "winston": "^3.2.1"
+  }
+}

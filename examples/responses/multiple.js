@@ -1,31 +1,35 @@
 const express = require('express');
 
+const logger = require('../utils/logger');
 const expressJSDocSwagger = require('../..');
 
 const options = {
   info: {
     version: '1.0.0',
-    title: 'Swagger Petstore',
+    title: 'Albums store',
     license: {
       name: 'MIT',
     },
   },
-  file: './**/**.js',
+  file: './multiple.js',
   baseDir: __dirname,
 };
 
 const app = express();
 const port = 3000;
 
-const generator = expressJSDocSwagger(app);
-
-generator(options);
+expressJSDocSwagger(app)(options);
 
 /**
- * GET /api/v1
+ * GET /api/v1/album
  * @summary This is the summary or description of the endpoint
  * @return {object} 200 - success response - application/json
+ * @return {object} 400 - Bad request response
  */
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/api/v1/album', (req, res) => (
+  res.json({
+    title: 'abum 1',
+  })
+));
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

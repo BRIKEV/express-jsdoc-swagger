@@ -26,6 +26,25 @@ describe('parseComponents method', () => {
     expect(result).toEqual(expected);
   });
 
+  it('Should parse jsdoc and return default value when there is no typedef', () => {
+    const jsodInput = [`
+      /**
+       * A song
+       * @property {string} title - The title
+       * @property {string} artist - The artist
+       * @property {number} year - The year
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {},
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
   it('Should parse jsdoc component spec with basic properties', () => {
     const jsodInput = [`
       /**

@@ -12,6 +12,21 @@ describe('parseTags method', () => {
     expect(result).toEqual(expected);
   });
 
+  it('Should not parse params that aren\'t tags', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1/album
+       * @summary example of no summary
+       */
+    `];
+    const expected = {
+      tags: [],
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseTags({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
   it('should return empty tags array with not an array as parameter', () => {
     const initialState = {};
     const tags = 2;

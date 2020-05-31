@@ -33,6 +33,7 @@ const expressJSDocSwagger = app => {
     let swaggerObject = {
       openapi: '3.0.0',
       info: options.info,
+      servers: options.servers,
     };
 
     debug('Getting basic swagger info');
