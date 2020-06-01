@@ -23,6 +23,12 @@
     "test": "jest",
     "lint": "./node_modules/.bin/eslint ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BRIKEV/express-jsdoc-swagger.git"
@@ -36,7 +42,7 @@
     "documentation",
     "swagger-ui"
   ],
-  "author": "Kevin Martínez (https://github.com/kevinccbsg)",
+  "author": "BRIKEV (https://github.com/BRIKEV)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BRIKEV/express-jsdoc-swagger/issues"
