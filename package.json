@@ -16,6 +16,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.13.1",
+    "husky": "^4.2.5",
     "jest": "^26.0.1"
   },
   "scripts": {
