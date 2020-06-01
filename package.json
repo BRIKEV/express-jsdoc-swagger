@@ -16,11 +16,18 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.13.1",
+    "husky": "^4.2.5",
     "jest": "^26.0.1"
   },
   "scripts": {
     "test": "jest",
     "lint": "./node_modules/.bin/eslint ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
   },
   "repository": {
     "type": "git",
@@ -35,7 +42,7 @@
     "documentation",
     "swagger-ui"
   ],
-  "author": "Kevin Martínez (https://github.com/kevinccbsg)",
+  "author": "BRIKEV (https://github.com/BRIKEV)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BRIKEV/express-jsdoc-swagger/issues"
