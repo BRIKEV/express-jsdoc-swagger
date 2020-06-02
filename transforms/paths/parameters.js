@@ -39,6 +39,7 @@ const parseParameter = param => {
     }),
     description: setProperty(options, 'description', {
       type: 'string',
+      defaultValue: '',
     }),
     required: setProperty(options, 'required', {
       type: 'boolean',
