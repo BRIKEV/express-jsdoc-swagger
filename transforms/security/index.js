@@ -8,6 +8,9 @@ const parseSecuritySchemas = (swaggerObject = {}) => {
   const updatedSwaggerObject = {
     ...swaggerObject,
     security: formatSecurity(swaggerObject),
+    components: {
+      securitySchemes: swaggerObject.security,
+    },
   };
   return updatedSwaggerObject;
 };
