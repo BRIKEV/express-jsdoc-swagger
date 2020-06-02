@@ -8,6 +8,34 @@ const BODY_PARAM = 'body';
 
 const defaultParseParameter = {};
 
+const parameterPayload = (options, schema) => ({
+  name: setProperty(options, 'name', {
+    type: 'string',
+    required: true,
+  }),
+  in: setProperty(options, 'in', {
+    type: 'string',
+    required: true,
+  }),
+  description: setProperty(options, 'description', {
+    type: 'string',
+    defaultValue: '',
+  }),
+  required: setProperty(options, 'required', {
+    type: 'boolean',
+    defaultValue: false,
+  }),
+  deprecated: setProperty(options, 'deprecated', {
+    type: 'boolean',
+    defaultValue: false,
+  }),
+  allowEmptyValue: setProperty(options, 'allowEmptyValue', {
+    type: 'boolean',
+    defaultValue: false,
+  }),
+  schema,
+});
+
 const parseParameter = param => {
   const [name, inOption, ...extraOptions] = param.name.split('.');
   if (!name || !inOption) {
@@ -28,32 +56,7 @@ const parseParameter = param => {
     description: param.description,
   };
   const schema = getSchema(param.type);
-  return {
-    name: setProperty(options, 'name', {
-      type: 'string',
-      required: true,
-    }),
-    in: setProperty(options, 'in', {
-      type: 'string',
-      required: true,
-    }),
-    description: setProperty(options, 'description', {
-      type: 'string',
-    }),
-    required: setProperty(options, 'required', {
-      type: 'boolean',
-      defaultValue: false,
-    }),
-    deprecated: setProperty(options, 'deprecated', {
-      type: 'boolean',
-      defaultValue: false,
-    }),
-    allowEmptyValue: setProperty(options, 'allowEmptyValue', {
-      type: 'boolean',
-      defaultValue: false,
-    }),
-    schema,
-  };
+  return parameterPayload(options, schema);
 };
 
 const parametersGenerator = (paramValues = []) => {
