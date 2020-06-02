@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "configuration:main": "node configuration/main.js",
+    "parameters:simple": "node parameters/simple.js",
+    "parameters:multiple": "node parameters/multiple.js",
+    "parameters:components": "node parameters/components.js",
     "responses:simple": "node responses/simple.js",
     "responses:multiple": "node responses/multiple.js",
     "responses:components": "node responses/components.js",
