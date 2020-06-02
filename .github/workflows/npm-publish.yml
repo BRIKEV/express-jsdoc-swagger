@@ -27,7 +27,6 @@ jobs:
       - run: npm run lint
       - run: npm test
   coverage:
-    needs: [ test ]
     name: coverage
     runs-on: ubuntu-latest
     steps:
@@ -36,7 +35,7 @@ jobs:
       with:
         node-version: '12'
     - run: npm ci
-    - uses: paambaati/codeclimate-action@v2.2.4
+    - uses: paambaati/codeclimate-action@v2.6.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
