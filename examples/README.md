@@ -4,7 +4,7 @@ This page will includes some examples on how to use this package.
 
 - [configuration](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/configuration)
 - [responses](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/responses)
-- components - WIP
+- [components](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/components)
 - request body - WIP
 - [parameters](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/parameters)
 - [security](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/security)
