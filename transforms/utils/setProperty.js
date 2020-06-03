@@ -13,7 +13,7 @@ const setProperty = entity => {
     }
     const value = item[key];
     if (options.required && value === undefined) throw requiredError(key, item);
-    if (value === undefined) return options.defaultValue;
+    if (value === undefined || value === null) return options.defaultValue;
     // eslint-disable-next-line
     if (typeof (value) !== options.type) warnType(options.type, value);
     return value;

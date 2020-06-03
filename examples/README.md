@@ -6,7 +6,7 @@ This page will includes some examples on how to use this package.
 - [responses](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/responses)
 - components - WIP
 - request body - WIP
-- parameters - WIP
+- [parameters](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/parameters)
 - albumAPI - WIP
 
 
