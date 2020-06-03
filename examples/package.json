@@ -11,7 +11,8 @@
     "responses:simple": "node responses/simple.js",
     "responses:multiple": "node responses/multiple.js",
     "responses:components": "node responses/components.js",
-    "responses:full-example": "node responses/full-example.js"
+    "responses:full-example": "node responses/full-example.js",
+    "security:basic-auth": "node security/basic-auth.js"
   },
   "keywords": [],
   "author": "",

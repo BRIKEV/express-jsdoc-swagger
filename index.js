@@ -7,6 +7,7 @@ const getOnlyComments = require('./consumers/getOnlyComments');
 const jsdocInfo = require('./consumers/jsdocInfo');
 const {
   getBasicInfo,
+  getSecuritySchemes,
   getPaths,
   getComponents,
   getTags,
@@ -34,10 +35,12 @@ const expressJSDocSwagger = app => {
       openapi: '3.0.0',
       info: options.info,
       servers: options.servers,
+      security: options.security,
     };
 
     debug('Getting basic swagger info');
     swaggerObject = getBasicInfo(swaggerObject);
+    swaggerObject = getSecuritySchemes(swaggerObject);
     debug(`SwaggerObject with basic info ${JSON.stringify(swaggerObject)}`);
 
     globFilesMatches(options.baseDir, options.file)
@@ -49,7 +52,7 @@ const expressJSDocSwagger = app => {
         swaggerObject = getComponents(swaggerObject, data);
         swaggerObject = getTags(swaggerObject, data);
       })
-      .catch(err => console.log(err));
+      .catch(console.log);
 
 
     app.use('/api-docs', (req, res, next) => {

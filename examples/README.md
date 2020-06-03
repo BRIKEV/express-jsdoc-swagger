@@ -7,6 +7,7 @@ This page will includes some examples on how to use this package.
 - components - WIP
 - request body - WIP
 - [parameters](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/parameters)
+- [security](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/security)
 - albumAPI - WIP
 
 
