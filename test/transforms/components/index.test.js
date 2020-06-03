@@ -256,4 +256,156 @@ describe('parseComponents method', () => {
     const result = parseComponents({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should parse empty string when description is not defined', () => {
+    const jsodInput = [`
+      /**
+       * A song
+       * @typedef {object} Song
+       * @property {string} title.required
+       * @property {string} artist
+       * @property {number} year
+       */
+    `,
+    `
+      /**
+       * Album
+       * @typedef {object} Album
+       * @property {Song} firstSong
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Song: {
+            type: 'object',
+            required: [
+              'title',
+            ],
+            description: 'A song',
+            properties: {
+              title: {
+                type: 'string',
+                description: '',
+              },
+              artist: {
+                type: 'string',
+                description: '',
+              },
+              year: {
+                type: 'number',
+                description: '',
+              },
+            },
+          },
+          Album: {
+            type: 'object',
+            required: [],
+            description: 'Album',
+            properties: {
+              firstSong: {
+                $ref: '#/components/schemas/Song',
+                description: '',
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('Should parse two reference for one jsdoc component', () => {
+    const jsodInput = [`
+      /**
+       * A song
+       * @typedef {object} Song
+       * @property {string} title.required - The title
+       * @property {string} artist - The artist
+       * @property {number} year - The year - int64
+       */
+    `,
+    `
+      /**
+       * Author model
+       * @typedef {object} Author
+       * @property {string} name.required - Author name
+       * @property {number} age - Author age - int64
+       */
+    `,
+    `
+      /**
+       * Album
+       * @typedef {object} Album
+       * @property {Song} firstSong
+       * @property {Author} author
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Song: {
+            type: 'object',
+            required: [
+              'title',
+            ],
+            description: 'A song',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              artist: {
+                type: 'string',
+                description: 'The artist',
+              },
+              year: {
+                type: 'number',
+                description: 'The year',
+                format: 'int64',
+              },
+            },
+          },
+          Author: {
+            type: 'object',
+            required: [
+              'name',
+            ],
+            description: 'Author model',
+            properties: {
+              name: {
+                type: 'string',
+                description: 'Author name',
+              },
+              age: {
+                type: 'number',
+                description: 'Author age',
+                format: 'int64',
+              },
+            },
+          },
+          Album: {
+            type: 'object',
+            required: [],
+            description: 'Album',
+            properties: {
+              firstSong: {
+                $ref: '#/components/schemas/Song',
+                description: '',
+              },
+              author: {
+                $ref: '#/components/schemas/Author',
+                description: '',
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
