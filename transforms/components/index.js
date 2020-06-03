@@ -12,13 +12,13 @@ const formatProperties = properties => {
   if (!properties || !Array.isArray(properties)) return {};
   return properties.reduce((acum, property) => {
     const name = getPropertyName(property);
-    const propertyName = property.type.name;
-    const [description, format] = property.description.split(' - ');
+    const type = property.type.name;
+    const [description, format] = (property.description || '').split(' - ');
     return {
       ...acum,
       [name]: {
         description,
-        ...refSchema(propertyName),
+        ...refSchema(type),
         ...(format ? { format } : {}),
       },
     };
