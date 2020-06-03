@@ -52,6 +52,7 @@ const parseComponents = (swaggerObject = {}, components = []) => {
   return {
     ...swaggerObject,
     components: {
+      ...swaggerObject.components,
       schemas: componentSchema,
     },
   };
