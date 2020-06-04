@@ -2,6 +2,7 @@
  - [ ] Bugfix
  - [ ] Feature
  - [ ] Test
+ - [ ] Docs
  - [ ] Refactor
  - [ ] Build-related changes
  - [ ] Other, please describe:
