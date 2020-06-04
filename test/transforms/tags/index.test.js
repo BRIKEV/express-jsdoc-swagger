@@ -53,12 +53,12 @@ describe('parseTags method', () => {
     const expected = {
       tags: [
         {
-          name: 'album',
-          description: 'album tag description',
-        },
-        {
           name: 'artist',
           description: 'artist tag description',
+        },
+        {
+          name: 'album',
+          description: 'album tag description',
         },
       ],
     };
@@ -89,12 +89,12 @@ describe('parseTags method', () => {
     const expected = {
       tags: [
         {
-          name: 'album',
-          description: 'album tag description',
-        },
-        {
           name: 'artist',
           description: 'artist tag description',
+        },
+        {
+          name: 'album',
+          description: 'album tag description',
         },
       ],
     };
