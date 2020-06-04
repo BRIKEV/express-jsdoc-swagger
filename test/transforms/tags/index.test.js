@@ -102,4 +102,60 @@ describe('parseTags method', () => {
     const result = parseTags({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should return an empty string if the tag has no description', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1/album
+       * @tags album - album tag description
+       */
+    `,
+    `
+      /**
+       * GET /api/v1/years
+       * @tags artist
+       */
+    `];
+    const expected = {
+      tags: [
+        {
+          name: 'album',
+          description: 'album tag description',
+        },
+        {
+          name: 'artist',
+          description: '',
+        },
+      ],
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseTags({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('Should return one tag with its description', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1/album
+       * @tags album
+       */
+    `,
+    `
+      /**
+       * GET /api/v1/years
+       * @tags album - album tag description
+       */
+    `];
+    const expected = {
+      tags: [
+        {
+          name: 'album',
+          description: 'album tag description',
+        },
+      ],
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseTags({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
