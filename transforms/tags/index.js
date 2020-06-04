@@ -9,7 +9,7 @@ const formatTags = ({ tags = [] }) => {
     const [name, description] = tag.description.split(' - ');
     return {
       name,
-      description,
+      description: description || '',
     };
   });
 };
