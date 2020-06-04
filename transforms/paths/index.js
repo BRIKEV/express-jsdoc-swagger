@@ -2,10 +2,13 @@ const debug = require('debug')('express-jsdoc-swagger:transforms:paths');
 const responsesGenerator = require('./responses');
 const parametersGenerator = require('./parameters');
 const requestBodyGenerator = require('./requestBody');
-const { getTagInfo, getTagsInfo } = require('../utils/tags');
+const { getTagInfo, getTagsInfo, formatDescriptionTag } = require('../utils/tags');
 const bodyMethods = require('./validRequestBodyMethods');
 
-const formatTags = (tags = []) => tags.map(({ description: name }) => name);
+const formatTags = (tags = []) => tags.map(({ description }) => {
+  const { name } = formatDescriptionTag(description);
+  return name;
+});
 
 const bodyParams = ({ name }) => name.includes('request.body');
 
