@@ -22,12 +22,12 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1/album
- * @tags album
+ * @tags Album
  */
 
 /**
  * GET /api/v1/songs
- * @tags album
+ * @tags Album
  * @tags Songs
  */
 

@@ -16,6 +16,8 @@ const formatTags = ({ tags = [] }) => {
 
 const sortByDescription = tags => [...tags].sort((a, b) => a.description < b.description);
 
+const sortTagsByName = tags => [...tags].sort((a, b) => a.name > b.name);
+
 const filterDuplicateTags = tags => (
   tags.filter(({ name }, i) => getIndexBy(tags, FILTER_TAG_KEY, name) === i)
 );
@@ -27,7 +29,7 @@ const parseTags = (swaggerObject = {}, data) => {
   const uniqTags = filterDuplicateTags(ordererTags);
   return {
     ...swaggerObject,
-    tags: uniqTags,
+    tags: sortTagsByName(uniqTags),
   };
 };
 
