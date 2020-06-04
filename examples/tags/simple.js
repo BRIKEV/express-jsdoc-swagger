@@ -34,7 +34,7 @@ expressJSDocSwagger(app)(options);
 /**
  * POST /api/v1/song
  * @summary Create new song
- * @tags Songs
+ * @tags Songs - everything about songs
  */
 
 /**
