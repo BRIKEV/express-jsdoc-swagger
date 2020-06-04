@@ -14,9 +14,14 @@ const formatTags = ({ tags = [] }) => {
   });
 };
 
-const sortByDescription = tags => [...tags].sort((a, b) => a.description < b.description);
+const sortByDescription = tags => [...tags].sort((a, b) => {
+  if (!a.description && b.description) {
+    return 1;
+  }
+  return -1;
+});
 
-const sortTagsByName = tags => [...tags].sort((a, b) => a.name > b.name);
+const sortTagsByName = tags => [...tags].sort((a, b) => ((a.name > b.name) ? 1 : -1));
 
 const filterDuplicateTags = tags => (
   tags.filter(({ name }, i) => getIndexBy(tags, FILTER_TAG_KEY, name) === i)
