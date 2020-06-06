@@ -24,7 +24,7 @@ const processSwagger = options => {
   swaggerObject = getSecuritySchemes(swaggerObject);
   debug(`SwaggerObject with basic info ${JSON.stringify(swaggerObject)}`);
 
-  return globFilesMatches(options.baseDir, options.filePattern)
+  return globFilesMatches(options.baseDir, options.file)
     .then(readFiles)
     .then(getOnlyComments)
     .then(jsdocInfo())
