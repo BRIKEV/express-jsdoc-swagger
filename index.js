@@ -11,7 +11,7 @@ const expressJSDocSwagger = app => (
       .then(result => {
         swaggerObject = {
           ...swaggerObject,
-          result,
+          ...result,
         };
       });
 
