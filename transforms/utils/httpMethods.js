@@ -11,4 +11,9 @@ const validRequestBodyMethods = {
   patch: true,
 };
 
-module.exports = validRequestBodyMethods;
+const validHTTPMethod = method => Object.keys(validRequestBodyMethods).includes(method);
+
+module.exports = {
+  validRequestBodyMethods,
+  validHTTPMethod,
+};
