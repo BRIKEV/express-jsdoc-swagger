@@ -47,10 +47,19 @@ const options = {
   baseDir: __dirname,
 };
 
+const userSwagger = {
+  tags: [
+    {
+      name: 'Tag example',
+      description: 'Example of tag',
+    }
+  ],
+};
+
 const app = express();
 const port = 3000;
 
-expressJSDocSwagger(app)(options);
+expressJSDocSwagger(app)(options, userSwagger);
 
 /**
  * GET /api/v1

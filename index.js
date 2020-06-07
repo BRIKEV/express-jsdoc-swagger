@@ -1,13 +1,13 @@
 const swaggerUi = require('swagger-ui-express');
-const swaggerEvents = require('./swaggerEvents');
-
+const merge = require('merge');
 const processSwagger = require('./processSwagger');
+const swaggerEvents = require('./swaggerEvents');
 
 let instance = null;
 
 const expressJSDocSwagger = app => {
   if (instance) return () => instance;
-  return options => {
+  return (options, userSwagger = {}) => {
     const events = swaggerEvents();
     instance = events.instance;
     let swaggerObject = {};
@@ -18,6 +18,7 @@ const expressJSDocSwagger = app => {
           ...swaggerObject,
           ...result,
         };
+        swaggerObject = merge.recursive(true, swaggerObject, userSwagger);
         events.finish(swaggerObject);
       })
       .catch(events.error);
