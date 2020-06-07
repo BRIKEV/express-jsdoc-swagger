@@ -14,6 +14,7 @@
     "responses:full-example": "node responses/full-example.js",
     "requestBody:simple": "node requestBody/simple.js",
     "requestBody:multiple": "node requestBody/multiple.js",
+    "requestBody:components": "node requestBody/components.js",
     "security:basic-auth": "node security/basic-auth.js",
     "components:simple": "node components/simple.js",
     "tags:simple": "node tags/simple.js"
