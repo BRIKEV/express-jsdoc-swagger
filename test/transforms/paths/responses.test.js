@@ -19,6 +19,7 @@ describe('response tests', () => {
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],
+            security: [],
             responses: {
               200: {
                 description: 'success response',
@@ -68,6 +69,7 @@ describe('response tests', () => {
             responses: {},
             parameters: [],
             tags: [],
+            security: [],
           },
         },
       },
@@ -95,6 +97,7 @@ describe('response tests', () => {
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],
+            security: [],
             responses: {
               200: {
                 description: 'success response',
@@ -135,6 +138,7 @@ describe('response tests', () => {
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],
+            security: [],
             responses: {
               200: {
                 description: 'success response',
@@ -172,6 +176,7 @@ describe('response tests', () => {
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],
+            security: [],
             responses: {
               200: {
                 description: 'success response',
@@ -214,6 +219,7 @@ describe('response tests', () => {
             summary: 'This is the summary or description of the endpoint',
             parameters: [],
             tags: [],
+            security: [],
             responses: {
               200: {
                 description: 'success response',
