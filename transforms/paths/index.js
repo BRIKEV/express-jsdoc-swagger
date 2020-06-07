@@ -15,15 +15,7 @@ const formatTags = (tags = []) => tags.map(({ description }) => {
 
 const bodyParams = ({ name }) => name.includes('request.body');
 
-const parsePath = (path, state) => {
-  debug(`Transforms path: ${JSON.stringify(path)}`);
-  if (!path.description || !path.tags) return {};
-  const [method, endpoint] = path.description.split(' ');
-  // if jsdoc comment des not contain structure <Method> - <Endpoint> is not valid path
-  const lowerCaseMethod = method.toLowerCase();
-  if (!validHTTPMethod(lowerCaseMethod)) return {};
-  const { tags } = path;
-  /* Endpoint meta info */
+const pathValues = tags => {
   const summary = getTagInfo(tags, 'summary');
   const deprecated = getTagInfo(tags, 'deprecated');
   const isDeprecated = !!deprecated;
@@ -37,6 +29,27 @@ const parsePath = (path, state) => {
   const tagsValues = getTagsInfo(tags, 'tags');
   /* Request body info */
   const bodyValues = paramValues.filter(bodyParams);
+  return {
+    summary,
+    isDeprecated,
+    responses,
+    parameters,
+    tagsValues,
+    bodyValues,
+  };
+};
+
+const parsePath = (path, state) => {
+  debug(`Transforms path: ${JSON.stringify(path)}`);
+  if (!path.description || !path.tags) return {};
+  const [method, endpoint] = path.description.split(' ');
+  // if jsdoc comment des not contain structure <Method> - <Endpoint> is not valid path
+  const lowerCaseMethod = method.toLowerCase();
+  if (!validHTTPMethod(lowerCaseMethod)) return {};
+  const { tags } = path;
+  const {
+    summary, bodyValues, isDeprecated, responses, parameters, tagsValues,
+  } = pathValues(tags);
   const hasBodyValues = bodyValues.length > 0;
   const requestBody = requestBodyGenerator(bodyValues);
   return {

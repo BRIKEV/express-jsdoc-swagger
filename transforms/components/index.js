@@ -1,4 +1,5 @@
 const { getTagInfo, getTagsInfo } = require('../utils/tags');
+const mapDescription = require('../utils/mapDescription');
 const refSchema = require('../utils/refSchema');
 
 const REQUIRED = 'required';
@@ -13,7 +14,7 @@ const formatProperties = properties => {
   return properties.reduce((acum, property) => {
     const name = getPropertyName(property);
     const type = property.type.name;
-    const [description, format] = (property.description || '').split(' - ');
+    const [description, format] = mapDescription(property.description);
     return {
       ...acum,
       [name]: {
