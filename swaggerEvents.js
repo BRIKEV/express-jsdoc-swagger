@@ -4,7 +4,7 @@ const ERROR_EVENT_NAME = 'error';
 const PROCESS_EVENT_NAME = 'process';
 const FINISH_EVENT_NAME = 'finish';
 
-let instance = null;
+let api = null;
 
 const error = eventEmitter => errorInfo => (
   eventEmitter.emit(ERROR_EVENT_NAME, errorInfo)
@@ -19,14 +19,17 @@ const finish = eventEmitter => info => (
 );
 
 const swaggerEvents = () => {
-  if (instance) return instance;
-  instance = new EventEmitter();
+  if (api) return api;
+  const instance = new EventEmitter();
 
-  return {
+  api = {
+    instance,
     error: error(instance),
     processFile: processFile(instance),
     finish: finish(instance),
   };
+
+  return api;
 };
 
 module.exports = swaggerEvents;
