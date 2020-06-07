@@ -13,6 +13,12 @@ const options = {
   },
   file: './full-example.js',
   baseDir: __dirname,
+  security: {
+    BasicAuth: {
+      type: 'http',
+      scheme: 'basic',
+    },
+  },
 };
 
 const app = express();
@@ -32,6 +38,7 @@ expressJSDocSwagger(app)(options);
  * GET /api/v2/album
  * @summary This is the summary or description of the endpoint
  * @tags album
+ * @security BasicAuth
  * @return {object} 200 - success response - application/json
  * @return {object} 400 - Bad request response
  */
