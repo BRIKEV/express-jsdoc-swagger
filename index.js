@@ -1,9 +1,10 @@
 const swaggerUi = require('swagger-ui-express');
 const debug = require('debug')('express-jsdoc-swagger');
+const merge = require('merge');
 const processSwagger = require('./processSwagger');
 
 const expressJSDocSwagger = app => (
-  options => {
+  (options, userSwagger) => {
     debug(`Retrieving ${JSON.stringify(options)}`);
     let swaggerObject = {};
 
@@ -13,6 +14,7 @@ const expressJSDocSwagger = app => (
           ...swaggerObject,
           ...result,
         };
+        swaggerObject = merge.recursive(true, swaggerObject, userSwagger);
       });
 
     app.use('/api-docs', (req, res, next) => {
