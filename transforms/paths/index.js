@@ -13,6 +13,10 @@ const formatTags = (tags = []) => tags.map(({ description }) => {
   return name;
 });
 
+const formatSecurity = (securityValues = []) => securityValues.map(({ description }) => ({
+  [description]: [],
+}));
+
 const bodyParams = ({ name }) => name.includes('request.body');
 
 const pathValues = tags => {
@@ -27,6 +31,8 @@ const pathValues = tags => {
   const parameters = parametersGenerator(paramValues);
   /* Tags info */
   const tagsValues = getTagsInfo(tags, 'tags');
+  /* Security info */
+  const securityValues = getTagsInfo(tags, 'security');
   /* Request body info */
   const bodyValues = paramValues.filter(bodyParams);
   return {
@@ -36,6 +42,7 @@ const pathValues = tags => {
     parameters,
     tagsValues,
     bodyValues,
+    securityValues,
   };
 };
 
@@ -48,7 +55,7 @@ const parsePath = (path, state) => {
   if (!validHTTPMethod(lowerCaseMethod)) return {};
   const { tags } = path;
   const {
-    summary, bodyValues, isDeprecated, responses, parameters, tagsValues,
+    summary, bodyValues, isDeprecated, responses, parameters, tagsValues, securityValues,
   } = pathValues(tags);
   const hasBodyValues = bodyValues.length > 0;
   const requestBody = requestBodyGenerator(bodyValues);
@@ -59,6 +66,7 @@ const parsePath = (path, state) => {
       [lowerCaseMethod]: {
         deprecated: isDeprecated,
         summary: summary && summary.description ? summary.description : '',
+        security: formatSecurity(securityValues),
         responses,
         parameters,
         tags: formatTags(tagsValues),

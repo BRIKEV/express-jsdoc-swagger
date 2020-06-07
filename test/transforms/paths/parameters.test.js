@@ -17,6 +17,7 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [{
               allowEmptyValue: false,
               deprecated: false,
@@ -52,6 +53,7 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [],
           },
         },
@@ -77,6 +79,7 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [{
               allowEmptyValue: false,
               deprecated: true,
@@ -116,6 +119,7 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [{
               allowEmptyValue: false,
               deprecated: true,
@@ -164,6 +168,7 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [{
               allowEmptyValue: false,
               deprecated: false,
@@ -199,6 +204,7 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [{
               allowEmptyValue: false,
               deprecated: true,
