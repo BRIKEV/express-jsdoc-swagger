@@ -3,7 +3,10 @@ const responsesGenerator = require('./responses');
 const parametersGenerator = require('./parameters');
 const requestBodyGenerator = require('./requestBody');
 const { getTagInfo, getTagsInfo, formatDescriptionTag } = require('../utils/tags');
-const bodyMethods = require('./validRequestBodyMethods');
+const {
+  validRequestBodyMethods: bodyMethods,
+  validHTTPMethod,
+} = require('../utils/httpMethods');
 
 const formatTags = (tags = []) => tags.map(({ description }) => {
   const { name } = formatDescriptionTag(description);
@@ -48,8 +51,8 @@ const parsePath = (path, state) => {
   if (!path.description || !path.tags) return {};
   const [method, endpoint] = path.description.split(' ');
   // if jsdoc comment des not contain structure <Method> - <Endpoint> is not valid path
-  if (!method) return {};
   const lowerCaseMethod = method.toLowerCase();
+  if (!validHTTPMethod(lowerCaseMethod)) return {};
   const { tags } = path;
   const {
     summary, bodyValues, isDeprecated, responses, parameters, tagsValues, securityValues,
