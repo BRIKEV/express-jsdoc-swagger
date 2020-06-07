@@ -1,5 +1,4 @@
 const swaggerUi = require('swagger-ui-express');
-const debug = require('debug')('express-jsdoc-swagger');
 const swaggerEvents = require('./swaggerEvents');
 
 const processSwagger = require('./processSwagger');
@@ -9,23 +8,21 @@ let instance = null;
 const expressJSDocSwagger = app => {
   if (instance) return () => instance;
   return options => {
-    instance = swaggerEvents();
-    debug(`Retrieving ${JSON.stringify(options)}`);
+    const events = swaggerEvents();
+    instance = events.instance;
     let swaggerObject = {};
 
-    processSwagger(options)
+    processSwagger(options, events.processFile)
       .then(result => {
         swaggerObject = {
           ...swaggerObject,
           ...result,
         };
-        instance.processFile(swaggerObject);
-        instance.finish(swaggerObject);
+        events.finish(swaggerObject);
       })
-      .catch(instance.error);
+      .catch(events.error);
 
     app.use('/api-docs', (req, res, next) => {
-      debug(`Render express endpoint with SwaggerObject: ${JSON.stringify(swaggerObject)}`);
       swaggerObject = {
         ...swaggerObject,
         host: req.get('host'),

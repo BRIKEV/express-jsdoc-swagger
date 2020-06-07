@@ -1,4 +1,3 @@
-const debug = require('debug')('express-jsdoc-swagger:processSwagger');
 const readFiles = require('./consumers/readFiles');
 const globFilesMatches = require('./consumers/globFilesMatches');
 const getOnlyComments = require('./consumers/getOnlyComments');
@@ -11,7 +10,9 @@ const {
   getTags,
 } = require('./transforms');
 
-const processSwagger = options => {
+const defaultLogger = () => null;
+
+const processSwagger = (options, logger = defaultLogger) => {
   let swaggerObject = {
     openapi: '3.0.0',
     info: options.info,
@@ -19,10 +20,10 @@ const processSwagger = options => {
     security: options.security,
   };
 
-  debug('Getting basic swagger info');
   swaggerObject = getBasicInfo(swaggerObject);
+  logger({ entity: 'basicInfo', swaggerObject });
   swaggerObject = getSecuritySchemes(swaggerObject);
-  debug(`SwaggerObject with basic info ${JSON.stringify(swaggerObject)}`);
+  logger({ entity: 'securitySchemas', swaggerObject });
 
   return globFilesMatches(options.baseDir, options.file)
     .then(readFiles)
@@ -30,8 +31,11 @@ const processSwagger = options => {
     .then(jsdocInfo())
     .then(data => {
       swaggerObject = getPaths(swaggerObject, data);
+      logger({ entity: 'paths', swaggerObject });
       swaggerObject = getComponents(swaggerObject, data);
+      logger({ entity: 'components', swaggerObject });
       swaggerObject = getTags(swaggerObject, data);
+      logger({ entity: 'tags', swaggerObject });
       return swaggerObject;
     });
 };
