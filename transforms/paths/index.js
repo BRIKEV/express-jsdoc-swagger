@@ -1,4 +1,3 @@
-const debug = require('debug')('express-jsdoc-swagger:transforms:paths');
 const responsesGenerator = require('./responses');
 const parametersGenerator = require('./parameters');
 const requestBodyGenerator = require('./requestBody');
@@ -16,6 +15,14 @@ const formatTags = (tags = []) => tags.map(({ description }) => {
 const formatSecurity = (securityValues = []) => securityValues.map(({ description }) => ({
   [description]: [],
 }));
+
+const formatSummary = summary => (summary || {}).description || '';
+
+const setRequestBody = (lowerCaseMethod, bodyValues) => {
+  const hasBodyValues = bodyValues.length > 0;
+  const requestBody = requestBodyGenerator(bodyValues);
+  return bodyMethods[lowerCaseMethod] && hasBodyValues ? { requestBody } : {};
+};
 
 const bodyParams = ({ name }) => name.includes('request.body');
 
@@ -47,40 +54,39 @@ const pathValues = tags => {
 };
 
 const parsePath = (path, state) => {
-  debug(`Transforms path: ${JSON.stringify(path)}`);
   if (!path.description || !path.tags) return {};
   const [method, endpoint] = path.description.split(' ');
-  // if jsdoc comment des not contain structure <Method> - <Endpoint> is not valid path
+  // if jsdoc comment does not contain structure <Method> - <Endpoint> is not valid path
   const lowerCaseMethod = method.toLowerCase();
   if (!validHTTPMethod(lowerCaseMethod)) return {};
   const { tags } = path;
   const {
     summary, bodyValues, isDeprecated, responses, parameters, tagsValues, securityValues,
   } = pathValues(tags);
-  const hasBodyValues = bodyValues.length > 0;
-  const requestBody = requestBodyGenerator(bodyValues);
   return {
     ...state,
     [endpoint]: {
       ...state[endpoint],
       [lowerCaseMethod]: {
         deprecated: isDeprecated,
-        summary: summary && summary.description ? summary.description : '',
+        summary: formatSummary(summary),
         security: formatSecurity(securityValues),
         responses,
         parameters,
         tags: formatTags(tagsValues),
-        ...(bodyMethods[lowerCaseMethod] && hasBodyValues ? { requestBody } : {}),
+        ...(setRequestBody(lowerCaseMethod, bodyValues)),
       },
     },
   };
 };
 
+const getPathObject = paths => paths.reduce((acum, item) => ({
+  ...acum, ...parsePath(item, acum),
+}), {});
+
 const parsePaths = (swaggerObject = {}, paths = []) => {
   if (!paths || !Array.isArray(paths)) return { paths: {} };
-  const pathObject = paths.reduce((acum, item) => ({
-    ...acum, ...parsePath(item, acum),
-  }), {});
+  const pathObject = getPathObject(paths);
   return {
     ...swaggerObject,
     paths: pathObject,
