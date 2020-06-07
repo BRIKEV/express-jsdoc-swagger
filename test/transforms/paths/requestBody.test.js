@@ -16,6 +16,7 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [],
           },
         },
@@ -41,6 +42,7 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -78,6 +80,7 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [],
             requestBody: {
               description: '',
@@ -117,6 +120,7 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -157,6 +161,7 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -196,6 +201,7 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -232,6 +238,7 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -272,6 +279,7 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
