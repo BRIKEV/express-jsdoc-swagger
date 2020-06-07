@@ -62,6 +62,46 @@ describe('request body tests', () => {
     expect(result).toEqual(expected);
   });
 
+  it('should parse jsdoc request body with array type and no description', () => {
+    const jsodInput = [
+      `
+      /**
+       * POST /api/v1/albums
+       * @param {array<object>} request.body.required
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1/albums': {
+          post: {
+            deprecated: false,
+            summary: '',
+            responses: {},
+            tags: [],
+            parameters: [],
+            requestBody: {
+              description: '',
+              required: true,
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'array',
+                    items: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
   it('should parse jsdoc request body with array type', () => {
     const jsodInput = [`
       /**
