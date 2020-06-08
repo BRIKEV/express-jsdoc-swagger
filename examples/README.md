@@ -11,6 +11,7 @@ This page will includes some examples on how to use this package.
 - [tags](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/tags)
 - [Combine schemas](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/combineSchemas)
 - [Event Emitter example](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/eventEmitter)
+- [Merge option](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/merge)
 - albumAPI - WIP
 
 

@@ -19,7 +19,8 @@
     "components:simple": "node components/simple.js",
     "tags:simple": "node tags/simple.js",
     "combineSchemas": "node combineSchemas/index.js",
-    "eventEmitter": "node eventEmitter/index.js"
+    "eventEmitter": "node eventEmitter/index.js",
+    "merge": "node merge/simple.js"
   },
   "keywords": [],
   "author": "",

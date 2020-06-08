@@ -4,10 +4,11 @@ const processSwagger = require('./processSwagger');
 const swaggerEvents = require('./swaggerEvents');
 
 let instance = null;
+const DEFAULT_SWAGGERUI_URL = '/api-docs';
 
 const expressJSDocSwagger = app => {
   if (instance) return () => instance;
-  return (options, userSwagger = {}) => {
+  return (options = {}, userSwagger = {}) => {
     const events = swaggerEvents();
     instance = events.instance;
     let swaggerObject = {};
@@ -23,7 +24,7 @@ const expressJSDocSwagger = app => {
       })
       .catch(events.error);
 
-    app.use('/api-docs', (req, res, next) => {
+    app.use(options.swaggerUIPath || DEFAULT_SWAGGERUI_URL, (req, res, next) => {
       swaggerObject = {
         ...swaggerObject,
         host: req.get('host'),
