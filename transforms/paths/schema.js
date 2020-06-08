@@ -7,6 +7,7 @@ const getSchema = type => {
     ...refSchema(nameType),
   };
   schema = {
+    ...schema,
     ...combineSchema(type.elements),
   };
   const notPrimitiveType = !nameType;
