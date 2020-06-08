@@ -9,6 +9,7 @@ This page will includes some examples on how to use this package.
 - [parameters](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/parameters)
 - [security](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/security)
 - [tags](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/tags)
+- [Combine schemas](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/combineSchemas)
 - [Event Emitter example](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/eventEmitter)
 - albumAPI - WIP
 

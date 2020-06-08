@@ -18,6 +18,7 @@
     "security:basic-auth": "node security/basic-auth.js",
     "components:simple": "node components/simple.js",
     "tags:simple": "node tags/simple.js",
+    "combineSchemas": "node combineSchemas/index.js",
     "eventEmitter": "node eventEmitter/index.js"
   },
   "keywords": [],
