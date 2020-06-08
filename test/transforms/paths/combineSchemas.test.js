@@ -86,7 +86,7 @@ test('should not parse when type is invalid', () => {
   expect(console.warn).toHaveBeenCalled();
 });
 
-test.skip('should not parse component with anyOf keyword', () => {
+test('should not parse component with anyOf keyword', () => {
   const jsodInput = [`
     /**
      * A song
@@ -136,10 +136,10 @@ test.skip('should not parse component with anyOf keyword', () => {
               description: '',
               anyOf: [
                 {
-                  $ref: '#/components/schemas/Cat',
+                  $ref: '#/components/schemas/Song',
                 },
                 {
-                  $ref: '#/components/schemas/Dog',
+                  $ref: '#/components/schemas/Album',
                 },
               ],
             },
