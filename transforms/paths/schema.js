@@ -1,24 +1,5 @@
-const chalk = require('chalk');
+const combineSchema = require('../utils/combineSchema');
 const refSchema = require('../utils/refSchema');
-
-const VALID_TYPES = ['oneOf', 'anyOf', 'allOf'];
-
-const validType = type => VALID_TYPES.includes(type);
-
-const combineSchema = elements => {
-  let schema = {};
-  if (!elements || elements.length === 0) return schema;
-  const schemaType = elements[0].name;
-  const [, ...types] = elements;
-  if (validType(schemaType)) {
-    schema = {
-      [schemaType]: types.map(type => refSchema(type.name)),
-    };
-  } else {
-    console.warn(chalk.yellow(`SchemaType ${schemaType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`));
-  }
-  return schema;
-};
 
 const getSchema = type => {
   const nameType = type.name;
