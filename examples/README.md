@@ -10,6 +10,7 @@ This page will includes some examples on how to use this package.
 - [security](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/security)
 - [tags](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/tags)
 - [Event Emitter example](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/eventEmitter)
+- [Merge option](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/merge)
 - albumAPI - WIP
 
 
