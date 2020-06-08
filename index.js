@@ -7,7 +7,7 @@ let instance = null;
 
 const expressJSDocSwagger = app => {
   if (instance) return () => instance;
-  return (options, userSwagger = {}) => {
+  return (options = {}, userSwagger = {}) => {
     const events = swaggerEvents();
     instance = events.instance;
     let swaggerObject = {};
@@ -23,7 +23,7 @@ const expressJSDocSwagger = app => {
       })
       .catch(events.error);
 
-    app.use('/api-docs', (req, res, next) => {
+    app.use(options.swaggerUIPath || '/api-docs', (req, res, next) => {
       swaggerObject = {
         ...swaggerObject,
         host: req.get('host'),
