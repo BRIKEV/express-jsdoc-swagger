@@ -15,6 +15,7 @@ const combineSchema = elements => {
       [schemaType]: types.map(type => refSchema(type.name)),
     };
   } else {
+    // eslint-disable-next-line
     console.warn(chalk.yellow(`SchemaType ${schemaType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`));
   }
   return schema;
