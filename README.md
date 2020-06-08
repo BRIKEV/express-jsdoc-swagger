@@ -34,6 +34,7 @@ const options = {
     },
   },
   file: './**/*.js', // Glob pattern to find your jsdoc files
+  swaggerUIPath: '/your-url', // SwaggerUI will be render in this url. Default: '/api-docs'
   baseDir: __dirname,
 };
 
