@@ -1,6 +1,7 @@
 const { getTagInfo, getTagsInfo } = require('../utils/tags');
 const mapDescription = require('../utils/mapDescription');
 const refSchema = require('../utils/refSchema');
+const combineSchema = require('../utils/combineSchema');
 
 const REQUIRED = 'required';
 
@@ -20,6 +21,7 @@ const formatProperties = properties => {
       [name]: {
         description,
         ...refSchema(type),
+        ...combineSchema(property.type.elements),
         ...(format ? { format } : {}),
       },
     };

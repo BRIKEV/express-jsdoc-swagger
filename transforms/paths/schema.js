@@ -1,3 +1,4 @@
+const combineSchema = require('../utils/combineSchema');
 const refSchema = require('../utils/refSchema');
 
 const getSchema = type => {
@@ -5,9 +6,13 @@ const getSchema = type => {
   let schema = {
     ...refSchema(nameType),
   };
+  schema = {
+    ...schema,
+    ...combineSchema(type.elements),
+  };
   const notPrimitiveType = !nameType;
-  if (notPrimitiveType) {
-    const items = type.applications || {};
+  if (notPrimitiveType && !type.elements) {
+    const items = type.applications || [];
     const parseItems = items.reduce((itemAcc, itemTypes) => ({
       ...itemAcc,
       ...refSchema(itemTypes.name),
