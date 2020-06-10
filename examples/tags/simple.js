@@ -11,7 +11,7 @@ const options = {
       name: 'MIT',
     },
   },
-  file: './simple.js',
+  filesPattern: './simple.js',
   baseDir: __dirname,
 };
 

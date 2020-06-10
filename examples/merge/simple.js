@@ -20,7 +20,7 @@ const options = {
       },
       termsOfService: 'http://example.com',
     },
-    file: './simple.js',
+    filesPattern: './simple.js',
     baseDir: __dirname,
 };
 
