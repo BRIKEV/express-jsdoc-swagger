@@ -25,7 +25,7 @@ const processSwagger = (options, logger = defaultLogger) => {
   swaggerObject = getSecuritySchemes(swaggerObject);
   logger({ entity: 'securitySchemas', swaggerObject });
 
-  return globFilesMatches(options.baseDir, options.file)
+  return globFilesMatches(options.baseDir, options.filesPattern)
     .then(readFiles)
     .then(getOnlyComments)
     .then(jsdocInfo())

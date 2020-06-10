@@ -8,7 +8,7 @@ const options = {
       name: 'MIT',
     },
   },
-  file: './jsdoc-example.js',
+  filesPattern: './jsdoc-example.js',
   baseDir: __dirname,
 };
 

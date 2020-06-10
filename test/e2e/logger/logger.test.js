@@ -16,7 +16,7 @@ const options = {
     },
     termsOfService: 'http://example.com',
   },
-  file: './main.js',
+  filesPattern: './main.js',
   baseDir: __dirname,
 };
 
