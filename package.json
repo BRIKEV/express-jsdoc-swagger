@@ -5,7 +5,6 @@
   "main": "index.js",
   "dependencies": {
     "chalk": "^4.0.0",
-    "debug": "^4.2.0",
     "doctrine": "^3.0.0",
     "express": "^4.17.1",
     "glob": "^7.1.6",
@@ -21,6 +20,9 @@
     "eslint-plugin-jest": "^23.13.1",
     "husky": "^4.2.5",
     "jest": "^26.0.1"
+  },
+  "engines": {
+    "node" : ">= 10.0.0"
   },
   "scripts": {
     "test": "jest",
@@ -44,10 +46,11 @@
     "express",
     "docs",
     "documentation",
-    "swagger-ui"
+    "swagger-ui",
+    "OpenAPI"
   ],
   "author": "BRIKEV (https://github.com/BRIKEV)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/BRIKEV/express-jsdoc-swagger/issues"
   },
