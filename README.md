@@ -17,7 +17,7 @@ This library assumes you are using:
 ```javascript
 
 const express = require('express');
-const expressJSDocSwagger = require('../..');
+const expressJSDocSwagger = require('express-jsdoc-swagger');
 
 const options = {
   info: {
@@ -33,7 +33,7 @@ const options = {
       scheme: 'basic',
     },
   },
-  file: './**/*.js', // Glob pattern to find your jsdoc files
+  filesPattern: './**/*.js', // Glob pattern to find your jsdoc files
   swaggerUIPath: '/your-url', // SwaggerUI will be render in this url. Default: '/api-docs'
   baseDir: __dirname,
 };
@@ -73,7 +73,7 @@ const options = {
       scheme: 'basic',
     },
   },
-  file: './**/*.js', // Glob pattern to find your jsdoc files
+  filesPattern: './**/*.js', // Glob pattern to find your jsdoc files
   baseDir: __dirname,
 };
 ```

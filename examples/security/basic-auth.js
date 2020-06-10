@@ -17,7 +17,7 @@ const options = {
       scheme: 'basic',
     },
   },
-  file: './basic-auth.js',
+  filesPattern: './basic-auth.js',
   baseDir: __dirname,
 };
 
