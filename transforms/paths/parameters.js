@@ -36,6 +36,20 @@ const parameterPayload = (options, schema) => ({
   schema,
 });
 
+const ENUM_IDENTIFIER = 'enum:';
+
+const formatDescription = description => {
+  const descriptionTypes = (description || '').split(' - ');
+  const descriptionValue = descriptionTypes.find(value => !value.includes(ENUM_IDENTIFIER));
+  const enumOption = descriptionTypes.find(value => value.includes(ENUM_IDENTIFIER));
+  if (!enumOption) {
+    return [descriptionValue];
+  }
+  const [, enumOptions] = enumOption.split('enum:');
+  const enumValues = enumOptions.split(',');
+  return [descriptionValue, enumValues];
+};
+
 const parseParameter = param => {
   const [name, inOption, ...extraOptions] = param.name.split('.');
   if (!name || !inOption) {
@@ -47,15 +61,16 @@ const parseParameter = param => {
   const isRequired = extraOptions.includes(REQUIRED);
   const allowEmptyValue = extraOptions.includes(ALLOW_EMPTY_VALUE);
   const isDeprecated = extraOptions.includes(DEPRECATED);
+  const [description, enumValues] = formatDescription(param.description);
   const options = {
     name,
     in: inOption,
     required: isRequired,
     allowEmptyValue,
     deprecated: isDeprecated,
-    description: param.description,
+    description,
   };
-  const schema = getSchema(param.type);
+  const schema = getSchema(param.type, enumValues);
   return parameterPayload(options, schema);
 };
 

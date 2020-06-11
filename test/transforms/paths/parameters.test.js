@@ -227,4 +227,44 @@ describe('params tests', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('should parse jsdoc path params with enum values', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @param {string} name.query.required - name param description - enum:value1,value2
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: false,
+            summary: '',
+            responses: {},
+            tags: [],
+            security: [],
+            parameters: [{
+              allowEmptyValue: false,
+              deprecated: false,
+              description: 'name param description',
+              in: 'query',
+              name: 'name',
+              required: true,
+              schema: {
+                type: 'string',
+                enum: [
+                  'value1',
+                  'value2',
+                ],
+              },
+            }],
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });

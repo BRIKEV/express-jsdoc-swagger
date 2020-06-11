@@ -1,7 +1,14 @@
 const combineSchema = require('../utils/combineSchema');
 const refSchema = require('../utils/refSchema');
 
-const getSchema = type => {
+const addEnumValues = values => {
+  if (values.length === 0) {
+    return {};
+  }
+  return { enum: values };
+};
+
+const getSchema = (type, enumValues = []) => {
   const nameType = type.name;
   let schema = {
     ...refSchema(nameType),
@@ -9,6 +16,7 @@ const getSchema = type => {
   schema = {
     ...schema,
     ...combineSchema(type.elements),
+    ...addEnumValues(enumValues),
   };
   const notPrimitiveType = !nameType;
   if (notPrimitiveType && !type.elements) {
