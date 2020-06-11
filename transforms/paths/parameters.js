@@ -1,4 +1,5 @@
 const setProperty = require('../utils/setProperty')('parameter');
+const formatDescription = require('../utils/formatDescription');
 const getSchema = require('./schema');
 
 const REQUIRED = 'required';
@@ -35,20 +36,6 @@ const parameterPayload = (options, schema) => ({
   }),
   schema,
 });
-
-const ENUM_IDENTIFIER = 'enum:';
-
-const formatDescription = description => {
-  const descriptionTypes = (description || '').split(' - ');
-  const descriptionValue = descriptionTypes.find(value => !value.includes(ENUM_IDENTIFIER));
-  const enumOption = descriptionTypes.find(value => value.includes(ENUM_IDENTIFIER));
-  if (!enumOption) {
-    return [descriptionValue];
-  }
-  const [, enumOptions] = enumOption.split('enum:');
-  const enumValues = enumOptions.split(',');
-  return [descriptionValue, enumValues];
-};
 
 const parseParameter = param => {
   const [name, inOption, ...extraOptions] = param.name.split('.');

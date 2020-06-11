@@ -1,12 +1,6 @@
 const combineSchema = require('../utils/combineSchema');
+const addEnumValues = require('../utils/enumValues');
 const refSchema = require('../utils/refSchema');
-
-const addEnumValues = values => {
-  if (values.length === 0) {
-    return {};
-  }
-  return { enum: values };
-};
 
 const getSchema = (type, enumValues = []) => {
   const nameType = type.name;

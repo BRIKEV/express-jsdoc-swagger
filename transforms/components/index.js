@@ -1,6 +1,8 @@
 const { getTagInfo, getTagsInfo } = require('../utils/tags');
 const mapDescription = require('../utils/mapDescription');
 const refSchema = require('../utils/refSchema');
+const addEnumValues = require('../utils/enumValues');
+const formatDescription = require('../utils/formatDescription');
 const combineSchema = require('../utils/combineSchema');
 
 const REQUIRED = 'required';
@@ -8,27 +10,6 @@ const REQUIRED = 'required';
 const getPropertyName = ({ name: propertyName }) => {
   const [name] = propertyName.split('.');
   return name;
-};
-
-const ENUM_IDENTIFIER = 'enum:';
-
-const formatDescription = description => {
-  const descriptionTypes = (description || '').split(' - ');
-  const descriptionValue = descriptionTypes.filter(value => !value.includes(ENUM_IDENTIFIER)).join(' - ');
-  const enumOption = descriptionTypes.find(value => value.includes(ENUM_IDENTIFIER));
-  if (!enumOption) {
-    return [descriptionValue];
-  }
-  const [, enumOptions] = enumOption.split('enum:');
-  const enumValues = enumOptions.split(',');
-  return [descriptionValue, enumValues];
-};
-
-const addEnumValues = (values = []) => {
-  if (values.length === 0) {
-    return {};
-  }
-  return { enum: values };
 };
 
 const formatProperties = properties => {
