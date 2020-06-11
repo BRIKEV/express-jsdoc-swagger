@@ -15,6 +15,7 @@
     "requestBody:simple": "node requestBody/simple.js",
     "requestBody:multiple": "node requestBody/multiple.js",
     "requestBody:components": "node requestBody/components.js",
+    "requestBody:formdata": "node requestBody/formdata.js",
     "security:basic-auth": "node security/basic-auth.js",
     "components:simple": "node components/simple.js",
     "tags:simple": "node tags/simple.js",
