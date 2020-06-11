@@ -1,9 +1,10 @@
+const mapDescription = require('./mapDescription');
 
 const ENUM_IDENTIFIER = 'enum:';
 const DESCRIPTION_DIVIDER = ' - ';
 
 const formatDescription = description => {
-  const descriptionTypes = (description || '').split(DESCRIPTION_DIVIDER);
+  const descriptionTypes = mapDescription(description);
   const descriptionValue = descriptionTypes.filter(value => (
     !value.includes(ENUM_IDENTIFIER)
   )).join(DESCRIPTION_DIVIDER);
