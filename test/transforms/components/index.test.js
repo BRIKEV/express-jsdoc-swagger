@@ -85,6 +85,96 @@ describe('parseComponents method', () => {
     expect(result).toEqual(expected);
   });
 
+  it('Should parse jsdoc component spec with enum properties', () => {
+    const jsodInput = [`
+      /**
+       * A song
+       * @typedef {object} Song
+       * @property {string} title - The title
+       * @property {string} artist - The artist - enum:value1,value2
+       * @property {number} year - The year - int64
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Song: {
+            type: 'object',
+            required: [],
+            description: 'A song',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              artist: {
+                type: 'string',
+                description: 'The artist',
+                enum: [
+                  'value1',
+                  'value2',
+                ],
+              },
+              year: {
+                type: 'number',
+                description: 'The year',
+                format: 'int64',
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('Should parse jsdoc component spec with enum properties in different order', () => {
+    const jsodInput = [`
+      /**
+       * A song
+       * @typedef {object} Song
+       * @property {string} title - The title
+       * @property {string} artist - enum:value1,value2 - The artist
+       * @property {number} year - The year - int64
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Song: {
+            type: 'object',
+            required: [],
+            description: 'A song',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              artist: {
+                type: 'string',
+                description: 'The artist',
+                enum: [
+                  'value1',
+                  'value2',
+                ],
+              },
+              year: {
+                type: 'number',
+                description: 'The year',
+                format: 'int64',
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
   it('Should parse jsdoc component spec with require and format properties', () => {
     const jsodInput = [`
       /**

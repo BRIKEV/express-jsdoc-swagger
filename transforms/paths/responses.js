@@ -1,9 +1,8 @@
 const chalk = require('chalk');
 
 const STATUS_CODES = require('./validStatusCodes');
+const mapDescription = require('../utils/mapDescription');
 const getContent = require('./content');
-
-const mapDescription = description => description.split(' - ');
 
 const hasOldContent = (value, status) => (value[status] && value[status].content);
 
