@@ -10,12 +10,34 @@ const getPropertyName = ({ name: propertyName }) => {
   return name;
 };
 
+const ENUM_IDENTIFIER = 'enum:';
+
+const formatDescription = description => {
+  const descriptionTypes = (description || '').split(' - ');
+  const descriptionValue = descriptionTypes.filter(value => !value.includes(ENUM_IDENTIFIER)).join(' - ');
+  const enumOption = descriptionTypes.find(value => value.includes(ENUM_IDENTIFIER));
+  if (!enumOption) {
+    return [descriptionValue];
+  }
+  const [, enumOptions] = enumOption.split('enum:');
+  const enumValues = enumOptions.split(',');
+  return [descriptionValue, enumValues];
+};
+
+const addEnumValues = (values = []) => {
+  if (values.length === 0) {
+    return {};
+  }
+  return { enum: values };
+};
+
 const formatProperties = properties => {
   if (!properties || !Array.isArray(properties)) return {};
   return properties.reduce((acum, property) => {
     const name = getPropertyName(property);
     const type = property.type.name;
-    const [description, format] = mapDescription(property.description);
+    const [descriptionValue, enumValues] = formatDescription(property.description);
+    const [description, format] = mapDescription(descriptionValue);
     return {
       ...acum,
       [name]: {
@@ -23,6 +45,7 @@ const formatProperties = properties => {
         ...refSchema(type),
         ...combineSchema(property.type.elements),
         ...(format ? { format } : {}),
+        ...addEnumValues(enumValues),
       },
     };
   }, {});
