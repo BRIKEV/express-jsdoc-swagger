@@ -1,6 +1,8 @@
 const { getTagInfo, getTagsInfo } = require('../utils/tags');
 const mapDescription = require('../utils/mapDescription');
 const refSchema = require('../utils/refSchema');
+const addEnumValues = require('../utils/enumValues');
+const formatDescription = require('../utils/formatDescription');
 const combineSchema = require('../utils/combineSchema');
 
 const REQUIRED = 'required';
@@ -15,7 +17,8 @@ const formatProperties = properties => {
   return properties.reduce((acum, property) => {
     const name = getPropertyName(property);
     const type = property.type.name;
-    const [description, format] = mapDescription(property.description);
+    const [descriptionValue, enumValues] = formatDescription(property.description);
+    const [description, format] = mapDescription(descriptionValue);
     return {
       ...acum,
       [name]: {
@@ -23,6 +26,7 @@ const formatProperties = properties => {
         ...refSchema(type),
         ...combineSchema(property.type.elements),
         ...(format ? { format } : {}),
+        ...addEnumValues(enumValues),
       },
     };
   }, {});

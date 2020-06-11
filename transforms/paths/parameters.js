@@ -1,4 +1,5 @@
 const setProperty = require('../utils/setProperty')('parameter');
+const formatDescription = require('../utils/formatDescription');
 const getSchema = require('./schema');
 
 const REQUIRED = 'required';
@@ -47,15 +48,16 @@ const parseParameter = param => {
   const isRequired = extraOptions.includes(REQUIRED);
   const allowEmptyValue = extraOptions.includes(ALLOW_EMPTY_VALUE);
   const isDeprecated = extraOptions.includes(DEPRECATED);
+  const [description, enumValues] = formatDescription(param.description);
   const options = {
     name,
     in: inOption,
     required: isRequired,
     allowEmptyValue,
     deprecated: isDeprecated,
-    description: param.description,
+    description,
   };
-  const schema = getSchema(param.type);
+  const schema = getSchema(param.type, enumValues);
   return parameterPayload(options, schema);
 };
 
