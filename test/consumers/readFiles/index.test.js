@@ -12,6 +12,17 @@ describe('readFiles', () => {
       .catch(done);
   });
 
+  it('should throw an error when file is not found', done => {
+    const input = [
+      `${__dirname}/fixtures/not-found.txt`,
+    ];
+    readFiles(input)
+      .catch(error => {
+        expect(error.message).toMatch(/ENOENT: no such file or directory, open/);
+        done();
+      });
+  });
+
   it('should return empty array when we do not send array as param', done => {
     const input = [
       `${__dirname}/fixtures/example.txt`,

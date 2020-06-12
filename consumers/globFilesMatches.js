@@ -5,7 +5,7 @@ const DEFAULT_EXCLUDED_FOLDER = 'node_modules';
 
 const globFilesMatches = (baseDir, filePath, excludedFolder = DEFAULT_EXCLUDED_FOLDER) => (
   new Promise((resolve, reject) => {
-    if (!baseDir && !filePath) {
+    if (!baseDir || !filePath) {
       const error = new Error('baseDir and filePath are required');
       return reject(error);
     }
