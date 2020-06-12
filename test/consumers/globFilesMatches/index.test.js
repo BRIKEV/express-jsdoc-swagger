@@ -9,6 +9,26 @@ describe('glob Files matches method', () => {
       });
   });
 
+  it('should return error when baseDir is undefined', done => {
+    const baseDir = undefined;
+    const filePath = './**/**.txt';
+    globFilesMatches(baseDir, filePath)
+      .catch(error => {
+        expect(error.message).toEqual('baseDir and filePath are required');
+        done();
+      });
+  });
+
+  it('should return error when glob method not receives a string type', done => {
+    const baseDir = 2; // This forces error in glob method
+    const filePath = './**/**.txt';
+    globFilesMatches(baseDir, filePath)
+      .catch(error => {
+        expect(error.message).toEqual('The "path" argument must be of type string. Received type number');
+        done();
+      });
+  });
+
   it('should return example.txt and excluded/example.txt file', done => {
     const baseDir = __dirname;
     const filePath = './**/**.txt';
