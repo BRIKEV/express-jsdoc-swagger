@@ -51,7 +51,7 @@ describe('response tests', () => {
     expect(result).toEqual(expected);
   });
 
-  it('should not jsdoc with wrong info and return warning in the console', () => {
+  it('should not parse jsdoc with wrong info and return warning in the console', () => {
     global.console = { ...global.console, warn: jest.fn() };
     const jsodInput = [`
       /**
@@ -79,6 +79,47 @@ describe('response tests', () => {
     expect(result).toEqual(expected);
     // eslint-disable-next-line
     expect(console.warn).toHaveBeenCalled();
+  });
+
+  it('should parse jsdoc with wrong info and return warning in the console', () => {
+    global.console = { ...global.console, warn: jest.fn() };
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @summary This is the summary or description of the endpoint
+       * @return {object} default - success response - application/json
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: false,
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            security: [],
+            responses: {
+              default: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+    // eslint-disable-next-line
+    expect(console.warn).not.toHaveBeenCalled();
   });
 
   it('should parse jsdoc path response with array type', () => {

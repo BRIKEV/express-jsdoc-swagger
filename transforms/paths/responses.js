@@ -8,7 +8,7 @@ const hasOldContent = (value, status) => (value[status] && value[status].content
 
 const formatResponses = values => values.reduce((acc, value) => {
   const [status, description, contentType] = mapDescription(value.description);
-  if (!STATUS_CODES[Number(status)]) {
+  if (!STATUS_CODES[status]) {
     // eslint-disable-next-line
     console.warn(chalk.yellow(`Status ${status} is not valid to create a response`));
     return {};
