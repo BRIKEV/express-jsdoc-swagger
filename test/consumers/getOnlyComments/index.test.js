@@ -100,4 +100,24 @@ describe('get only comments consumer method', () => {
     expect(result).toHaveLength(3);
     expect(result).toEqual(expected);
   });
+
+  it('should return JSdoc comment that is not at the begining of the line', () => {
+    const input = [`
+      File with comments with tabulation
+    
+      /**
+       * @param  {[type]}
+       * @param  {[type]}
+       * @return {[type]}
+       */
+    `];
+    const expected = [`/**
+       * @param  {[type]}
+       * @param  {[type]}
+       * @return {[type]}
+       */`];
+    const result = getOnlyComments(input);
+    expect(result).toHaveLength(1);
+    expect(result).toEqual(expected);
+  });
 });
