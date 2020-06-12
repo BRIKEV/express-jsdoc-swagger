@@ -54,6 +54,12 @@ const STATUS_CODES = {
   422: 'Unprocessable Entity',
   415: 'Unsupported Media Type',
   305: 'Use Proxy',
+  '1XX': '1XX Range',
+  '2XX': '2XX Range',
+  '3XX': '3XX Range',
+  '4XX': '4XX Range',
+  '5XX': '5XX Range',
+  default: 'Default response',
 };
 
 module.exports = STATUS_CODES;
