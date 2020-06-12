@@ -24,7 +24,7 @@ describe('glob Files matches method', () => {
     const filePath = './**/**.txt';
     globFilesMatches(baseDir, filePath)
       .catch(error => {
-        expect(error.message).toEqual('The "path" argument must be of type string. Received type number');
+        expect(error.message).toMatch(/The "path" argument must be of type string. Received type number/);
         done();
       });
   });
