@@ -574,4 +574,42 @@ describe('parseComponents method', () => {
     const result = parseComponents({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should parse jsdoc component spec when songs property is an array of numbers with empty description', () => {
+    const jsodInput = [`
+      /**
+       * Album
+       * @typedef {object} Album
+       * @property {string} title - The title
+       * @property {array<number>} years
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Album: {
+            type: 'object',
+            required: [],
+            description: 'Album',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              years: {
+                type: 'array',
+                description: '',
+                items: {
+                  type: 'number',
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
