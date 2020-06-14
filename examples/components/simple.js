@@ -42,4 +42,11 @@ expressJSDocSwagger(app)(options);
  * @property {Author} author
  */
 
+/**
+ * Album
+ * @typedef {object} Album
+ * @property {string} title - The title
+ * @property {array<number>} years
+ */
+
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

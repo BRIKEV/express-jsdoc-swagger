@@ -498,4 +498,118 @@ describe('parseComponents method', () => {
     const result = parseComponents({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should parse jsdoc component spec when songs property is an array of strings', () => {
+    const jsodInput = [`
+      /**
+       * Album
+       * @typedef {object} Album
+       * @property {string} title - The title
+       * @property {array<string>} songs - songs array
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Album: {
+            type: 'object',
+            required: [],
+            description: 'Album',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              songs: {
+                type: 'array',
+                description: 'songs array',
+                items: {
+                  type: 'string',
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('Should parse jsdoc component spec when songs property is an array of numbers', () => {
+    const jsodInput = [`
+      /**
+       * Album
+       * @typedef {object} Album
+       * @property {string} title - The title
+       * @property {array<number>} years - years description
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Album: {
+            type: 'object',
+            required: [],
+            description: 'Album',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              years: {
+                type: 'array',
+                description: 'years description',
+                items: {
+                  type: 'number',
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('Should parse jsdoc component spec when songs property is an array of numbers with empty description', () => {
+    const jsodInput = [`
+      /**
+       * Album
+       * @typedef {object} Album
+       * @property {string} title - The title
+       * @property {array<number>} years
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Album: {
+            type: 'object',
+            required: [],
+            description: 'Album',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              years: {
+                type: 'array',
+                description: '',
+                items: {
+                  type: 'number',
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
