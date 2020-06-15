@@ -22,6 +22,11 @@ const addTypeApplication = (applications, expression) => {
   };
 };
 
+const addRefSchema = (typeName, applications, elements) => {
+  if (!typeName && !elements) return { items: formatRefSchema(applications) };
+  return {};
+};
+
 const formatProperties = properties => {
   if (!properties || !Array.isArray(properties)) return {};
   return properties.reduce((acum, property) => {
@@ -29,7 +34,6 @@ const formatProperties = properties => {
     const {
       name: typeName, applications, expression, elements,
     } = property.type;
-    const notPrimitiveType = !typeName;
     const [descriptionValue, enumValues] = formatDescription(property.description);
     const [description, format] = mapDescription(descriptionValue);
     return {
@@ -39,7 +43,7 @@ const formatProperties = properties => {
         ...refSchema(typeName),
         ...combineSchema(elements),
         ...addTypeApplication(applications, expression),
-        ...((notPrimitiveType && !elements) ? { items: formatRefSchema(applications) } : {}),
+        ...addRefSchema(typeName, applications, elements),
         ...(format ? { format } : {}),
         ...addEnumValues(enumValues),
       },
