@@ -21,7 +21,7 @@ const port = 3000;
 expressJSDocSwagger(app)(options);
 
 /**
- * POST /api/v1
+ * POST /api/v1/songs
  * @param {string} request.body.required - name body description
  * @return {object} 200 - song response
  */
