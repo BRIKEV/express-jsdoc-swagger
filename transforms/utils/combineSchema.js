@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const refSchema = require('./refSchema');
+const { refSchema } = require('./refSchema');
 
 const VALID_TYPES = ['oneOf', 'anyOf', 'allOf'];
 

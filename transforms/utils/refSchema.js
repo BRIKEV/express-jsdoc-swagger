@@ -9,4 +9,12 @@ const refSchema = value => {
   return schema;
 };
 
-module.exports = refSchema;
+const formatRefSchema = (applications = []) => applications.reduce((itemAcc, itemTypes) => ({
+  ...itemAcc,
+  ...refSchema(itemTypes.name),
+}), {});
+
+module.exports = {
+  refSchema,
+  formatRefSchema,
+};
