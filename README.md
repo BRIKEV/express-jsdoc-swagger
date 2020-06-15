@@ -91,7 +91,7 @@ const options = {
  * @typedef {object} Song
  * @property {string} title.required - The title
  * @property {string} artist - The artist
- * @property {number} year - The year - int64
+ * @property {number} year - The year - double
  */
 ```
 

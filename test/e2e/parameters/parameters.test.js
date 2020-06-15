@@ -49,7 +49,6 @@ test('should parse components jsdoc from jsdoc-example', async () => {
               description: 'name param description',
               required: true,
               deprecated: false,
-              allowEmptyValue: false,
               schema: {
                 type: 'string',
               },
@@ -60,7 +59,6 @@ test('should parse components jsdoc from jsdoc-example', async () => {
               description: 'phone number',
               required: false,
               deprecated: false,
-              allowEmptyValue: false,
               schema: {
                 type: 'number',
               },
@@ -93,7 +91,6 @@ test('should parse components jsdoc from jsdoc-example', async () => {
               description: 'name param description',
               required: true,
               deprecated: true,
-              allowEmptyValue: false,
               schema: {
                 type: 'array',
                 items: {
@@ -107,7 +104,6 @@ test('should parse components jsdoc from jsdoc-example', async () => {
               description: '',
               required: false,
               deprecated: false,
-              allowEmptyValue: false,
               schema: {
                 type: 'number',
               },

@@ -21,15 +21,17 @@ const port = 3000;
 expressJSDocSwagger(app)(options);
 
 /**
- * POST /api/v1
+ * POST /api/v1/songs
  * @param {string} request.body.required - name body description
+ * @return {object} 200 - song response
  */
-app.post('/api/v1', (req, res) => res.send('Hello World!'));
+app.post('/api/v1/songs', (req, res) => res.send('Hello World!'));
 
 /**
  * POST /api/v1/albums
  * @param {array<object>} request.body.required
+ * @return {object} 200 - song response
  */
-app.post('/api/v1', (req, res) => res.send('Hello World!'));
+app.post('/api/v1/albums', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

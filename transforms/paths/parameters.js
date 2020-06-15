@@ -5,7 +5,6 @@ const formatDescription = require('../utils/formatDescription');
 const getSchema = require('./schema');
 
 const REQUIRED = 'required';
-const ALLOW_EMPTY_VALUE = 'allowEmptyValue';
 const DEPRECATED = 'deprecated';
 const BODY_PARAM = 'body';
 
@@ -32,10 +31,6 @@ const parameterPayload = (options, schema) => ({
     type: 'boolean',
     defaultValue: false,
   }),
-  allowEmptyValue: setProperty(options, 'allowEmptyValue', {
-    type: 'boolean',
-    defaultValue: false,
-  }),
   schema,
 });
 
@@ -56,14 +51,12 @@ const parseParameter = param => {
     return wrongInOption(param.name);
   }
   const isRequired = extraOptions.includes(REQUIRED);
-  const allowEmptyValue = extraOptions.includes(ALLOW_EMPTY_VALUE);
   const isDeprecated = extraOptions.includes(DEPRECATED);
   const [description, enumValues] = formatDescription(param.description);
   const options = {
     name,
     in: inOption,
     required: isRequired,
-    allowEmptyValue,
     deprecated: isDeprecated,
     description,
   };

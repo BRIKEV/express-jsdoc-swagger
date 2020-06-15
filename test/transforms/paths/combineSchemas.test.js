@@ -170,7 +170,6 @@ test('should parse jsdoc path reference params with allOf keyword', () => {
           tags: [],
           security: [],
           parameters: [{
-            allowEmptyValue: false,
             deprecated: false,
             description: 'name param description',
             in: 'query',
