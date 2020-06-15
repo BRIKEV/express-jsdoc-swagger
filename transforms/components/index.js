@@ -12,12 +12,15 @@ const getPropertyName = ({ name: propertyName }) => {
   return name;
 };
 
-const formatTypeApplication = (applications, expression) => ({
-  type: expression.name,
-  items: {
-    type: applications[0].name,
-  },
-});
+const addTypeApplication = (applications, expression) => {
+  if (!applications && !expression) return {};
+  return {
+    type: expression.name,
+    items: {
+      type: applications[0].name,
+    },
+  };
+};
 
 const formatProperties = properties => {
   if (!properties || !Array.isArray(properties)) return {};
@@ -33,7 +36,7 @@ const formatProperties = properties => {
         description,
         ...refSchema(type),
         ...combineSchema(property.type.elements),
-        ...(applications && expression ? formatTypeApplication(applications, expression) : {}),
+        ...addTypeApplication(applications, expression),
         ...(format ? { format } : {}),
         ...addEnumValues(enumValues),
       },
