@@ -19,7 +19,6 @@ describe('params tests', () => {
             tags: [],
             security: [],
             parameters: [{
-              allowEmptyValue: false,
               deprecated: false,
               description: 'name param description',
               in: 'query',
@@ -81,7 +80,6 @@ describe('params tests', () => {
             tags: [],
             security: [],
             parameters: [{
-              allowEmptyValue: false,
               deprecated: true,
               description: 'name param description',
               in: 'query',
@@ -121,7 +119,6 @@ describe('params tests', () => {
             tags: [],
             security: [],
             parameters: [{
-              allowEmptyValue: false,
               deprecated: true,
               description: 'name param description',
               in: 'query',
@@ -134,7 +131,6 @@ describe('params tests', () => {
                 },
               },
             }, {
-              allowEmptyValue: false,
               deprecated: false,
               description: '',
               in: 'param',
@@ -170,7 +166,6 @@ describe('params tests', () => {
             tags: [],
             security: [],
             parameters: [{
-              allowEmptyValue: false,
               deprecated: false,
               description: 'name param description',
               in: 'query',
@@ -206,7 +201,6 @@ describe('params tests', () => {
             tags: [],
             security: [],
             parameters: [{
-              allowEmptyValue: false,
               deprecated: true,
               description: 'name param description',
               in: 'query',
@@ -245,7 +239,6 @@ describe('params tests', () => {
             tags: [],
             security: [],
             parameters: [{
-              allowEmptyValue: false,
               deprecated: false,
               description: 'name param description',
               in: 'query',
@@ -285,7 +278,6 @@ describe('params tests', () => {
             tags: [],
             security: [],
             parameters: [{
-              allowEmptyValue: false,
               deprecated: false,
               description: 'name param description',
               in: 'query',
