@@ -1,5 +1,5 @@
 const setProperty = require('../utils/setProperty')('parameter');
-const getContent = require('./content');
+const getContent = require('./content')('@paramBody');
 const mapDescription = require('../utils/mapDescription');
 
 const REQUIRED = 'required';
@@ -28,7 +28,7 @@ const parseBodyParameter = (currentState, body) => {
     }),
     content: {
       ...currentState.content,
-      ...getContent(body.type, contentType),
+      ...getContent(body.type, contentType, body.description),
     },
   };
 };

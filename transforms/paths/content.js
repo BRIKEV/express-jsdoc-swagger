@@ -2,8 +2,8 @@ const getSchema = require('./schema');
 
 const DEFAULT_CONTENT_TYPE = 'application/json';
 
-const getContent = (type, contentType) => {
-  const schema = getSchema(type);
+const getContent = entity => (type, contentType, originalValue) => {
+  const schema = getSchema(entity, originalValue)(type);
   return {
     [contentType || DEFAULT_CONTENT_TYPE]: {
       schema,

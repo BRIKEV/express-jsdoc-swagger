@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 const setProperty = require('../utils/setProperty')('parameter');
 const formatDescription = require('../utils/formatDescription');
 const getSchema = require('./schema');
@@ -43,6 +45,8 @@ const parseParameter = param => {
     return defaultParseParameter;
   }
   if (inOption === BODY_PARAM) {
+    // eslint-disable-next-line
+    console.warn(chalk.yellow(`If you want to add one @param as body you must provide "request.body" instead of ${param.name}`));
     return defaultParseParameter;
   }
   const isRequired = extraOptions.includes(REQUIRED);
@@ -57,7 +61,7 @@ const parseParameter = param => {
     deprecated: isDeprecated,
     description,
   };
-  const schema = getSchema(param.type, enumValues);
+  const schema = getSchema('@param', param.name)(param.type, enumValues);
   return parameterPayload(options, schema);
 };
 

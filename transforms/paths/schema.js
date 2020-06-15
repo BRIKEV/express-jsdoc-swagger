@@ -1,8 +1,14 @@
+const chalk = require('chalk');
+
 const combineSchema = require('../utils/combineSchema');
 const addEnumValues = require('../utils/enumValues');
 const refSchema = require('../utils/refSchema');
 
-const getSchema = (type, enumValues = []) => {
+const getSchema = (entity, message) => (type, enumValues = []) => {
+  if (!type) {
+    // eslint-disable-next-line
+    return console.warn(chalk.yellow(`Entity: ${entity} could not be parsed. Value: "${message}" is wrong`));
+  }
   const nameType = type.name;
   let schema = {
     ...refSchema(nameType),
