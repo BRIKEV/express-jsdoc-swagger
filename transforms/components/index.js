@@ -13,9 +13,7 @@ const getPropertyName = ({ name: propertyName }) => {
 };
 
 const addTypeApplication = (applications, expression) => {
-  if (!applications && !expression) {
-    return {};
-  }
+  if (!applications && !expression) return {};
   return {
     type: expression.name,
     items: {
