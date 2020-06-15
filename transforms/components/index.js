@@ -1,6 +1,6 @@
 const { getTagInfo, getTagsInfo } = require('../utils/tags');
 const mapDescription = require('../utils/mapDescription');
-const refSchema = require('../utils/refSchema');
+const { refSchema, formatRefSchema } = require('../utils/refSchema');
 const addEnumValues = require('../utils/enumValues');
 const formatDescription = require('../utils/formatDescription');
 const combineSchema = require('../utils/combineSchema');
@@ -26,17 +26,20 @@ const formatProperties = properties => {
   if (!properties || !Array.isArray(properties)) return {};
   return properties.reduce((acum, property) => {
     const name = getPropertyName(property);
-    const { name: typeName, applications, expression } = property.type;
-    const type = typeName;
+    const {
+      name: typeName, applications, expression, elements,
+    } = property.type;
+    const notPrimitiveType = !typeName;
     const [descriptionValue, enumValues] = formatDescription(property.description);
     const [description, format] = mapDescription(descriptionValue);
     return {
       ...acum,
       [name]: {
         description,
-        ...refSchema(type),
-        ...combineSchema(property.type.elements),
+        ...refSchema(typeName),
+        ...combineSchema(elements),
         ...addTypeApplication(applications, expression),
+        ...((notPrimitiveType && !elements) ? { items: formatRefSchema(applications) } : {}),
         ...(format ? { format } : {}),
         ...addEnumValues(enumValues),
       },
