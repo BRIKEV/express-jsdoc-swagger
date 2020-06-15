@@ -25,7 +25,8 @@ expressJSDocSwagger(app)(options);
  * @typedef {object} Song
  * @property {string} title.required - The title
  * @property {string} artist - The artist
- * @property {string} license - The year - int64 - enum:ISC,MIT
+ * @property {number} artist - The artist - double
+ * @property {string} license - The year - enum:ISC,MIT
  */
 
 /**
@@ -33,7 +34,7 @@ expressJSDocSwagger(app)(options);
  * @typedef {object} Author
  * @property {string} name.required - Author name
  * @property {string} role - enum:singer,guitarrist - The author role
- * @property {number} age - Author age - int64
+ * @property {integer} age - Author age - int64
  */
 
 /**

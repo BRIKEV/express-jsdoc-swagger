@@ -25,7 +25,7 @@ expressJSDocSwagger(app)(options);
  * @typedef {object} IntrumentalSong
  * @property {string} title.required - The title
  * @property {string} band - The band
- * @property {number} year - The year - int64
+ * @property {number} year - The year - double
  */
 
 /**
@@ -33,13 +33,14 @@ expressJSDocSwagger(app)(options);
  * @typedef {object} PopSong
  * @property {string} title.required - The title
  * @property {string} artist - The artist
- * @property {number} year - The year - int64
+ * @property {integer} year - The year - int64
  */
 
 /**
  * GET /api/v1/song/{id}
  * @summary This is the summary or description of the endpoint
  * @tags album
+ * @param {number} id.path - song id
  * @return {oneOf|IntrumentalSong|PopSong} 200 - success response - application/json
  */
 app.get('/api/v1/song/:id', (req, res) => (
