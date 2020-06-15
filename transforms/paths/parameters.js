@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 const setProperty = require('../utils/setProperty')('parameter');
 const formatDescription = require('../utils/formatDescription');
 const getSchema = require('./schema');
@@ -37,13 +39,21 @@ const parameterPayload = (options, schema) => ({
   schema,
 });
 
+const wrongInOption = paramValue => {
+  if (!paramValue.includes('request.body')) {
+    // eslint-disable-next-line
+    console.warn(chalk.yellow(`If you want to add one @param as body you must provide "request.body" instead of ${paramValue}`));
+  }
+  return defaultParseParameter;
+};
+
 const parseParameter = param => {
   const [name, inOption, ...extraOptions] = param.name.split('.');
   if (!name || !inOption) {
     return defaultParseParameter;
   }
   if (inOption === BODY_PARAM) {
-    return defaultParseParameter;
+    return wrongInOption(param.name);
   }
   const isRequired = extraOptions.includes(REQUIRED);
   const allowEmptyValue = extraOptions.includes(ALLOW_EMPTY_VALUE);
@@ -57,7 +67,7 @@ const parseParameter = param => {
     deprecated: isDeprecated,
     description,
   };
-  const schema = getSchema(param.type, enumValues);
+  const schema = getSchema('@param', param.name)(param.type, enumValues);
   return parameterPayload(options, schema);
 };
 

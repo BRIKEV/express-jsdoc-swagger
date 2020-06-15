@@ -2,7 +2,7 @@ const chalk = require('chalk');
 
 const STATUS_CODES = require('./validStatusCodes');
 const mapDescription = require('../utils/mapDescription');
-const getContent = require('./content');
+const getContent = require('./content')('@return');
 
 const hasOldContent = (value, status) => (value[status] && value[status].content);
 
@@ -19,7 +19,7 @@ const formatResponses = values => values.reduce((acc, value) => {
       description,
       content: {
         ...(hasOldContent(acc, status) ? { ...acc[status].content } : {}),
-        ...getContent(value.type, contentType),
+        ...getContent(value.type, contentType, value.description),
       },
     },
   };
