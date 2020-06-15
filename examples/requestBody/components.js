@@ -25,18 +25,20 @@ expressJSDocSwagger(app)(options);
  * @typedef {object} Song
  * @property {string} title.required - The title
  * @property {string} artist - The artist
- * @property {number} year - The year - int64
+ * @property {integer} year - The year - int64
  */
 
 /**
  * POST /api/v1/song
  * @param {Song} request.body.required - song info
+ * @return {object} 200 - song response
  */
 app.post('/api/v1/songs', (req, res) => res.send('You save a song!'));
 
 /**
  * POST /api/v1/album
  * @param {array<Song>} request.body.required - songs info
+ * @return {object} 200 - album response
  */
 app.post('/api/v1/album', (req, res) => res.send('You save a song!'));
 

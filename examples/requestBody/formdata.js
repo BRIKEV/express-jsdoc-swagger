@@ -26,12 +26,13 @@ expressJSDocSwagger(app)(options);
  * @property {string} title.required - The title
  * @property {string} artist - The artist
  * @property {string} cover - image cover - binary
- * @property {number} year - The year - int64
+ * @property {integer} year - The year - int64
  */
 
 /**
  * POST /api/v1/album
  * @param {Song} request.body.required - songs info - multipart/form-data
+ * @return {object} 200 - Album created
  */
 app.post('/api/v1/album', (req, res) => res.send('You save a song!'));
 
