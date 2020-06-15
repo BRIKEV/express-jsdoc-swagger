@@ -49,4 +49,10 @@ expressJSDocSwagger(app)(options);
  * @property {array<number>} years
  */
 
+/**
+ * Album
+ * @typedef {object} Album
+ * @property {array<Song>} Songs
+ */
+
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));
