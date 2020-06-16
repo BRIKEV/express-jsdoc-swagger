@@ -1,5 +1,4 @@
-const chalk = require('chalk');
-
+const errorMessage = require('../utils/errorMessage');
 const setProperty = require('../utils/setProperty')('parameter');
 const formatDescription = require('../utils/formatDescription');
 const getSchema = require('./schema');
@@ -36,8 +35,7 @@ const parameterPayload = (options, schema) => ({
 
 const wrongInOption = paramValue => {
   if (!paramValue.includes('request.body')) {
-    // eslint-disable-next-line
-    console.warn(chalk.yellow(`If you want to add one @param as body you must provide "request.body" instead of ${paramValue}`));
+    errorMessage(`If you want to add one @param as body you must provide "request.body" instead of ${paramValue}`);
   }
   return defaultParseParameter;
 };

@@ -1,10 +1,9 @@
-const chalk = require('chalk');
+const errorMessage = require('./errorMessage');
 
 const setProperty = entity => {
   const requiredError = (key, item) => new Error(`Key ${key} is required in item ${JSON.stringify(item)} for Entity ${entity}`);
 
-  // eslint-disable-next-line
-  const warnType = (type, value) => console.warn(chalk.yellow(`${type} is not valid with value ${value} for Entity ${entity}`));
+  const warnType = (type, value) => errorMessage(`${type} is not valid with value ${value} for Entity ${entity}`);
 
   return (item, key, options) => {
     if (!item || !key || !options) {
