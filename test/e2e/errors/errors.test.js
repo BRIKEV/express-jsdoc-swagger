@@ -19,11 +19,11 @@ test('should give a nice error message for responses', async () => {
   expect(console.warn).toHaveBeenCalledTimes(2);
   expect(console.warn).toHaveBeenNthCalledWith(
     1,
-    chalk.yellow('Entity: @return could not be parsed. Value: "200 - success response - application/json" is wrong'),
+    chalk.yellow('[express-jsdoc-swagger] Entity: @return could not be parsed. Value: "200 - success response - application/json" is wrong'),
   );
   expect(console.warn).toHaveBeenNthCalledWith(
     2,
-    chalk.yellow('Entity: @return could not be parsed. Value: "400 - Bad request response" is wrong'),
+    chalk.yellow('[express-jsdoc-swagger] Entity: @return could not be parsed. Value: "400 - Bad request response" is wrong'),
   );
 });
 
@@ -44,11 +44,11 @@ test('should give a nice error message for parameters', async () => {
   expect(console.warn).toHaveBeenCalledTimes(2);
   expect(console.warn).toHaveBeenNthCalledWith(
     1,
-    chalk.yellow('Entity: @param could not be parsed. Value: "name.query.required" is wrong'),
+    chalk.yellow('[express-jsdoc-swagger] Entity: @param could not be parsed. Value: "name.query.required" is wrong'),
   );
   expect(console.warn).toHaveBeenNthCalledWith(
     2,
-    chalk.yellow('Entity: @param could not be parsed. Value: "phone.param" is wrong'),
+    chalk.yellow('[express-jsdoc-swagger] Entity: @param could not be parsed. Value: "phone.param" is wrong'),
   );
 });
 
@@ -69,6 +69,6 @@ test('should give a nice error message for requestBody', async () => {
   expect(console.warn).toHaveBeenCalledTimes(1);
   expect(console.warn).toHaveBeenNthCalledWith(
     1,
-    chalk.yellow('If you want to add one @param as body you must provide "request.body" instead of body.body.required'),
+    chalk.yellow('[express-jsdoc-swagger] If you want to add one @param as body you must provide "request.body" instead of body.body.required'),
   );
 });

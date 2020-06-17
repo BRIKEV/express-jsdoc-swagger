@@ -7,7 +7,7 @@
 
 # express-jsdoc-swagger
 
-With this library, you can document your endpoints using swagger [OpenAPI 3 Specification](https://swagger.io/specification/) without writing YAML or JSON. You just have to write comments on your endpoints and swagger UI will be automatically generated.
+With this library, you can document your express endpoints using swagger [OpenAPI 3 Specification](https://swagger.io/specification/) without writing YAML or JSON. You can write jsdoc comments on each endpoint, and the library is going to create the swagger UI.
 
 ## Prerequisites
 This library assumes you are using:
@@ -21,7 +21,6 @@ npm i express-jsdoc-swagger
 
 ## Usage
 ```javascript
-
 const express = require('express');
 const expressJSDocSwagger = require('express-jsdoc-swagger');
 

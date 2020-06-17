@@ -1,7 +1,7 @@
 {
   "name": "express-jsdoc-swagger",
   "version": "1.0.2",
-  "description": "Swagger generator based in jsdoc",
+  "description": "Swagger OpenAPI 3.x generator",
   "main": "index.js",
   "dependencies": {
     "chalk": "^4.0.0",
@@ -41,9 +41,10 @@
   },
   "keywords": [
     "swagger",
+    "swagger-generator",
+    "express",
     "jsdoc",
     "node",
-    "express",
     "docs",
     "documentation",
     "swagger-ui",
@@ -54,5 +55,5 @@
   "bugs": {
     "url": "https://github.com/BRIKEV/express-jsdoc-swagger/issues"
   },
-  "homepage": "https://github.com/BRIKEV/express-jsdoc-swagger#readme"
+  "homepage": "https://brikev.github.io/express-jsdoc-swagger-docs/#/"
 }

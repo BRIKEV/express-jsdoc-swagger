@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+const errorMessage = require('./errorMessage');
 const { refSchema } = require('./refSchema');
 
 const VALID_TYPES = ['oneOf', 'anyOf', 'allOf'];
@@ -15,8 +15,7 @@ const combineSchema = elements => {
       [schemaType]: types.map(type => refSchema(type.name)),
     };
   } else {
-    // eslint-disable-next-line
-    console.warn(chalk.yellow(`SchemaType ${schemaType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`));
+    errorMessage(`SchemaType ${schemaType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`);
   }
   return schema;
 };
