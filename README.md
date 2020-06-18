@@ -57,7 +57,7 @@ app.get('/api/v1', (req, res) => res.json({
   success: true,
 }));
 
-app.listen(PORT, () => logger.info(`Example app listening at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Example app listening at http://localhost:${PORT}`));
 
 ```
 
