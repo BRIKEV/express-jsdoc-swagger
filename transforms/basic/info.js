@@ -11,8 +11,8 @@ const getInfo = (options = {}) => ({
     type: 'string',
     defaultValue: 'Add your description',
   }),
-  contact: options.contact ? getContact(options.contact) : {},
-  license: options.license ? license(options.license) : {},
+  contact: options.contact ? getContact(options.contact) : undefined,
+  license: options.license ? license(options.license) : undefined,
   termsOfService: setProperty(options, 'termsOfService', {
     type: 'string',
     defaultValue: '',
