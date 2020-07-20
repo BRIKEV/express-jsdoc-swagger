@@ -9,7 +9,7 @@ const globFilesMatches = (baseDir, filePath, excludedFolder = DEFAULT_EXCLUDED_F
       const error = new Error('baseDir and filePath are required');
       return reject(error);
     }
-    return glob(path.resolve(baseDir, filePath), (err, files) => {
+    return glob(path.resolve(baseDir, filePath), { ignore: '**/node_modules/**' }, (err, files) => {
       if (err) {
         return reject(err);
       }
