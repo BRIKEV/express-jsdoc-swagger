@@ -63,8 +63,8 @@ test('should parse components jsdoc from jsdoc-example', async () => {
             },
             age: {
               description: 'Author age',
-              type: 'number',
-              format: 'double',
+              type: 'integer',
+              format: 'int64',
             },
           },
         },

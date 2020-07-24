@@ -11,7 +11,7 @@
  * Author model
  * @typedef {object} Author
  * @property {string} name.required - Author name
- * @property {number} age - Author age - double
+ * @property {integer} age - Author age - int64
  */
 
 /**
