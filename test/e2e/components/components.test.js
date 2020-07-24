@@ -46,7 +46,7 @@ test('should parse components jsdoc from jsdoc-example', async () => {
             year: {
               description: 'The year',
               type: 'number',
-              format: 'int64',
+              format: 'double',
             },
           },
         },
@@ -64,7 +64,7 @@ test('should parse components jsdoc from jsdoc-example', async () => {
             age: {
               description: 'Author age',
               type: 'number',
-              format: 'int64',
+              format: 'double',
             },
           },
         },
