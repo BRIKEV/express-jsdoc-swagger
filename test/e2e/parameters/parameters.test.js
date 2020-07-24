@@ -18,7 +18,6 @@ test('should parse components jsdoc from jsdoc-example', async () => {
     info: {
       title: 'Albums store',
       description: 'Add your description',
-      contact: {},
       license: { name: 'MIT', url: '' },
       termsOfService: '',
       version: '1.0.0',
@@ -45,7 +44,7 @@ test('should parse components jsdoc from jsdoc-example', async () => {
           parameters: [
             {
               name: 'name',
-              in: 'query',
+              in: 'path',
               description: 'name param description',
               required: true,
               deprecated: false,
@@ -55,9 +54,9 @@ test('should parse components jsdoc from jsdoc-example', async () => {
             },
             {
               name: 'phone',
-              in: 'param',
+              in: 'path',
               description: 'phone number',
-              required: false,
+              required: true,
               deprecated: false,
               schema: {
                 type: 'number',
@@ -87,10 +86,10 @@ test('should parse components jsdoc from jsdoc-example', async () => {
           parameters: [
             {
               name: 'name',
-              in: 'query',
+              in: 'path',
               description: 'name param description',
               required: true,
-              deprecated: true,
+              deprecated: false,
               schema: {
                 type: 'array',
                 items: {
@@ -100,9 +99,9 @@ test('should parse components jsdoc from jsdoc-example', async () => {
             },
             {
               name: 'phone',
-              in: 'param',
+              in: 'path',
               description: '',
-              required: false,
+              required: true,
               deprecated: false,
               schema: {
                 type: 'number',

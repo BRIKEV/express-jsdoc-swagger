@@ -18,7 +18,6 @@ test('should parse components jsdoc from jsdoc-example', async () => {
     info: {
       title: 'Albums store',
       description: 'Add your description',
-      contact: {},
       license: { name: 'MIT', url: '' },
       termsOfService: '',
       version: '1.0.0',
