@@ -9,7 +9,7 @@ const setServer = (server = {}) => ({
     type: 'string',
     defaultValue: '',
   }),
-  variables: server.variables ? server.variables : {},
+  ...(server.variables ? { variables: server.variables } : {}),
 });
 
 const setServers = (servers = []) => {
