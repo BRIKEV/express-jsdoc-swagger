@@ -4,14 +4,14 @@
  * @typedef {object} Song
  * @property {string} title.required - The title
  * @property {string} artist - The artist
- * @property {number} year - The year - int64
+ * @property {number} year - The year - double
  */
 
 /**
  * Author model
  * @typedef {object} Author
  * @property {string} name.required - Author name
- * @property {number} age - Author age - int64
+ * @property {integer} age - Author age - int64
  */
 
 /**

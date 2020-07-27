@@ -33,8 +33,6 @@ describe('basic transform method', () => {
       info: {
         title: 'API 1',
         version: '1.0.0',
-        contact: {},
-        license: {},
         termsOfService: '',
         description: 'Add your description',
       },
@@ -59,8 +57,6 @@ describe('basic transform method', () => {
       info: {
         title: 'API 1',
         version: '1.0.0',
-        contact: {},
-        license: {},
         termsOfService: '',
         description: false,
       },
@@ -103,8 +99,6 @@ describe('basic transform method', () => {
       info: {
         title: 'API 1',
         description: 'Add your description',
-        contact: {},
-        license: {},
         termsOfService: '',
         version: '1.0.0',
       },

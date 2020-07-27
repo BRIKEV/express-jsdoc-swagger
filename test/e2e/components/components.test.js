@@ -18,7 +18,6 @@ test('should parse components jsdoc from jsdoc-example', async () => {
     info: {
       title: 'Albums store',
       description: 'Add your description',
-      contact: {},
       license: { name: 'MIT', url: '' },
       termsOfService: '',
       version: '1.0.0',
@@ -47,7 +46,7 @@ test('should parse components jsdoc from jsdoc-example', async () => {
             year: {
               description: 'The year',
               type: 'number',
-              format: 'int64',
+              format: 'double',
             },
           },
         },
@@ -64,7 +63,7 @@ test('should parse components jsdoc from jsdoc-example', async () => {
             },
             age: {
               description: 'Author age',
-              type: 'number',
+              type: 'integer',
               format: 'int64',
             },
           },
