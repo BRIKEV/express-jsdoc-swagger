@@ -60,8 +60,12 @@ const parseSchema = schema => {
   const typedef = getTagInfo(schema.tags, 'typedef');
   const propertyValues = getTagsInfo(schema.tags, 'property');
   if (!typedef || !typedef.name) return {};
+  const {
+    elements,
+  } = typedef.type;
   return {
     [typedef.name]: {
+      ...combineSchema(elements),
       description: schema.description,
       required: isPropertyRequired(propertyValues),
       type: 'object',
