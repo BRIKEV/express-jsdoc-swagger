@@ -645,4 +645,83 @@ describe('parseComponents method', () => {
     const result = parseComponents({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should parse a SingleAlbum schema with allOf reference of Song.', () => {
+    const jsodInput = [`
+      /**
+       * SingleAlbum
+       * @typedef {allOf|Song} SingleAlbum
+       * @property {array<Song>} Songs
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          SingleAlbum: {
+            allOf: [
+              {
+                $ref: '#/components/schemas/Song',
+              },
+            ],
+            type: 'object',
+            required: [],
+            description: 'SingleAlbum',
+            properties: {
+              Songs: {
+                type: 'array',
+                description: '',
+                items: {
+                  $ref: '#/components/schemas/Song',
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('Should parse a SongOrAlbum schema with oneOf reference of Song and Album.', () => {
+    const jsodInput = [`
+      /**
+       * SongOrAlbum
+       * @typedef {oneOf|Song|Album} SongOrAlbum
+       * @property {array<Song>} Songs
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          SongOrAlbum: {
+            oneOf: [
+              {
+                $ref: '#/components/schemas/Song',
+              },
+              {
+                $ref: '#/components/schemas/Album',
+              },
+            ],
+            type: 'object',
+            required: [],
+            description: 'SongOrAlbum',
+            properties: {
+              Songs: {
+                type: 'array',
+                description: '',
+                items: {
+                  $ref: '#/components/schemas/Song',
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
