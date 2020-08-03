@@ -51,14 +51,17 @@ const formatProperties = properties => {
   }, {});
 };
 
-const isPropertyRequired = properties => {
-  if (!properties || !Array.isArray(properties)) return [];
-  return properties.filter(({ name }) => name.includes(REQUIRED)).map(getPropertyName);
-};
+const getRequiredProperties = properties => (
+  properties.filter(({ name }) => name.includes(REQUIRED))
+);
+
+const formatRequiredProperties = requiredProperties => requiredProperties.map(getPropertyName);
+
 
 const parseSchema = schema => {
   const typedef = getTagInfo(schema.tags, 'typedef');
   const propertyValues = getTagsInfo(schema.tags, 'property');
+  const requiredProperties = getRequiredProperties(propertyValues);
   if (!typedef || !typedef.name) return {};
   const {
     elements,
@@ -67,7 +70,9 @@ const parseSchema = schema => {
     [typedef.name]: {
       ...combineSchema(elements),
       description: schema.description,
-      required: isPropertyRequired(propertyValues),
+      ...(requiredProperties.length ? {
+        required: formatRequiredProperties(requiredProperties),
+      } : {}),
       type: 'object',
       properties: formatProperties(propertyValues),
     },
