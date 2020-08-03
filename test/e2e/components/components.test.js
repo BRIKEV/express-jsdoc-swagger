@@ -70,7 +70,6 @@ test('should parse components jsdoc from jsdoc-example', async () => {
         },
         Album: {
           description: 'Album',
-          required: [],
           type: 'object',
           properties: {
             firstSong: {
