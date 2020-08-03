@@ -129,7 +129,6 @@ test('should not parse component with anyOf keyword', () => {
         },
         Album: {
           type: 'object',
-          required: [],
           description: 'Album',
           properties: {
             firstSong: {

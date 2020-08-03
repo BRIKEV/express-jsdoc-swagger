@@ -60,7 +60,6 @@ describe('parseComponents method', () => {
         schemas: {
           Song: {
             type: 'object',
-            required: [],
             description: 'A song',
             properties: {
               title: {
@@ -100,7 +99,6 @@ describe('parseComponents method', () => {
         schemas: {
           Song: {
             type: 'object',
-            required: [],
             description: 'A song',
             properties: {
               title: {
@@ -145,7 +143,6 @@ describe('parseComponents method', () => {
         schemas: {
           Song: {
             type: 'object',
-            required: [],
             description: 'A song',
             properties: {
               title: {
@@ -330,7 +327,6 @@ describe('parseComponents method', () => {
           },
           Album: {
             type: 'object',
-            required: [],
             description: 'Album',
             properties: {
               firstSong: {
@@ -390,7 +386,6 @@ describe('parseComponents method', () => {
           },
           Album: {
             type: 'object',
-            required: [],
             description: 'Album',
             properties: {
               firstSong: {
@@ -478,7 +473,6 @@ describe('parseComponents method', () => {
           },
           Album: {
             type: 'object',
-            required: [],
             description: 'Album',
             properties: {
               firstSong: {
@@ -513,7 +507,6 @@ describe('parseComponents method', () => {
         schemas: {
           Album: {
             type: 'object',
-            required: [],
             description: 'Album',
             properties: {
               title: {
@@ -551,7 +544,6 @@ describe('parseComponents method', () => {
         schemas: {
           Album: {
             type: 'object',
-            required: [],
             description: 'Album',
             properties: {
               title: {
@@ -589,7 +581,6 @@ describe('parseComponents method', () => {
         schemas: {
           Album: {
             type: 'object',
-            required: [],
             description: 'Album',
             properties: {
               title: {
@@ -626,7 +617,6 @@ describe('parseComponents method', () => {
         schemas: {
           Album: {
             type: 'object',
-            required: [],
             description: 'Album',
             properties: {
               Songs: {
@@ -664,7 +654,6 @@ describe('parseComponents method', () => {
               },
             ],
             type: 'object',
-            required: [],
             description: 'SingleAlbum',
             properties: {
               Songs: {
@@ -705,7 +694,6 @@ describe('parseComponents method', () => {
               },
             ],
             type: 'object',
-            required: [],
             description: 'SongOrAlbum',
             properties: {
               Songs: {
