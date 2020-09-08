@@ -17,6 +17,7 @@
     "requestBody:multiple": "node requestBody/multiple.js",
     "requestBody:components": "node requestBody/components.js",
     "requestBody:formdata": "node requestBody/formdata.js",
+    "requestBody:formUrlencoded": "node requestBody/formUrlencoded.js",
     "security:basic-auth": "node security/basic-auth.js",
     "components:simple": "node components/simple.js",
     "components:enum": "node components/enum.js",
