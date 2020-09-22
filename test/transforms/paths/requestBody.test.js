@@ -269,7 +269,7 @@ describe('request body tests', () => {
        * POST /api/v1
        * @param {array<Song>} request.body.required - name body description
        * @param {Song} request.body.required - name body description - application/xml
-       * @param {object} request.body.required - name body description - multipart/form-data
+       * @param {object} request.body.required - name body description - application/x-www-form-urlencoded
        */
     `];
     const expected = {
@@ -299,7 +299,7 @@ describe('request body tests', () => {
                     $ref: '#/components/schemas/Song',
                   },
                 },
-                'multipart/form-data': {
+                'application/x-www-form-urlencoded': {
                   schema: {
                     type: 'object',
                   },
