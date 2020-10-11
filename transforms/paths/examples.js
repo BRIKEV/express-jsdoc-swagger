@@ -23,9 +23,10 @@ const parseResponsePayloadExample = (description, value) => {
 };
 
 const parseExample = example => {
-  const bodyStartIndex = example.description.replace(/\r\n/gi, '\n').indexOf('\n');
-  const description = example.description.substring(0, bodyStartIndex);
-  const content = example.description.substring(bodyStartIndex + 1);
+  const tagDescription = example.description.replace(/\r\n/gi, '\n');
+  const bodyStartIndex = tagDescription.indexOf('\n');
+  const description = tagDescription.substring(0, bodyStartIndex);
+  const content = tagDescription.substring(bodyStartIndex + 1);
 
   const [type, ...metadata] = mapDescription(description);
 
