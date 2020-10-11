@@ -1,3 +1,4 @@
+const examplesGenerator = require('./examples');
 const responsesGenerator = require('./responses');
 const parametersGenerator = require('./parameters');
 const requestBodyGenerator = require('./requestBody');
@@ -27,12 +28,20 @@ const setRequestBody = (lowerCaseMethod, bodyValues) => {
 const bodyParams = ({ name }) => name.includes('request.body');
 
 const pathValues = tags => {
+  // TODO: parse examples
+  const examplesValues = getTagsInfo(tags, 'example');
+  // TODO: pass param to filter type of values to parse (request , response)
+  const examples = examplesGenerator(examplesValues);
+
   const summary = getTagInfo(tags, 'summary');
   const deprecated = getTagInfo(tags, 'deprecated');
   const isDeprecated = !!deprecated;
   /* Response info */
   const returnValues = getTagsInfo(tags, 'return');
-  const responses = responsesGenerator(returnValues);
+  //console.log(returnValues);
+  // TODO: append examples to response
+  const responseExamples = examples.filter(example => example.type === 'response');
+  const responses = responsesGenerator(returnValues, responseExamples);
   /* Parameters info */
   const paramValues = getTagsInfo(tags, 'param');
   const parameters = parametersGenerator(paramValues);
@@ -41,6 +50,7 @@ const pathValues = tags => {
   /* Security info */
   const securityValues = getTagsInfo(tags, 'security');
   /* Request body info */
+  // TODO: append examples to request body
   const bodyValues = paramValues.filter(bodyParams);
   return {
     summary,
@@ -54,6 +64,7 @@ const pathValues = tags => {
 };
 
 const parsePath = (path, state) => {
+  //console.log('parsePath', path);
   if (!path.description || !path.tags) return {};
   const [method, endpoint] = path.description.split(' ');
   // if jsdoc comment does not contain structure <Method> - <Endpoint> is not valid path

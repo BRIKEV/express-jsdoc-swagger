@@ -3,38 +3,44 @@ const mapDescription = require('../utils/mapDescription');
 const REQUEST_BODY = 'request';
 const RESPONSE_BODY = 'response';
 
+const parseRequestPayloadExample = (description, value) => {
+  const [summary] = description;
+  return {
+    type: REQUEST_BODY,
+    summary,
+    value,
+  };
+};
+
+const parseResponsePayloadExample = (description, value) => {
+  const [status, summary] = description;
+  return {
+    type: RESPONSE_BODY,
+    status,
+    summary,
+    value,
+  };
+};
+
 const parseExample = example => {
   const bodyStartIndex = example.description.indexOf('\r\n');
   const description = example.description.substring(0, bodyStartIndex);
-  const sampleBody = example.description.substring(bodyStartIndex + 1);
+  const content = example.description.substring(bodyStartIndex);
 
-  const [type, ...data] = mapDescription(description);
+  const [type, ...metadata] = mapDescription(description);
 
-  if (type === REQUEST_BODY) {
-    const [summary] = data;
-    return {
-      type,
-      summary,
-      value: sampleBody,
-    };
+  switch (type) {
+    case REQUEST_BODY:
+      return parseRequestPayloadExample(metadata, content);
+    case RESPONSE_BODY:
+      return parseResponsePayloadExample(metadata, content);
+    default:
+      return {};
   }
-
-  if (type === RESPONSE_BODY) {
-    const [status, summary] = data;
-    return {
-      type,
-      status,
-      summary,
-      value: sampleBody,
-    };
-  }
-
-  return {};
 };
 
 const examplesGenerator = (exampleValues = []) => {
   if (!exampleValues || !Array.isArray(exampleValues)) return [];
-  // TODO: filter invalid examples
   const examples = exampleValues.map(parseExample).filter(example => example.type);
   return examples;
 };
