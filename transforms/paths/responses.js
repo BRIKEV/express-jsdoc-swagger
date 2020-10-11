@@ -23,8 +23,8 @@ const formatResponses = (values, examples) => values.reduce((acc, value) => {
   };
 }, {});
 
-const formatExamples = (exampleValues = []) => {
-  return exampleValues.reduce((exampleMap, example, i) => ({
+const formatExamples = (exampleValues = []) => exampleValues
+  .reduce((exampleMap, example, i) => ({
     ...exampleMap,
     [example.status]: {
       ...exampleMap[example.status],
@@ -34,7 +34,6 @@ const formatExamples = (exampleValues = []) => {
       },
     },
   }), {});
-};
 
 const responsesGenerator = (returnValues = [], exampleValues = []) => {
   if (!returnValues || !Array.isArray(returnValues)) return {};

@@ -5,15 +5,14 @@ const mapDescription = require('../utils/mapDescription');
 const REQUIRED = 'required';
 const BODY_PARAM = 'body';
 
-const formatExamples = (exampleValues = []) => {
-  return exampleValues.reduce((exampleMap, example, i) => ({
+const formatExamples = (exampleValues = []) => exampleValues
+  .reduce((exampleMap, example, i) => ({
     ...exampleMap,
     [`example${i + 1}`]: {
       summary: example.summary,
       value: example.value,
     },
   }), {});
-};
 
 const parseBodyParameter = (currentState, body, examples) => {
   const [name, inOption, ...extraOptions] = body.name.split('.');

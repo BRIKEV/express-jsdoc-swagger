@@ -28,9 +28,7 @@ const setRequestBody = (lowerCaseMethod, bodyValues, requestExamples) => {
 const bodyParams = ({ name }) => name.includes('request.body');
 
 const pathValues = tags => {
-  // TODO: parse examples
   const examplesValues = getTagsInfo(tags, 'example');
-  // TODO: pass param to filter type of values to parse (request , response)
   const examples = examplesGenerator(examplesValues);
 
   const summary = getTagInfo(tags, 'summary');
@@ -48,7 +46,6 @@ const pathValues = tags => {
   /* Security info */
   const securityValues = getTagsInfo(tags, 'security');
   /* Request body info */
-  // TODO: append examples to request body
   const bodyValues = paramValues.filter(bodyParams);
   return {
     summary,
@@ -63,7 +60,6 @@ const pathValues = tags => {
 };
 
 const parsePath = (path, state) => {
-  //console.log('parsePath', path);
   if (!path.description || !path.tags) return {};
   const [method, endpoint] = path.description.split(' ');
   // if jsdoc comment does not contain structure <Method> - <Endpoint> is not valid path
