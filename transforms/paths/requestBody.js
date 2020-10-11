@@ -27,7 +27,10 @@ const parseBodyParameter = (currentState, body, examples) => {
     description,
   };
 
-  const requestExamples = formatExamples(examples);
+  let requestExamples;
+  if (Array.isArray(examples) && examples.length > 0) {
+    requestExamples = formatExamples(examples);
+  }
 
   return {
     ...currentState,
