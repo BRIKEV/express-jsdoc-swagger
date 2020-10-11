@@ -314,4 +314,49 @@ describe('request body tests', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('should parse jsdoc request body with examples', () => {
+    const jsdocInput = [`
+      /**
+       * POST /api/v1
+       * @param {string} request.body.required - name body description
+       * @example request - example payload
+       * sample input string
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          post: {
+            deprecated: false,
+            summary: '',
+            responses: {},
+            tags: [],
+            security: [],
+            parameters: [],
+            requestBody: {
+              description: 'name body description',
+              required: true,
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'string',
+                  },
+                  examples: {
+                    example1: {
+                      summary: 'example payload',
+                      value: 'sample input string',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsdocInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
