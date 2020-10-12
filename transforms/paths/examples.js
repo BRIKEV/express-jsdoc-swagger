@@ -6,16 +6,18 @@ const mapDescription = require('../utils/mapDescription');
 const REQUEST_BODY = 'request';
 const RESPONSE_BODY = 'response';
 
-const parseRequestPayloadExample = (description, value) => {
+// Generates a new object with information on a request body example
+const parseRequestPayloadExample = (description, content) => {
   const [summary] = description;
   return {
     type: REQUEST_BODY,
     summary,
-    value,
+    value: content,
   };
 };
 
-const parseResponsePayloadExample = (description, value) => {
+// Generates a new object with information on a response body example
+const parseResponsePayloadExample = (description, content) => {
   const [status, summary] = description;
   if (!STATUS_CODES[status]) {
     errorMessage(`${status} is not a valid status for a response`);
@@ -25,16 +27,30 @@ const parseResponsePayloadExample = (description, value) => {
     type: RESPONSE_BODY,
     status,
     summary,
-    value,
+    value: content,
   };
 };
 
-const parseExample = example => {
-  const tagDescription = example.description.replace(/\r\n/gi, '\n');
-  const contentStartIndex = tagDescription.indexOf('\n');
+/**
+ *  Parses a single example tag contents. Depending on the type (response or
+ * request), the expected data and returned structure will be different.
+ *
+ *  To prevent compatibility issues between SO, all `\r\n` instances (used in
+ * Windows by default as end of line sequence) will be replaced by `\n`.
+ *
+ * @param {string} exampleTagDescription - Text passed to the example tag.
+ *
+ * @return {object} Structured information about the example, including the
+ * example type (request or response), summary, status code (only applicable to
+ * response types) and the example code itself.
+ */
+const parseExample = ({ description: exampleTagDescription }) => {
+  const formattedTagDescription = exampleTagDescription.replace(/\r\n/gi, '\n');
 
-  const content = tagDescription.substring(contentStartIndex + 1);
-  const description = tagDescription.substring(0, contentStartIndex);
+  // The example content starts right after the first end of line character
+  const contentStartIndex = formattedTagDescription.indexOf('\n');
+  const content = formattedTagDescription.substring(contentStartIndex + 1);
+  const description = formattedTagDescription.substring(0, contentStartIndex);
 
   const [type, ...metadata] = mapDescription(description);
 
@@ -54,7 +70,7 @@ const parseExample = example => {
  * them to objects with the example type (request or response), summary, status
  * code (only applicable to response types) and the example code itself.
  *
- * @param {object[]} exampleValues - Set of example tags, which description are
+ * @param {object[]} exampleTags - Set of example tags, which description are
  *  expected to have the following information in order to be parsed properly:
  *
  *    > For request body examples:
@@ -71,9 +87,9 @@ const parseExample = example => {
  *  response), summary, status code (only applicable to response types) and
  *  the example code itself.
  */
-const examplesGenerator = (exampleValues = []) => {
-  if (!exampleValues || !Array.isArray(exampleValues)) return [];
-  const examples = exampleValues.map(parseExample).filter(example => example.type);
+const examplesGenerator = (exampleTags = []) => {
+  if (!exampleTags || !Array.isArray(exampleTags)) return [];
+  const examples = exampleTags.map(parseExample).filter(example => example.type);
   return examples;
 };
 
