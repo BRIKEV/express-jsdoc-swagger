@@ -11,7 +11,7 @@ const options = {
       name: 'MIT',
     },
   },
-  filesPattern: './withExample.js',
+  filesPattern: './withExamples.js',
   baseDir: __dirname,
 };
 
@@ -33,22 +33,21 @@ expressJSDocSwagger(app)(options);
  * @param {Song} request.body.required - song info
  * @return {object} 200 - song response
  * @return {object} 400 - Bad request response
- * @example request - example payload
+ * @example request - payload example
  * {
- *   "title": "untitled song",
- *   "artist": "anonymous",
- *   "year": 2019
+ *   "title": "Bury The Light",
+ *   "artist": "Casey Edwards ft. Victor Borba",
+ *   "year": 2020
  * }
- * @example response - 200 - example success response
+ * @example request - other payload example
  * {
- *   "message": "you have saved song"
- * }
- * @example response - 400 - example error response
- * {
- *   "message": "failed to save song",
- *   "errCode": "E120"
+ *   "title": "The war we made",
+ *   "artist": "Red",
+ *   "year": 2020
  * }
  */
-app.post('/api/v1/songs', (req, res) => res.send('You save a song!'));
+app.post('/api/v1/song', (req, res) => res.send({
+  message: 'You added a song!',
+}));
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));
