@@ -13,6 +13,7 @@
     "responses:multiple": "node responses/multiple.js",
     "responses:components": "node responses/components.js",
     "responses:full-example": "node responses/full-example.js",
+    "responses:withExamples": "node responses/withExamples.js",
     "requestBody:simple": "node requestBody/simple.js",
     "requestBody:multiple": "node requestBody/multiple.js",
     "requestBody:components": "node requestBody/components.js",
