@@ -128,6 +128,29 @@ app.get('/api/v1/album', (req, res) => (
 ));
 ```
 
+5. Basic endpoint definition with code example for response body
+```javascript
+/**
+ * GET /api/v1/albums
+ * @summary This is the summary or description of the endpoint
+ * @tags album
+ * @return {array<Song>} 200 - success response - application/json
+ * @example response - 200 - success response example
+ * [
+ *   {
+ *     "title": "Bury the light",
+ *     "artist": "Casey Edwards ft. Victor Borba",
+ *     "year": 2020
+ *   }
+ * ]
+ */
+app.get('/api/v1/albums', (req, res) => (
+  res.json([{
+    title: 'track 1',
+  }])
+));
+```
+
 You can find more examples [here](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples), or visit our [documentation](https://brikev.github.io/express-jsdoc-swagger-docs/#/).
 
 ## Contributors ✨
