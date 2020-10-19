@@ -108,6 +108,56 @@ describe('form requestBody tests', () => {
     expect(result).toEqual(expected);
   });
 
+  it('should not fail when a request.body is sent', () => {
+    const jsodInput = [`
+      /**
+       * POST /api/v1/
+       * @param {string} request.body.required - name body description
+       * @param {string} id.form.required - id description
+       * @param {string} title.form.required - title description
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1/': {
+          post: {
+            deprecated: false,
+            summary: '',
+            responses: {},
+            tags: [],
+            security: [],
+            parameters: [],
+            requestBody: {
+              description: 'name body description',
+              required: true,
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        description: 'id description',
+                      },
+                      title: {
+                        type: 'string',
+                        description: 'title description',
+                      },
+                    },
+                    required: ['id', 'title'],
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
   it('should add request body for different application content type', () => {
     const jsodInput = [`
       /**

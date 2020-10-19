@@ -10,7 +10,10 @@ const formParams = (currentState, key, body, isRequired, requestExamples) => {
   let requiredValues = isRequired ? [key] : [];
   const paramContentType = contentType || DEFAULT_CONTENT_TYPE;
   if (currentState.content[paramContentType]) {
-    requiredValues = [...currentState.content[paramContentType].schema.required, key];
+    requiredValues = [
+      ...(currentState.content[paramContentType].schema.required || []),
+      key,
+    ];
   }
   const schema = {
     properties: {
