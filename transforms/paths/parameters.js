@@ -42,7 +42,7 @@ const wrongInOption = paramValue => {
 
 const parseParameter = param => {
   const [name, inOption, ...extraOptions] = param.name.split('.');
-  if (!name || !inOption) {
+  if (!name || !inOption || inOption === 'form') {
     return defaultParseParameter;
   }
   if (inOption === BODY_PARAM) {

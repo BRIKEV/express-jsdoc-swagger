@@ -25,7 +25,7 @@ const setRequestBody = (lowerCaseMethod, bodyValues, requestExamples) => {
   return bodyMethods[lowerCaseMethod] && hasBodyValues ? { requestBody } : {};
 };
 
-const bodyParams = ({ name }) => name.includes('request.body');
+const bodyParams = ({ name }) => name.includes('request.body') || name.includes('.form');
 
 const pathValues = tags => {
   const examplesValues = getTagsInfo(tags, 'example');
