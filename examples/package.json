@@ -6,6 +6,7 @@
   "scripts": {
     "configuration:main": "node configuration/main.js",
     "parameters:simple": "node parameters/simple.js",
+    "parameters:headers": "node parameters/headers.js",
     "parameters:multiple": "node parameters/multiple.js",
     "parameters:components": "node parameters/components.js",
     "parameters:enum": "node parameters/enum.js",
