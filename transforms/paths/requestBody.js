@@ -1,9 +1,10 @@
 const setProperty = require('../utils/setProperty')('parameter');
 const getContent = require('./content')('@paramBody');
 const mapDescription = require('../utils/mapDescription');
+const formParams = require('./formParams');
 
 const REQUIRED = 'required';
-const BODY_PARAM = 'body';
+const FORM_TYPE = 'form';
 
 const formatExamples = (exampleValues = []) => exampleValues
   .reduce((exampleMap, example, i) => ({
@@ -15,11 +16,9 @@ const formatExamples = (exampleValues = []) => exampleValues
   }), {});
 
 const parseBodyParameter = (currentState, body, examples) => {
-  const [name, inOption, ...extraOptions] = body.name.split('.');
-  if (inOption !== BODY_PARAM) {
-    return {};
-  }
+  const [name, ...extraOptions] = body.name.split('.');
   const isRequired = extraOptions.includes(REQUIRED);
+  const hasForm = extraOptions.includes(FORM_TYPE);
   const [description, contentType] = mapDescription(body.description);
   const options = {
     name,
@@ -30,6 +29,10 @@ const parseBodyParameter = (currentState, body, examples) => {
   let requestExamples;
   if (Array.isArray(examples) && examples.length > 0) {
     requestExamples = formatExamples(examples);
+  }
+
+  if (hasForm) {
+    return formParams(currentState, name, body, isRequired, requestExamples);
   }
 
   return {

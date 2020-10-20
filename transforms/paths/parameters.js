@@ -6,6 +6,7 @@ const getSchema = require('./schema');
 const REQUIRED = 'required';
 const DEPRECATED = 'deprecated';
 const BODY_PARAM = 'body';
+const FORM_TYPE = 'form';
 
 const defaultParseParameter = {};
 
@@ -42,7 +43,7 @@ const wrongInOption = paramValue => {
 
 const parseParameter = param => {
   const [name, inOption, ...extraOptions] = param.name.split('.');
-  if (!name || !inOption) {
+  if (!name || !inOption || inOption === FORM_TYPE) {
     return defaultParseParameter;
   }
   if (inOption === BODY_PARAM) {

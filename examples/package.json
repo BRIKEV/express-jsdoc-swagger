@@ -19,6 +19,7 @@
     "requestBody:multiple": "node requestBody/multiple.js",
     "requestBody:components": "node requestBody/components.js",
     "requestBody:formdata": "node requestBody/formdata.js",
+    "requestBody:formParameters": "node requestBody/formParameters.js",
     "requestBody:formUrlencoded": "node requestBody/formUrlencoded.js",
     "requestBody:withExamples": "node requestBody/withExamples.js",
     "security:basic-auth": "node security/basic-auth.js",
