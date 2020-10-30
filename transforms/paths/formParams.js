@@ -13,7 +13,7 @@ const getRequiredValues = (currentState, contentType, key, isRequired) => {
     ];
   }
   return isRequired ? [key] : [];
-}
+};
 
 const formParams = (currentState, key, body, isRequired, requestExamples) => {
   const [description, contentType] = mapDescription(body.description);
