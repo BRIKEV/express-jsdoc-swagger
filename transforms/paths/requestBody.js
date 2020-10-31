@@ -15,6 +15,11 @@ const formatExamples = (exampleValues = []) => exampleValues
     },
   }), {});
 
+const checkExamples = examples => {
+  const isExample = Array.isArray(examples) && examples.length > 0;
+  return isExample ? formatExamples(examples) : undefined;
+};
+
 const parseBodyParameter = (currentState, body, examples) => {
   const [name, ...extraOptions] = body.name.split('.');
   const isRequired = extraOptions.includes(REQUIRED);
@@ -26,13 +31,8 @@ const parseBodyParameter = (currentState, body, examples) => {
     description,
   };
 
-  let requestExamples;
-  if (Array.isArray(examples) && examples.length > 0) {
-    requestExamples = formatExamples(examples);
-  }
-
   if (hasForm) {
-    return formParams(currentState, name, body, isRequired, requestExamples);
+    return formParams(currentState, name, body, isRequired, checkExamples(examples));
   }
 
   return {
@@ -46,7 +46,7 @@ const parseBodyParameter = (currentState, body, examples) => {
     }),
     content: {
       ...currentState.content,
-      ...getContent(body.type, contentType, body.description, requestExamples),
+      ...getContent(body.type, contentType, body.description, checkExamples(examples)),
     },
   };
 };
