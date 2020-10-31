@@ -40,6 +40,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "servatj",
+      "name": "Josep Servat",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3521485?v=4",
+      "profile": "http://servatj.me",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
