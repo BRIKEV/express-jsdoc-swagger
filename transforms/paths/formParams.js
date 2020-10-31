@@ -4,17 +4,19 @@ const mapDescription = require('../utils/mapDescription');
 
 const DEFAULT_CONTENT_TYPE = 'application/json';
 
-const formParams = (currentState, key, body, isRequired, requestExamples) => {
-  const bodyType = { name: 'object' };
-  const [description, contentType] = mapDescription(body.description);
-  let requiredValues = isRequired ? [key] : [];
+const getRequiredValues = (currentState, contentType, key, isRequired) => {
   const paramContentType = contentType || DEFAULT_CONTENT_TYPE;
   if (currentState.content[paramContentType]) {
-    requiredValues = [
+    return [
       ...(currentState.content[paramContentType].schema.required || []),
       key,
     ];
   }
+  return isRequired ? [key] : [];
+};
+
+const formParams = (currentState, key, body, isRequired, requestExamples) => {
+  const [description, contentType] = mapDescription(body.description);
   const schema = {
     properties: {
       [key]: {
@@ -22,14 +24,14 @@ const formParams = (currentState, key, body, isRequired, requestExamples) => {
         description,
       },
     },
-    required: requiredValues,
+    required: getRequiredValues(currentState, contentType, key, isRequired),
   };
   return {
     content: {
       ...merge.recursive(
         true,
         currentState.content,
-        getContent(bodyType, contentType, description, requestExamples, schema),
+        getContent({ name: 'object' }, contentType, description, requestExamples, schema),
       ),
     },
   };
