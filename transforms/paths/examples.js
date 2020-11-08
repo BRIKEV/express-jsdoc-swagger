@@ -2,6 +2,7 @@ const STATUS_CODES = require('./validStatusCodes');
 
 const errorMessage = require('../utils/errorMessage');
 const mapDescription = require('../utils/mapDescription');
+const generator = require('../utils/generator');
 
 const REQUEST_BODY = 'request';
 const RESPONSE_BODY = 'response';
@@ -16,12 +17,16 @@ const parseRequestPayloadExample = (description, content) => {
   };
 };
 
+const showError = message => {
+  errorMessage(message);
+  return {};
+};
+
 // Generates a new object with information on a response body example
 const parseResponsePayloadExample = (description, content) => {
   const [status, summary] = description;
   if (!STATUS_CODES[status]) {
-    errorMessage(`${status} is not a valid status for a response`);
-    return {};
+    return showError(`${status} is not a valid status for a response`);
   }
   return {
     type: RESPONSE_BODY,
@@ -29,6 +34,15 @@ const parseResponsePayloadExample = (description, content) => {
     summary,
     value: content,
   };
+};
+
+const getParsedExample = ({ type, metadata, content }) => {
+  const types = {
+    [REQUEST_BODY]: () => parseRequestPayloadExample(metadata, content),
+    [RESPONSE_BODY]: () => parseResponsePayloadExample(metadata, content),
+    default: () => showError(`Cannot determine where to use example of type ${type}`),
+  };
+  return (types[type] || types.default)();
 };
 
 /**
@@ -54,15 +68,8 @@ const parseExample = ({ description: exampleTagDescription }) => {
 
   const [type, ...metadata] = mapDescription(description);
 
-  switch (type) {
-    case REQUEST_BODY:
-      return parseRequestPayloadExample(metadata, content);
-    case RESPONSE_BODY:
-      return parseResponsePayloadExample(metadata, content);
-    default:
-      errorMessage(`Cannot determine where to use example of type ${type}`);
-      return {};
-  }
+  const example = getParsedExample({ type, metadata, content });
+  return example;
 };
 
 /**
@@ -87,10 +94,6 @@ const parseExample = ({ description: exampleTagDescription }) => {
  *  response), summary, status code (only applicable to response types) and
  *  the example code itself.
  */
-const examplesGenerator = (exampleTags = []) => {
-  if (!exampleTags || !Array.isArray(exampleTags)) return [];
-  const examples = exampleTags.map(parseExample).filter(example => example.type);
-  return examples;
-};
+const exampleGenerator = generator(parseExample, 'type');
 
-module.exports = examplesGenerator;
+module.exports = exampleGenerator;
