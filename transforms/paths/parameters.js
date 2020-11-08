@@ -2,6 +2,7 @@ const errorMessage = require('../utils/errorMessage');
 const setProperty = require('../utils/setProperty')('parameter');
 const formatDescription = require('../utils/formatDescription');
 const getSchema = require('./schema');
+const generator = require('../utils/generator');
 
 const REQUIRED = 'required';
 const DEPRECATED = 'deprecated';
@@ -63,10 +64,4 @@ const parseParameter = param => {
   return parameterPayload(options, schema);
 };
 
-const parametersGenerator = (paramValues = []) => {
-  if (!paramValues || !Array.isArray(paramValues)) return [];
-  const params = paramValues.map(parseParameter).filter(param => param.name);
-  return params;
-};
-
-module.exports = parametersGenerator;
+module.exports = generator(parseParameter, 'name');

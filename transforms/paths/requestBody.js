@@ -25,11 +25,7 @@ const parseBodyParameter = (currentState, body, examples) => {
   const isRequired = extraOptions.includes(REQUIRED);
   const hasForm = extraOptions.includes(FORM_TYPE);
   const [description, contentType] = mapDescription(body.description);
-  const options = {
-    name,
-    required: isRequired,
-    description,
-  };
+  const options = { name, required: isRequired, description };
 
   if (hasForm) {
     return formParams(currentState, name, body, isRequired, checkExamples(examples));
