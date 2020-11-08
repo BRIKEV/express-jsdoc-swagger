@@ -2,6 +2,7 @@ const STATUS_CODES = require('./validStatusCodes');
 
 const errorMessage = require('../utils/errorMessage');
 const mapDescription = require('../utils/mapDescription');
+const generator = require('../utils/generator');
 
 const REQUEST_BODY = 'request';
 const RESPONSE_BODY = 'response';
@@ -87,10 +88,6 @@ const parseExample = ({ description: exampleTagDescription }) => {
  *  response), summary, status code (only applicable to response types) and
  *  the example code itself.
  */
-const examplesGenerator = (exampleTags = []) => {
-  if (!exampleTags || !Array.isArray(exampleTags)) return [];
-  const examples = exampleTags.map(parseExample).filter(example => example.type);
-  return examples;
-};
+const exampleGenerator = generator(parseExample, 'type');
 
-module.exports = examplesGenerator;
+module.exports = exampleGenerator;
