@@ -32,6 +32,16 @@ const parseResponsePayloadExample = (description, content) => {
   };
 };
 
+// Generates a example information
+const getParsedExample = ({ type, metadata, content }) => ({
+  [REQUEST_BODY]: () => parseRequestPayloadExample(metadata, content),
+  [RESPONSE_BODY]: () => parseResponsePayloadExample(metadata, content),
+  default: () => {
+    errorMessage(`Cannot determine where to use example of type ${type}`);
+    return {};
+  },
+}[type || 'default'])();
+
 /**
  *  Parses a single example tag contents. Depending on the type (response or
  * request), the expected data and returned structure will be different.
@@ -52,18 +62,9 @@ const parseExample = ({ description: exampleTagDescription }) => {
   const contentStartIndex = formattedTagDescription.indexOf('\n');
   const content = formattedTagDescription.substring(contentStartIndex + 1);
   const description = formattedTagDescription.substring(0, contentStartIndex);
-
   const [type, ...metadata] = mapDescription(description);
-
-  switch (type) {
-    case REQUEST_BODY:
-      return parseRequestPayloadExample(metadata, content);
-    case RESPONSE_BODY:
-      return parseResponsePayloadExample(metadata, content);
-    default:
-      errorMessage(`Cannot determine where to use example of type ${type}`);
-      return {};
-  }
+  const example = getParsedExample({ type, metadata, content });
+  return example;
 };
 
 /**
