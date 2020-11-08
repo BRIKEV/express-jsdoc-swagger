@@ -17,12 +17,16 @@ const parseRequestPayloadExample = (description, content) => {
   };
 };
 
+const showError = message => {
+  errorMessage(message);
+  return {};
+};
+
 // Generates a new object with information on a response body example
 const parseResponsePayloadExample = (description, content) => {
   const [status, summary] = description;
   if (!STATUS_CODES[status]) {
-    errorMessage(`${status} is not a valid status for a response`);
-    return {};
+    return showError(`${status} is not a valid status for a response`);
   }
   return {
     type: RESPONSE_BODY,
@@ -36,12 +40,9 @@ const getParsedExample = ({ type, metadata, content }) => {
   const types = {
     [REQUEST_BODY]: () => parseRequestPayloadExample(metadata, content),
     [RESPONSE_BODY]: () => parseResponsePayloadExample(metadata, content),
-    default: () => {
-      errorMessage(`Cannot determine where to use example of type ${type}`);
-      return {};
-    },
+    default: () => showError(`Cannot determine where to use example of type ${type}`),
   };
-  return (types[type || 'default'])();
+  return (types[type] || types.default)();
 };
 
 /**

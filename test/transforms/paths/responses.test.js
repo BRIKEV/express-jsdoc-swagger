@@ -366,4 +366,131 @@ describe('response tests', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+  it('should parse undefined if example has no valid types (request or response)', () => {
+    const jsdocInput = [`
+      /**
+       * GET /api/v1
+       * @summary This is the summary or description of the endpoint
+       * @return {Song} 200 - success response - application/json
+       * @return {object} 403 - forbidden response - application/json
+       * @example response - 200 - example success response
+       * {
+       *   "title": "untitled song",
+       *   "artist": "anonymous"
+       * }
+       * @example res - 403 - example error response
+       * {
+       *   "error": "failed to retrieve results"
+       * }
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: false,
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            security: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      $ref: '#/components/schemas/Song',
+                    },
+                    examples: {
+                      example1: {
+                        summary: 'example success response',
+                        value: '{\n  "title": "untitled song",\n  "artist": "anonymous"\n}',
+                      },
+                    },
+                  },
+                },
+              },
+              403: {
+                description: 'forbidden response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                    examples: undefined,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsdocInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+  it('should not parse an example if has no valid status', () => {
+    const jsdocInput = [`
+      /**
+       * GET /api/v1
+       * @summary This is the summary or description of the endpoint
+       * @return {Song} 200 - success response - application/json
+       * @return {object} 403 - forbidden response - application/json
+       * @example response - 200 - example success response
+       * {
+       *   "title": "untitled song",
+       *   "artist": "anonymous"
+       * }
+       * @example response - 333 - example error response
+       * {
+       *   "error": "failed to retrieve results"
+       * }
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: false,
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            security: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      $ref: '#/components/schemas/Song',
+                    },
+                    examples: {
+                      example1: {
+                        summary: 'example success response',
+                        value: '{\n  "title": "untitled song",\n  "artist": "anonymous"\n}',
+                      },
+                    },
+                  },
+                },
+              },
+              403: {
+                description: 'forbidden response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsdocInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
