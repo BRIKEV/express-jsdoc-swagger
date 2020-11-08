@@ -30,7 +30,7 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1/pet
- * @return {Pet[]} 200 - success response
+ * @return {array<Pet>} 200 - success response
  * @return {object} 403 - forbidden request response
  * @example response - 200 - example success response
  * [
