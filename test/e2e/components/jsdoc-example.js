@@ -1,4 +1,3 @@
-
 /**
  * A song
  * @typedef {object} Song

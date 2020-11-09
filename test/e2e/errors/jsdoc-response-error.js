@@ -1,4 +1,3 @@
-
 /**
  * GET /api/v1/album
  * @summary This is the summary or description of the endpoint

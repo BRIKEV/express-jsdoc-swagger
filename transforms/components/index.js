@@ -57,7 +57,6 @@ const getRequiredProperties = properties => (
 
 const formatRequiredProperties = requiredProperties => requiredProperties.map(getPropertyName);
 
-
 const parseSchema = schema => {
   const typedef = getTagInfo(schema.tags, 'typedef');
   const propertyValues = getTagsInfo(schema.tags, 'property');
