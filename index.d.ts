@@ -5,7 +5,7 @@
 // TypeScript Version: 3.9.7
 
 import { EventEmitter } from 'events';
-import { Express } from 'express';
+import express from 'express';
 
 interface ContactObject {
 	name: string;
