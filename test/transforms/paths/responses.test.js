@@ -335,7 +335,10 @@ describe('response tests', () => {
                     examples: {
                       example1: {
                         summary: 'example success response',
-                        value: '{\n  "title": "untitled song",\n  "artist": "anonymous"\n}',
+                        value: {
+                          title: 'untitled song',
+                          artist: 'anonymous',
+                        },
                       },
                     },
                   },
@@ -351,7 +354,9 @@ describe('response tests', () => {
                     examples: {
                       example2: {
                         summary: 'example error response',
-                        value: '{\n  "error": "failed to retrieve results"\n}',
+                        value: {
+                          error: 'failed to retrieve results',
+                        },
                       },
                     },
                   },
@@ -404,7 +409,10 @@ describe('response tests', () => {
                     examples: {
                       example1: {
                         summary: 'example success response',
-                        value: '{\n  "title": "untitled song",\n  "artist": "anonymous"\n}',
+                        value: {
+                          title: 'untitled song',
+                          artist: 'anonymous',
+                        },
                       },
                     },
                   },
@@ -468,7 +476,10 @@ describe('response tests', () => {
                     examples: {
                       example1: {
                         summary: 'example success response',
-                        value: '{\n  "title": "untitled song",\n  "artist": "anonymous"\n}',
+                        value: {
+                          title: 'untitled song',
+                          artist: 'anonymous',
+                        },
                       },
                     },
                   },

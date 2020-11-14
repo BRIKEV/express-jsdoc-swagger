@@ -1,4 +1,3 @@
-
 const COMMENTS_PATTERN = /((\/\*+[\s\S]*?\*\/)|(\/\*+.*\*\/)|^\/\/.*?[\r\n])[\r\n]*/gm;
 const BREAK_LINE = /\n/g;
 

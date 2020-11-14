@@ -1,4 +1,3 @@
-
 const STATUS_CODES = {
   202: 'Accepted',
   502: 'Bad Gateway',

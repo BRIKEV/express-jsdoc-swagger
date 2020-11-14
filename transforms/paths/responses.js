@@ -11,13 +11,25 @@ const formatResponses = (values, examples) => values.reduce((acc, value) => {
     errorMessage(`Status ${status} is not valid to create a response`);
     return {};
   }
+
+  const exampleList = examples[status];
+  if (exampleList && contentType === 'application/json') {
+    Object.keys(exampleList)
+      .filter(k => typeof exampleList[k].value === 'string')
+      .forEach(k => {
+        try {
+          exampleList[k].value = JSON.parse(exampleList[k].value);
+        } catch (ignored) { }
+      });
+  }
+
   return {
     ...acc,
     [status]: {
       description,
       content: {
         ...(hasOldContent(acc, status) ? { ...acc[status].content } : {}),
-        ...getContent(value.type, contentType, value.description, examples[status]),
+        ...getContent(value.type, contentType, value.description, exampleList),
       },
     },
   };

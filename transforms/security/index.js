@@ -1,4 +1,3 @@
-
 const formatSecurity = securitySchemes => {
   const securityTypes = Object.keys(securitySchemes);
   return securityTypes.map(type => ({ [type]: [] }));

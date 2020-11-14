@@ -1,4 +1,3 @@
-
 const validRequestBodyMethods = {
   get: false,
   delete: false,
