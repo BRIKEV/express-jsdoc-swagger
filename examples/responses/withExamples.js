@@ -18,7 +18,8 @@ const options = {
 const app = express();
 const port = 3000;
 
-expressJSDocSwagger(app)(options);
+const instance = expressJSDocSwagger(app)(options);
+instance.on('finish', data => console.log('%cwithExamples.js line:22 data', 'color: #007acc;', JSON.stringify(data, null, 2)))
 
 /**
  * A pet
@@ -36,7 +37,7 @@ expressJSDocSwagger(app)(options);
  * [
  *   {
  *     "name": "Blaze",
- *     "type": "Dog"
+ *     "type": "Dog",
  *     "breed": "Siberian husky"
  *   },
  *   {
@@ -48,13 +49,13 @@ expressJSDocSwagger(app)(options);
  * [
  *   {
  *     "name": "Hachiko",
- *     "type": "Dog"
+ *     "type": "Dog",
  *     "breed": "Akita Inu"
- *   },
+ *   }
  * ]
  * @example response - 403 - example error response
  * {
- *   "message": "you cannot access pet data",
+ *   "message": "you cannot access pet data"
  * }
  */
 app.get('/api/v1/pet', (req, res) => (
