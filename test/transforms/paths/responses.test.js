@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const jsdocInfo = require('../../../consumers/jsdocInfo');
 const setPaths = require('../../../transforms/paths');
 
@@ -371,6 +372,37 @@ describe('response tests', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('should not parse jsdoc path response with examples when an application/json example is malformed', () => {
+    const jsdocInput = [`
+      /**
+       * GET /api/v1
+       * @summary This is the summary or description of the endpoint
+       * @return {Song} 200 - success response - application/json
+       * @return {object} 403 - forbidden response - application/json
+       * @example response - 200 - example success response
+       * {
+       *   "title": "untitled song",
+       *   "artist": "anonymous"
+       * }
+       * @example response - 403 - example error response
+       * {
+       *   "error": "failed to retrieve results",
+       * }
+       */
+    `];
+    global.console = { ...global.console, warn: jest.fn() };
+    const parsedJSDocs = jsdocInfo()(jsdocInput);
+    setPaths({}, parsedJSDocs);
+    // eslint-disable-next-line
+    expect(console.warn).toHaveBeenCalledTimes(1);
+    // eslint-disable-next-line
+    expect(console.warn).toHaveBeenNthCalledWith(
+      1,
+      chalk.yellow('[express-jsdoc-swagger] response example for status 403 with content-type application/json malformed'),
+    );
+  });
+
   it('should parse undefined if example has no valid types (request or response)', () => {
     const jsdocInput = [`
       /**
@@ -438,6 +470,7 @@ describe('response tests', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
   it('should not parse an example if has no valid status', () => {
     const jsdocInput = [`
       /**
