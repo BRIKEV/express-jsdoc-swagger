@@ -1,4 +1,3 @@
-
 const flatArray = elements => (
   elements.reduce((acc, val) => acc.concat(val), [])
 );
