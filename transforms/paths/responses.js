@@ -3,6 +3,8 @@ const STATUS_CODES = require('./validStatusCodes');
 const mapDescription = require('../utils/mapDescription');
 const getContent = require('./content')('@return');
 
+const DEFAULT_CONTENT_TYPE = 'application/json';
+
 const hasOldContent = (value, status) => (value[status] && value[status].content);
 
 const formatResponses = (values, examples) => values.reduce((acc, value) => {
@@ -13,13 +15,15 @@ const formatResponses = (values, examples) => values.reduce((acc, value) => {
   }
 
   const exampleList = examples[status];
-  if (exampleList && contentType === 'application/json') {
+  if (exampleList && (contentType === DEFAULT_CONTENT_TYPE || !contentType)) {
     Object.keys(exampleList)
       .filter(k => typeof exampleList[k].value === 'string')
       .forEach(k => {
         try {
           exampleList[k].value = JSON.parse(exampleList[k].value);
-        } catch (ignored) { }
+        } catch (err) {
+          errorMessage(`response example for status ${status} with content-type ${contentType} malformed`);
+        }
       });
   }
 
