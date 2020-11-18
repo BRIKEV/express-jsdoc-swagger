@@ -35,7 +35,7 @@ interface SecurityObject {
 interface Options {
 	info: InfoObject;
 	baseDir: string;
-	filesPattern: string;
+	filesPattern: string | string[];
 	security?: SecurityObject[];
 	servers?: string[];
 	swaggerUIPath?: string;
