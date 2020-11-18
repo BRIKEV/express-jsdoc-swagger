@@ -1,7 +1,7 @@
 const globFilesMatches = require('../../../consumers/globFilesMatches');
 
 describe('glob Files matches method', () => {
-  it('should return error array when required param is not send', done => {
+  it('should return error when required param is not send', done => {
     globFilesMatches()
       .catch(error => {
         expect(error.message).toEqual('baseDir and filePath are required');
