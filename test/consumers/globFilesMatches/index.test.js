@@ -19,6 +19,16 @@ describe('glob Files matches method', () => {
       });
   });
 
+  it('should return error when filePath is not a string', done => {
+    const baseDir = __dirname;
+    const filePath = 3;
+    globFilesMatches(baseDir, filePath)
+      .catch(error => {
+        expect(error.message).toEqual('files pattern has to be a type of string');
+        done();
+      });
+  });
+
   it('should return error when glob method not receives a string type', done => {
     const baseDir = 2; // This forces error in glob method
     const filePath = './**/**.txt';
