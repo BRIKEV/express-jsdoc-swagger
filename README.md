@@ -39,7 +39,7 @@ const options = {
       scheme: 'basic',
     },
   },
-  filesPattern: './**/*.js', // Glob pattern to find your jsdoc files
+  filesPattern: './**/*.js', // Glob pattern to find your jsdoc files (it supports arrays too ['./**/*.controller.js', './**/*.route.js'])
   swaggerUIPath: '/your-url', // SwaggerUI will be render in this url. Default: '/api-docs'
   baseDir: __dirname,
 };
