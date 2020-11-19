@@ -18,8 +18,7 @@ const options = {
 const app = express();
 const port = 3000;
 
-const instance = expressJSDocSwagger(app)(options);
-instance.on('finish', data => console.log('%cwithExamples.js line:22 data', 'color: #007acc;', JSON.stringify(data, null, 2)))
+expressJSDocSwagger(app)(options);
 
 /**
  * A pet
