@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "configuration:main": "node configuration/main.js",
+    "configuration:multipleFiles": "node configuration/multipleFiles.js",
     "parameters:simple": "node parameters/simple.js",
     "parameters:headers": "node parameters/headers.js",
     "parameters:multiple": "node parameters/multiple.js",
