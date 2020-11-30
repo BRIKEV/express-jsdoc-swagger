@@ -8,40 +8,40 @@ import { EventEmitter } from 'events';
 import express from 'express';
 
 interface ContactObject {
-	name: string;
-	url?: string;
-	email?: string;
+  name: string;
+  url?: string;
+  email?: string;
 }
 
 interface LicenseObject {
-	name: string;
-	url?: string;
-	email?: string;
+  name: string;
+  url?: string;
+  email?: string;
 }
 
 interface InfoObject {
-	title: string;
-	version: string;
-	description?: string;
-	termsOfService?: string;
-	contact?: ContactObject;
-	license?: LicenseObject;
+  title: string;
+  version: string;
+  description?: string;
+  termsOfService?: string;
+  contact?: ContactObject;
+  license?: LicenseObject;
 }
 
 interface SecurityObject {
-	name: string[];
+  name: string[];
 }
 
 interface Options {
-	info: InfoObject;
-	baseDir: string;
-	filesPattern: string | string[];
-	security?: SecurityObject[];
-	servers?: string[];
-	exposeSwaggerUI?: boolean;
-	swaggerUIPath?: string;
-	exposeApiDocs?: boolean;
-	apiDocsPath?: string;
+  info: InfoObject;
+  baseDir: string;
+  filesPattern: string | string[];
+  security?: SecurityObject[];
+  servers?: string[];
+  exposeSwaggerUI?: boolean;
+  swaggerUIPath?: string;
+  exposeApiDocs?: boolean;
+  apiDocsPath?: string;
 }
 
 type UserSwagger = Record<string, unknown>;
