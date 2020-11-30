@@ -38,7 +38,10 @@ interface Options {
 	filesPattern: string | string[];
 	security?: SecurityObject[];
 	servers?: string[];
+	exposeSwaggerUI?: boolean;
 	swaggerUIPath?: string;
+	exposeApiDocs?: boolean;
+	apiDocsPath?: string;
 }
 
 type UserSwagger = Record<string, unknown>;
