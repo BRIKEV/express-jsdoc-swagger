@@ -243,7 +243,7 @@ describe('response tests', () => {
     expect(result).toEqual(expected);
   });
 
-  it('should parse jsdoc path spec with more than one response and multiple content types', () => {
+  it.only('should parse jsdoc path spec with more than one response and multiple content types', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
@@ -251,6 +251,7 @@ describe('response tests', () => {
        * @return {object} 200 - success response - application/json
        * @return {object} 400 - Bad request response
        * @return {string} 400 - Bad request response - application/xml
+       * @return {string} x-header - this is a header
        */
     `];
     const expected = {
@@ -295,6 +296,7 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
+    console.log(JSON.stringify(result, null, 2));
     expect(result).toEqual(expected);
   });
 
