@@ -30,6 +30,7 @@
     "tags:simple": "node tags/simple.js",
     "combineSchemas": "node combineSchemas/index.js",
     "eventEmitter": "node eventEmitter/index.js",
+    "eventEmitter:multipleInstance": "node eventEmitter/multipleInstance.js",
     "merge": "node merge/simple.js"
   },
   "keywords": [],
