@@ -399,7 +399,9 @@ describe('response tests', () => {
     // eslint-disable-next-line
     expect(console.warn).toHaveBeenNthCalledWith(
       1,
-      chalk.yellow('[express-jsdoc-swagger] response example for status 403 with content-type application/json malformed'),
+      chalk.yellow(`[express-jsdoc-swagger] example: {
+      "error": "failed to retrieve results",
+    } - malformed`),
     );
   });
 

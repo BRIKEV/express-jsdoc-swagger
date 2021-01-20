@@ -2,6 +2,7 @@ const setProperty = require('../utils/setProperty')('parameter');
 const getContent = require('./content')('@paramBody');
 const mapDescription = require('../utils/mapDescription');
 const formParams = require('./formParams');
+const formatExample = require('../utils/formatExample');
 
 const REQUIRED = 'required';
 const FORM_TYPE = 'form';
@@ -11,7 +12,7 @@ const formatExamples = (exampleValues = []) => exampleValues
     ...exampleMap,
     [`example${i + 1}`]: {
       summary: example.summary,
-      value: example.value,
+      value: formatExample(example.value),
     },
   }), {});
 
