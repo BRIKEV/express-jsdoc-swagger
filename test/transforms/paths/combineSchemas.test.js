@@ -207,7 +207,7 @@ test('should not parse component with anyOf array keyword', () => {
     /**
      * Album
      * @typedef {object} Album
-     * @property {anyOf|Song[]|Album|string|string[]} firstSong
+     * @property {anyOf|Song[]|Album|string|string[]|null} firstSong
      */
   `];
   const expected = {
@@ -259,6 +259,7 @@ test('should not parse component with anyOf array keyword', () => {
                     type: 'string',
                   },
                 },
+                {},
               ],
             },
           },

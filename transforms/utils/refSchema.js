@@ -11,7 +11,7 @@ const refSchema = value => {
       items.push(isPrimitive ? { type: el.name } : { $ref: `${REF_ROUTE}${el.name}` });
     });
     return {
-      items,
+      anyOf: items,
     };
   }
 
@@ -28,7 +28,10 @@ const refSchema = value => {
   }
 
   if (!value) return {};
+
   const nameValue = value.name || value;
+  // support null
+  if (nameValue.type === 'NullLiteral') return {};
   const isPrimitive = validateTypes(nameValue);
   return isPrimitive ? { type: nameValue } : { $ref: `${REF_ROUTE}${nameValue}` };
 };
