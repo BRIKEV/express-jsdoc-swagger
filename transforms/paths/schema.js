@@ -22,7 +22,7 @@ const getSchema = (entity, message) => (type, enumValues = []) => {
     schema = {
       ...schema,
       type: type.expression.name,
-      items: parseItems,
+      items: parseItems.items ? parseItems.items : parseItems,
     };
   }
   return schema;
