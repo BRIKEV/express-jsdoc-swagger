@@ -44,10 +44,13 @@ const formatResponses = (values, examples) => values.reduce((acc, value) => {
     exampleList,
   );
 
+  const newDescription = isHeader(contentType) ? {} : { description };
+
   return {
     ...acc,
     [status]: {
-      description,
+      ...acc[status],
+      ...newDescription,
       content: {
         ...(hasOldContent(acc, status) ? { ...acc[status].content } : {}),
         ...newContent,

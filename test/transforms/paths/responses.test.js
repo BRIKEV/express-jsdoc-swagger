@@ -304,7 +304,6 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
-    console.log(JSON.stringify(result, null, 2));
     expect(result).toEqual(expected);
   });
 
