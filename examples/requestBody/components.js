@@ -18,7 +18,12 @@ const options = {
 const app = express();
 const port = 3000;
 
-expressJSDocSwagger(app)(options);
+const listener = expressJSDocSwagger(app)(options);
+
+listener.on('finish', swaggerObject => {
+  logger.info('Finish');
+  console.log(JSON.stringify(swaggerObject, null, 2));
+});
 
 /**
  * A song

@@ -251,7 +251,7 @@ describe('response tests', () => {
        * @return {object} 200 - success response - application/json
        * @return {object} 400 - Bad request response
        * @return {string} 400 - Bad request response - application/xml
-       * @return {string} x-header - this is a header
+       * @return {string} 200 - header description - header - x-created-at
        */
     `];
     const expected = {
@@ -266,6 +266,14 @@ describe('response tests', () => {
             responses: {
               200: {
                 description: 'success response',
+                headers: {
+                  'x-created-at': {
+                    schema: {
+                      type: 'string',
+                      description: 'header description',
+                    },
+                  },
+                },
                 content: {
                   'application/json': {
                     schema: {

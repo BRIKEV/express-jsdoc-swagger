@@ -1,5 +1,4 @@
 const errorMessage = require('../utils/errorMessage');
-const STATUS_CODES = require('./validStatusCodes');
 const mapDescription = require('../utils/mapDescription');
 const getContent = require('./content')('@return');
 const getSchema = require('./schema')('@return');
@@ -22,12 +21,14 @@ const responseHeaders = (currentState, headerKey, description, type) => {
   };
 };
 
+const isHeader = contentType => contentType === 'header';
+
 const formatResponses = (values, examples) => values.reduce((acc, value) => {
-  const [status, description, contentType] = mapDescription(value.description);
+  const [status, description, contentType, headerKey] = mapDescription(value.description);
   let headers = {};
-  if (!STATUS_CODES[status]) {
+  if (isHeader(contentType)) {
     errorMessage(`Status ${status} is not valid to create a response. It will be used as response header`);
-    headers = responseHeaders(acc[status], status, description, value.type);
+    headers = responseHeaders(acc[status], headerKey, description, value.type);
   }
 
   const exampleList = formatExampleValues(
@@ -36,13 +37,20 @@ const formatResponses = (values, examples) => values.reduce((acc, value) => {
     status,
   );
 
+  const newContent = isHeader(contentType) ? {} : getContent(
+    value.type,
+    contentType,
+    value.description,
+    exampleList,
+  );
+
   return {
     ...acc,
     [status]: {
       description,
       content: {
         ...(hasOldContent(acc, status) ? { ...acc[status].content } : {}),
-        ...getContent(value.type, contentType, value.description, exampleList),
+        ...newContent,
       },
       ...headers,
     },
