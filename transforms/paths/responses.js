@@ -2,7 +2,9 @@ const errorMessage = require('../utils/errorMessage');
 const STATUS_CODES = require('./validStatusCodes');
 const mapDescription = require('../utils/mapDescription');
 const getContent = require('./content')('@return');
-const formatExample = require('../utils/formatExample');
+const formatExampleValues = require('../utils/formatExamples')('responses');
+
+const DEFAULT_CONTENT_TYPE = 'application/json';
 
 const hasOldContent = (value, status) => (value[status] && value[status].content);
 
@@ -13,7 +15,11 @@ const formatResponses = (values, examples) => values.reduce((acc, value) => {
     return {};
   }
 
-  const exampleList = examples[status];
+  const exampleList = formatExampleValues(
+    examples[status],
+    contentType || DEFAULT_CONTENT_TYPE,
+    status,
+  );
 
   return {
     ...acc,
@@ -34,7 +40,7 @@ const formatExamples = (exampleValues = []) => exampleValues
       ...exampleMap[example.status],
       [`example${i + 1}`]: {
         summary: example.summary,
-        value: formatExample(example.value),
+        value: example.value,
       },
     },
   }), {});

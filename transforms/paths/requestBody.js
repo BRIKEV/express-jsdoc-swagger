@@ -2,7 +2,7 @@ const setProperty = require('../utils/setProperty')('parameter');
 const getContent = require('./content')('@paramBody');
 const mapDescription = require('../utils/mapDescription');
 const formParams = require('./formParams');
-const formatExample = require('../utils/formatExample');
+const formatExampleValues = require('../utils/formatExamples')('requestBody');
 
 const REQUIRED = 'required';
 const FORM_TYPE = 'form';
@@ -12,7 +12,7 @@ const formatExamples = (exampleValues = []) => exampleValues
     ...exampleMap,
     [`example${i + 1}`]: {
       summary: example.summary,
-      value: formatExample(example.value),
+      value: example.value,
     },
   }), {});
 
@@ -28,8 +28,12 @@ const parseBodyParameter = (currentState, body, examples) => {
   const [description, contentType] = mapDescription(body.description);
   const options = { name, required: isRequired, description };
 
+  const examplesParsed = examples.map(example => (
+    formatExampleValues(example, contentType)
+  ));
+
   if (hasForm) {
-    return formParams(currentState, name, body, isRequired, checkExamples(examples));
+    return formParams(currentState, name, body, isRequired, checkExamples(examplesParsed));
   }
 
   return {
@@ -43,7 +47,7 @@ const parseBodyParameter = (currentState, body, examples) => {
     }),
     content: {
       ...currentState.content,
-      ...getContent(body.type, contentType, body.description, checkExamples(examples)),
+      ...getContent(body.type, contentType, body.description, checkExamples(examplesParsed)),
     },
   };
 };
