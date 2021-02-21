@@ -1,7 +1,7 @@
-const express = require("express");
+const express = require('express');
 
-const logger = require("../utils/logger");
-const expressJSDocSwagger = require("../..");
+const logger = require('../utils/logger');
+const expressJSDocSwagger = require('../..');
 
 const app = express();
 const port = 3000;
@@ -9,38 +9,38 @@ const port = 3000;
 // It is a fictitious configuration
 const optionsClientAPIInstance = {
   info: {
-    version: "1.0.0",
-    title: "Client API",
-    description: "For client",
+    version: '1.0.0',
+    title: 'Client API',
+    description: 'For client',
   },
-  filesPattern: "../api/client/v1/*.js",
-  swaggerUIPath: "/api/v1/client/docs",
+  filesPattern: '../api/client/v1/*.js',
+  swaggerUIPath: '/api/v1/client/docs',
   baseDir: __dirname,
   exposeSwaggerUI: true,
   exposeApiDocs: true,
-  apiDocsPath: "/api/v1/client/api-docs",
+  apiDocsPath: '/api/v1/client/api-docs',
 };
 
 // It is a fictitious configuration
 const optionsAdminAPIInstance = {
   info: {
-    version: "1.0.0",
-    title: "Admin API",
-    description: "Only admin accounts authorized to use this API",
+    version: '1.0.0',
+    title: 'Admin API',
+    description: 'Only admin accounts authorized to use this API',
   },
   security: {
     BearerAuth: {
-      type: "http",
-      scheme: "bearer",
-      bearerFormat: "JWT",
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
     },
   },
-  filesPattern: "../api/admin/v1/*.js",
-  swaggerUIPath: "/api/v1/admin/docs",
+  filesPattern: '../api/admin/v1/*.js',
+  swaggerUIPath: '/api/v1/admin/docs',
   baseDir: __dirname,
   exposeSwaggerUI: true,
   exposeApiDocs: true,
-  apiDocsPath: "/api/v1/admin/api-docs",
+  apiDocsPath: '/api/v1/admin/api-docs',
 };
 
 const clientAPIInstance = expressJSDocSwagger(app)(optionsClientAPIInstance);
