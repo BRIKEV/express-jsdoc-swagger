@@ -29,15 +29,26 @@ interface InfoObject {
 }
 
 interface SecurityObject {
-  name: string[];
+  type: string;
+  scheme: string;
+}
+
+interface Security {
+  [key: string]: SecurityObject;
+}
+
+interface Servers {
+  url: string;
+  description: string;
+  variables?: object;
 }
 
 interface Options {
   info: InfoObject;
   baseDir: string;
   filesPattern: string | string[];
-  security?: SecurityObject[];
-  servers?: string[];
+  security?: Security;
+  servers?: string[] | Servers[];
   exposeSwaggerUI?: boolean;
   swaggerUIPath?: string;
   exposeApiDocs?: boolean;
