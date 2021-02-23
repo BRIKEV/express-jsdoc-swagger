@@ -20,5 +20,4 @@ const formatJSONExamples = type => (exampleList, contentType, status) => {
   return cloneExamples;
 };
 
-
 module.exports = formatJSONExamples;
