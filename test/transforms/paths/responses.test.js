@@ -49,11 +49,15 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
   });
 
   it('should not parse jsdoc with wrong info and return warning in the console', () => {
-    global.console = { ...global.console, warn: jest.fn() };
+    global.console = {
+      ...global.console,
+      warn: jest.fn(),
+    };
     const jsodInput = [`
       /**
        * GET /api/v1
@@ -77,13 +81,18 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
     // eslint-disable-next-line
-    expect(console.warn).toHaveBeenCalled();
+    expect(console.warn)
+      .toHaveBeenCalled();
   });
 
   it('should parse jsdoc with wrong info and return warning in the console', () => {
-    global.console = { ...global.console, warn: jest.fn() };
+    global.console = {
+      ...global.console,
+      warn: jest.fn(),
+    };
     const jsodInput = [`
       /**
        * GET /api/v1
@@ -118,9 +127,12 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
     // eslint-disable-next-line
-    expect(console.warn).not.toHaveBeenCalled();
+    expect(console.warn)
+      .not
+      .toHaveBeenCalled();
   });
 
   it('should parse jsdoc path response with array type', () => {
@@ -161,7 +173,8 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
   });
 
   it('should parse jsdoc path response with components', () => {
@@ -199,7 +212,8 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
   });
 
   it('should parse jsdoc path response with array of components', () => {
@@ -240,7 +254,8 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
   });
 
   it('should parse jsdoc path spec with more than one response and multiple content types', () => {
@@ -295,7 +310,8 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsodInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
   });
 
   it('should parse jsdoc path response with examples', () => {
@@ -370,7 +386,8 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsdocInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
   });
 
   it('should not parse jsdoc path response with examples when an application/json example is malformed', () => {
@@ -391,16 +408,21 @@ describe('response tests', () => {
        * }
        */
     `];
-    global.console = { ...global.console, warn: jest.fn() };
+    global.console = {
+      ...global.console,
+      warn: jest.fn(),
+    };
     const parsedJSDocs = jsdocInfo()(jsdocInput);
     setPaths({}, parsedJSDocs);
     // eslint-disable-next-line
-    expect(console.warn).toHaveBeenCalledTimes(1);
+    expect(console.warn)
+      .toHaveBeenCalledTimes(1);
     // eslint-disable-next-line
-    expect(console.warn).toHaveBeenNthCalledWith(
-      1,
-      chalk.yellow('[express-jsdoc-swagger] response example for status 403 with content-type application/json malformed'),
-    );
+    expect(console.warn)
+      .toHaveBeenNthCalledWith(
+        1,
+        chalk.yellow('[express-jsdoc-swagger] response example for status 403 with content-type application/json malformed'),
+      );
   });
 
   it('should parse undefined if example has no valid types (request or response)', () => {
@@ -468,7 +490,8 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsdocInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
   });
 
   it('should not parse an example if has no valid status', () => {
@@ -535,6 +558,55 @@ describe('response tests', () => {
     };
     const parsedJSDocs = jsdocInfo()(jsdocInput);
     const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    expect(result)
+      .toEqual(expected);
+  });
+  it('should parse jsdoc path spec with more than multiple response and multiple content types', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @summary This is the summary or description of the endpoint
+       * @return {array<Song|Song>} 200 - success response - application/json
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: false,
+            summary: 'This is the summary or description of the endpoint',
+            parameters: [],
+            tags: [],
+            security: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'array',
+                      items: {
+                        anyOf: [
+                          {
+                            $ref: '#/components/schemas/Song',
+                          },
+                          {
+                            $ref: '#/components/schemas/Song',
+                          },
+                        ],
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result)
+      .toEqual(expected);
   });
 });

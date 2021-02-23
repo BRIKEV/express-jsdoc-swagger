@@ -12,7 +12,7 @@ const combineSchema = elements => {
   const [, ...types] = elements;
   if (validType(schemaType)) {
     schema = {
-      [schemaType]: types.map(type => refSchema(type.name)),
+      [schemaType]: types.map(type => refSchema(type)),
     };
   } else {
     errorMessage(`SchemaType ${schemaType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`);

@@ -193,3 +193,81 @@ test('should parse jsdoc path reference params with allOf keyword', () => {
   const result = setPaths({}, parsedJSDocs);
   expect(result).toEqual(expected);
 });
+test('should not parse component with anyOf array keyword', () => {
+  const jsodInput = [`
+    /**
+     * A song
+     * @typedef {object} Song
+     * @property {string} title.required
+     * @property {string} artist
+     * @property {number} year
+     */
+  `,
+  `
+    /**
+     * Album
+     * @typedef {object} Album
+     * @property {anyOf|Song[]|Album|string|string[]|null} firstSong
+     */
+  `];
+  const expected = {
+    components: {
+      schemas: {
+        Song: {
+          type: 'object',
+          required: [
+            'title',
+          ],
+          description: 'A song',
+          properties: {
+            title: {
+              type: 'string',
+              description: '',
+            },
+            artist: {
+              type: 'string',
+              description: '',
+            },
+            year: {
+              type: 'number',
+              description: '',
+            },
+          },
+        },
+        Album: {
+          type: 'object',
+          description: 'Album',
+          properties: {
+            firstSong: {
+              description: '',
+              anyOf: [
+                {
+                  type: 'array',
+                  items: {
+                    $ref: '#/components/schemas/Song',
+                  },
+                },
+                {
+                  $ref: '#/components/schemas/Album',
+                },
+                {
+                  type: 'string',
+                },
+                {
+                  type: 'array',
+                  items: {
+                    type: 'string',
+                  },
+                },
+                {},
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+  const parsedJSDocs = jsdocInfo()(jsodInput);
+  const result = parseComponents({}, parsedJSDocs);
+  expect(result).toEqual(expected);
+});
