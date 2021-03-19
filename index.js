@@ -32,7 +32,7 @@ const expressJSDocSwagger = app => (options = {}, userSwagger = {}) => {
       };
       req.swaggerDoc = swaggerObject;
       next();
-    }, swaggerUi.serve, swaggerUi.setup());
+    }, swaggerUi.serve, swaggerUi.setup(undefined, options.swaggerUiOptions));
   }
 
   if (options.exposeApiDocs || DEFAULT_EXPOSE_APIDOCS) {
