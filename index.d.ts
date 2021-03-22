@@ -4,8 +4,9 @@
 // Definitions: https://github.com/BRIKEV/express-jsdoc-swagger/index.d.ts
 // TypeScript Version: 3.9.7
 
-import { EventEmitter } from 'events';
-import express from 'express';
+import { EventEmitter } from "events";
+import express from "express";
+import { SwaggerUiOptions } from "swagger-ui-express";
 
 interface ContactObject {
   name: string;
@@ -48,11 +49,12 @@ interface Options {
   baseDir: string;
   filesPattern: string | string[];
   security?: Security;
-  servers?: string[] | Servers[];
+  servers?: string[] | Servers[];
   exposeSwaggerUI?: boolean;
   swaggerUIPath?: string;
   exposeApiDocs?: boolean;
   apiDocsPath?: string;
+  swaggerUiOptions?: SwaggerUiOptions;
 }
 
 type UserSwagger = Record<string, unknown>;
