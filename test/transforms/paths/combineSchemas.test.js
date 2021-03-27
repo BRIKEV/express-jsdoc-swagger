@@ -6,7 +6,7 @@ test('should parse jsdoc path response with oneOf keyword', () => {
   const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {oneOf|Song|Album} 200 - success response - application/json
        */
     `];
@@ -15,7 +15,7 @@ test('should parse jsdoc path response with oneOf keyword', () => {
       '/api/v1': {
         get: {
           deprecated: false,
-          summary: 'This is the summary or description of the endpoint',
+          summary: 'This is the summary of the endpoint',
           parameters: [],
           tags: [],
           security: [],
@@ -52,7 +52,7 @@ test('should not parse when type is invalid', () => {
   const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {invalid|Song|Album} 200 - success response - application/json
        */
     `];
@@ -61,7 +61,7 @@ test('should not parse when type is invalid', () => {
       '/api/v1': {
         get: {
           deprecated: false,
-          summary: 'This is the summary or description of the endpoint',
+          summary: 'This is the summary of the endpoint',
           parameters: [],
           tags: [],
           security: [],

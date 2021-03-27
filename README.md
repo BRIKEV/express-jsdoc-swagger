@@ -54,7 +54,7 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @return {object} 200 - success response
  */
 app.get('/api/v1', (req, res) => res.json({
@@ -102,7 +102,7 @@ const options = {
 ```javascript
 /**
  * GET /api/v1/albums
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @tags album
  * @return {array<Song>} 200 - success response - application/json
  */
@@ -117,7 +117,7 @@ app.get('/api/v1/albums', (req, res) => (
 ```javascript
 /**
  * GET /api/v1/album
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @security BasicAuth
  * @tags album
  * @param {string} name.query.required - name param description
@@ -135,7 +135,7 @@ app.get('/api/v1/album', (req, res) => (
 ```javascript
 /**
  * GET /api/v1/albums
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @tags album
  * @return {array<Song>} 200 - success response - application/json
  * @example response - 200 - success response example

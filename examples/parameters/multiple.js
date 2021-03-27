@@ -22,7 +22,7 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1/{id}
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @param {string} name.query.required - name param description
  * @param {number} id.path - phone number
  * @return {string} 200 - success response
@@ -31,7 +31,7 @@ app.get('/api/v1/:id', (req, res) => res.send('Hello World!'));
 
 /**
  * GET /api/v1/albums/{id}
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @param {array<string>} name.query.required.deprecated - name param description
  * @param {number} id.path
  * @return {object} 200 - success response - application/json

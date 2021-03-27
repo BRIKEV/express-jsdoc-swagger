@@ -28,7 +28,7 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @return {string} 200 - success response
  * @security BasicAuth
  */

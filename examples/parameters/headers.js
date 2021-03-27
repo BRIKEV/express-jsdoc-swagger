@@ -22,7 +22,7 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @param {string} name.header.required - name param description
  * @return {string} 200 - success response
  */

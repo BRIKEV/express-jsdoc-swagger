@@ -19,6 +19,8 @@ const formatSecurity = (securityValues = []) => securityValues.map(({ descriptio
 
 const formatSummary = summary => (summary || {}).description || '';
 
+const formatDescription = description => (description || {}).description || undefined;
+
 const setRequestBody = (lowerCaseMethod, bodyValues, requestExamples) => {
   const hasBodyValues = bodyValues.length > 0;
   const requestBody = requestBodyGenerator(bodyValues, requestExamples);
@@ -32,6 +34,7 @@ const pathValues = tags => {
   const examples = examplesGenerator(examplesValues);
 
   const summary = getTagInfo(tags, 'summary');
+  const description = getTagInfo(tags, 'description');
   const deprecated = getTagInfo(tags, 'deprecated');
   const isDeprecated = !!deprecated;
   /* Response info */
@@ -49,6 +52,7 @@ const pathValues = tags => {
   const bodyValues = paramValues.filter(bodyParams);
   return {
     summary,
+    description,
     isDeprecated,
     responses,
     parameters,
@@ -67,7 +71,15 @@ const parsePath = (path, state) => {
   if (!validHTTPMethod(lowerCaseMethod)) return {};
   const { tags } = path;
   const {
-    summary, bodyValues, isDeprecated, responses, parameters, tagsValues, securityValues, examples,
+    summary,
+    description,
+    bodyValues,
+    isDeprecated,
+    responses,
+    parameters,
+    tagsValues,
+    securityValues,
+    examples,
   } = pathValues(tags);
   const requestExamples = examples.filter(example => example.type === 'request');
   return {
@@ -77,6 +89,7 @@ const parsePath = (path, state) => {
       [lowerCaseMethod]: {
         deprecated: isDeprecated,
         summary: formatSummary(summary),
+        description: formatDescription(description),
         security: formatSecurity(securityValues),
         responses,
         parameters,

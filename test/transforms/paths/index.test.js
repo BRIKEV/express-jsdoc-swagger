@@ -22,11 +22,12 @@ describe('setPaths method', () => {
     expect(result).toEqual(expected);
   });
 
-  it('should parse jsdoc path spec with one response, summary and endpoint info', () => {
+  it('should parse jsdoc path spec with one response, summary, description and endpoint info', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
+       * @description This is the description of the endpoint
        * @return {object} 200 - success response - application/json
        */
     `];
@@ -35,7 +36,8 @@ describe('setPaths method', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
+            description: 'This is the description of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -65,7 +67,7 @@ describe('setPaths method', () => {
       /**
        * GET /api/v1
        * @deprecated
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {object} 200 - success response - application/json
        */
     `];
@@ -74,7 +76,7 @@ describe('setPaths method', () => {
         '/api/v1': {
           get: {
             deprecated: true,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -104,14 +106,14 @@ describe('setPaths method', () => {
       /**
        * GET /api/v1
        * @deprecated
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {object} 200 - success response - application/json
        */
     `,
     `
       /**
        * GET /api/v1/songs
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {object} 200 - success response - application/json
        */
     `];
@@ -120,7 +122,7 @@ describe('setPaths method', () => {
         '/api/v1': {
           get: {
             deprecated: true,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -141,7 +143,7 @@ describe('setPaths method', () => {
         '/api/v1/songs': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -171,14 +173,14 @@ describe('setPaths method', () => {
       /**
        * GET /api/v1
        * @deprecated
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {object} 200 - success response - application/json
        */
     `,
     `
       /**
        * POST /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {object} 200 - success response - application/json
        */
     `];
@@ -187,7 +189,7 @@ describe('setPaths method', () => {
         '/api/v1': {
           get: {
             deprecated: true,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -206,7 +208,7 @@ describe('setPaths method', () => {
           },
           post: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],

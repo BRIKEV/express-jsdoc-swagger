@@ -28,7 +28,7 @@ test('should parse components jsdoc from jsdoc-example', async () => {
       '/api/v1': {
         get: {
           deprecated: false,
-          summary: 'This is the summary or description of the endpoint',
+          summary: 'This is the summary of the endpoint',
           responses: {
             200: {
               description: 'success response',
@@ -70,7 +70,7 @@ test('should parse components jsdoc from jsdoc-example', async () => {
       '/api/v1/albums': {
         get: {
           deprecated: false,
-          summary: 'This is the summary or description of the endpoint',
+          summary: 'This is the summary of the endpoint',
           responses: {
             200: {
               description: 'success response',

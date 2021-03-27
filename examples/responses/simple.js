@@ -22,14 +22,14 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @return {string} 200 - success response
  */
 app.get('/api/v1', (req, res) => res.send('Hello World!'));
 
 /**
  * GET /api/v1/albums
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @return {object} 200 - success response - application/json
  * @return {array<object>} 200 - success response - application/json
  */
