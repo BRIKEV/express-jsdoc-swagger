@@ -103,6 +103,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "dahlmo",
+      "name": "Dahlmo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23076026?v=4",
+      "profile": "https://github.com/dahlmo",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
