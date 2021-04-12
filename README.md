@@ -176,6 +176,7 @@ You can find more examples [here](https://github.com/BRIKEV/express-jsdoc-swagge
     <td align="center"><a href="https://github.com/juliendu11"><img src="https://avatars0.githubusercontent.com/u/18739442?v=4?s=100" width="100px;" alt=""/><br /><sub><b>juliendu11</b></sub></a><br /><a href="https://github.com/BRIKEV/express-jsdoc-swagger/commits?author=juliendu11" title="Code">💻</a></td>
     <td align="center"><a href="https://me.io"><img src="https://avatars.githubusercontent.com/u/45731?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mohamed Meabed</b></sub></a><br /><a href="https://github.com/BRIKEV/express-jsdoc-swagger/commits?author=meabed" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/ofarukaydin"><img src="https://avatars.githubusercontent.com/u/32788963?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Faruk Aydın</b></sub></a><br /><a href="https://github.com/BRIKEV/express-jsdoc-swagger/commits?author=ofarukaydin" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dahlmo"><img src="https://avatars.githubusercontent.com/u/23076026?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dahlmo</b></sub></a><br /><a href="https://github.com/BRIKEV/express-jsdoc-swagger/commits?author=dahlmo" title="Code">💻</a></td>
   </tr>
 </table>
 
