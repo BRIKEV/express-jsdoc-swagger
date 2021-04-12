@@ -36,7 +36,7 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v2/album
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @tags album
  * @security BasicAuth
  * @return {object} 200 - success response - application/json
@@ -50,7 +50,7 @@ app.get('/api/v2/album', (req, res) => (
 
 /**
  * GET /api/v1/album
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @tags album
  * @deprecated
  * @return {object} 200 - success response - application/json
@@ -64,7 +64,7 @@ app.get('/api/v1/album', (req, res) => (
 
 /**
  * GET /api/v1/albums
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @tags album
  * @return {array<Song>} 200 - success response - application/json
  */

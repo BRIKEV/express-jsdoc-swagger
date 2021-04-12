@@ -30,7 +30,7 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1/albums
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @return {array<Song>} 200 - success response - application/json
  */
 app.get('/api/v1/albums', (req, res) => (

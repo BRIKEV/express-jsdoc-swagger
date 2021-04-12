@@ -31,7 +31,7 @@ expressJSDocSwagger(app)(options, userSwagger);
 
 /**
  * GET /api/v1/albums
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @param {array<object>} name.query.required - name param description
  * @return {array<object>} 200 - success response - application/json
  */

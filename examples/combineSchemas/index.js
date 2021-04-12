@@ -38,7 +38,7 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1/song/{id}
- * @summary This is the summary or description of the endpoint
+ * @summary This is the summary of the endpoint
  * @tags album
  * @param {number} id.path - song id
  * @return {oneOf|IntrumentalSong|PopSong} 200 - success response - application/json

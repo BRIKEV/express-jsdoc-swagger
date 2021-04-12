@@ -7,7 +7,7 @@ describe('response tests', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {object} 200 - success response - application/json
        * @return {object} 400 - Bad request response
        */
@@ -17,7 +17,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -61,7 +61,7 @@ describe('response tests', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {object} 200 success response - application/json
        */
     `];
@@ -70,7 +70,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             responses: {},
             parameters: [],
             tags: [],
@@ -96,7 +96,7 @@ describe('response tests', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {object} default - success response - application/json
        */
     `];
@@ -105,7 +105,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -139,7 +139,7 @@ describe('response tests', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {array<integer>} 200 - success response - application/json
        */
     `];
@@ -148,7 +148,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -181,7 +181,7 @@ describe('response tests', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {Song} 200 - success response - application/json
        */
     `];
@@ -190,7 +190,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -220,7 +220,7 @@ describe('response tests', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {array<Song>} 200 - success response - application/json
        */
     `];
@@ -229,7 +229,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -262,7 +262,7 @@ describe('response tests', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {object} 200 - success response - application/json
        * @return {object} 400 - Bad request response
        * @return {string} 400 - Bad request response - application/xml
@@ -273,7 +273,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -318,7 +318,7 @@ describe('response tests', () => {
     const jsdocInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {Song} 200 - success response - application/json
        * @return {object} 403 - forbidden response - application/json
        * @example response - 200 - example success response
@@ -337,7 +337,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -394,7 +394,7 @@ describe('response tests', () => {
     const jsdocInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {Song} 200 - success response - application/json
        * @return {object} 403 - forbidden response - application/json
        * @example response - 200 - example success response
@@ -429,7 +429,7 @@ describe('response tests', () => {
     const jsdocInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {Song} 200 - success response - application/json
        * @return {object} 403 - forbidden response - application/json
        * @example response - 200 - example success response
@@ -448,7 +448,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -498,7 +498,7 @@ describe('response tests', () => {
     const jsdocInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {Song} 200 - success response - application/json
        * @return {object} 403 - forbidden response - application/json
        * @example response - 200 - example success response
@@ -517,7 +517,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
@@ -565,7 +565,7 @@ describe('response tests', () => {
     const jsodInput = [`
       /**
        * GET /api/v1
-       * @summary This is the summary or description of the endpoint
+       * @summary This is the summary of the endpoint
        * @return {array<Song|Song>} 200 - success response - application/json
        */
     `];
@@ -574,7 +574,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
-            summary: 'This is the summary or description of the endpoint',
+            summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
             security: [],
