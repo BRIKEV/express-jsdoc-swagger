@@ -47,46 +47,7 @@ test('should parse jsdoc path response with oneOf keyword', () => {
   expect(result).toEqual(expected);
 });
 
-test('should not parse when type is invalid', () => {
-  global.console = { ...global.console, warn: jest.fn() };
-  const jsodInput = [`
-      /**
-       * GET /api/v1
-       * @summary This is the summary of the endpoint
-       * @return {invalid|Song|Album} 200 - success response - application/json
-       */
-    `];
-  const expected = {
-    paths: {
-      '/api/v1': {
-        get: {
-          deprecated: false,
-          summary: 'This is the summary of the endpoint',
-          parameters: [],
-          tags: [],
-          security: [],
-          responses: {
-            200: {
-              description: 'success response',
-              content: {
-                'application/json': {
-                  schema: {},
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  };
-  const parsedJSDocs = jsdocInfo()(jsodInput);
-  const result = setPaths({}, parsedJSDocs);
-  expect(result).toEqual(expected);
-  // eslint-disable-next-line
-  expect(console.warn).toHaveBeenCalled();
-});
-
-test('should not parse component with anyOf keyword', () => {
+test('should parse component with anyOf keyword', () => {
   const jsodInput = [`
     /**
      * A song
@@ -193,7 +154,8 @@ test('should parse jsdoc path reference params with allOf keyword', () => {
   const result = setPaths({}, parsedJSDocs);
   expect(result).toEqual(expected);
 });
-test('should not parse component with anyOf array keyword', () => {
+
+test('should parse component with anyOf array keyword', () => {
   const jsodInput = [`
     /**
      * A song
@@ -261,6 +223,66 @@ test('should not parse component with anyOf array keyword', () => {
                 },
               ],
               nullable: true,
+            },
+          },
+        },
+      },
+    },
+  };
+  const parsedJSDocs = jsdocInfo()(jsodInput);
+  const result = parseComponents({}, parsedJSDocs);
+  expect(result).toEqual(expected);
+});
+
+test('should parse component with jsdoc syntax for multiple data types', () => {
+  const jsodInput = [`
+    /**
+     * A song
+     * @typedef {object} Song
+     * @property {string} title.required
+     * @property {string} artist
+     * @property {number} year
+     * @property {(string|null)} album
+     * @property {object|number} releaseDate
+     */
+  `];
+  const expected = {
+    components: {
+      schemas: {
+        Song: {
+          type: 'object',
+          required: [
+            'title',
+          ],
+          description: 'A song',
+          properties: {
+            title: {
+              type: 'string',
+              description: '',
+            },
+            artist: {
+              type: 'string',
+              description: '',
+            },
+            year: {
+              type: 'number',
+              description: '',
+            },
+            album: {
+              type: 'string',
+              description: '',
+              nullable: true,
+            },
+            releaseDate: {
+              description: '',
+              oneOf: [
+                {
+                  type: 'object',
+                },
+                {
+                  type: 'number',
+                },
+              ],
             },
           },
         },

@@ -27,6 +27,7 @@ expressJSDocSwagger(app)(options);
  * @property {string} artist - The artist
  * @property {integer} year - The year - int64
  * @property {oneOf|string|null} album - The album to which the song belongs (if any)
+ * @property {(string[]|null)} tags - Associate tags (if any)
  */
 
 /**

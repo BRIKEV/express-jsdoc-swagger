@@ -3,37 +3,64 @@ const { refSchema } = require('./refSchema');
 
 const VALID_TYPES = ['oneOf', 'anyOf', 'allOf'];
 
-const validType = type => VALID_TYPES.includes(type);
+/**
+ *  This method checks the first item of the data type list to validate if
+ * it contains any of the keywords representing the different schema types
+ * in Swagger: 'oneOf', 'anyOf' or 'allOf'.
+ *
+ * @param {object[]} elements - List of data types for the property
+ * @returns {string|null} Name of the schema type (if any)
+ */
+const getSchemaType = elements => {
+  const schemaType = elements[0].name;
 
+  if (!VALID_TYPES.includes(schemaType)) {
+    errorMessage(`SchemaType ${schemaType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`);
+    return null;
+  }
+
+  return schemaType;
+};
+
+/**
+ *  This method receives an array of data types passed down to the
+ * 'property' annotation, for example:
+ *
+ *    > '{oneOf|string|null}'.
+ *
+ *  The aim of this method is to process this array and generate
+ * the schema for the property, including a list of its types.
+ *
+ * @param {object[]} elements - List of data types for the property
+ * @returns Swagger schema for the property
+ */
 const combineSchema = elements => {
   let schema = {};
   if (!elements || elements.length === 0) return schema;
 
-  // If param has multiple types, check if null is part of them and remove it from array
+  // Check if 'null' is part of the listed types and remove it from the array
   const nullIndex = elements.findIndex(el => el.type === 'NullLiteral');
   if (nullIndex > 0) {
     elements.splice(nullIndex, 1);
     schema = { nullable: true };
   }
 
-  const schemaType = elements[0].name;
-  const [, ...types] = elements;
+  const schemaType = getSchemaType(elements);
+  const types = !schemaType ? elements : elements.slice(1);
 
-  if (validType(schemaType)) {
-    if (types.length > 1 || schemaType === 'allOf') {
-      schema = {
-        ...schema,
-        [schemaType]: types.map(type => refSchema(type)),
-      };
-    } else {
-      // If there's only a type in the list, don't wrap it in 'oneOf' or 'anyOf'
-      schema = {
-        ...schema,
-        ...refSchema(types[0]),
-      };
-    }
+  // If there are multiple types in the list, wrap them into a schema type
+  // ('oneOf' will be used by default if none is specified)
+  if (types.length > 1 || schemaType === 'allOf') {
+    schema = {
+      ...schema,
+      [schemaType || 'oneOf']: types.map(type => refSchema(type)),
+    };
   } else {
-    errorMessage(`SchemaType ${schemaType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`);
+    // If there's only a type in the list, don't wrap it in 'oneOf' or 'anyOf' blocks
+    schema = {
+      ...schema,
+      ...refSchema(types[0]),
+    };
   }
 
   return schema;
