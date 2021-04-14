@@ -12,12 +12,12 @@ const combineSchema = elements => {
   const [, ...types] = elements;
 
   if (validType(schemaType)) {
-    if (types.length > 1) {
+    if (types.length > 1 || schemaType === 'allOf') {
       schema = {
         [schemaType]: types.map(type => refSchema(type)),
       };
     } else {
-      // If there's only a type in the list, don't wrap it in 'oneOf' / 'anyOf' / 'allOf'
+      // If there's only a type in the list, don't wrap it in 'oneOf' or 'anyOf'
       schema = refSchema(types[0]);
     }
   } else {
