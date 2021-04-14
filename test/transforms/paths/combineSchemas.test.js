@@ -233,3 +233,63 @@ test('should parse component with anyOf array keyword', () => {
   const result = parseComponents({}, parsedJSDocs);
   expect(result).toEqual(expected);
 });
+
+test('should parse component with jsdoc syntax for multiple data types', () => {
+  const jsodInput = [`
+    /**
+     * A song
+     * @typedef {object} Song
+     * @property {string} title.required
+     * @property {string} artist
+     * @property {number} year
+     * @property {(string|null)} album
+     * @property {object|number} releaseDate
+     */
+  `];
+  const expected = {
+    components: {
+      schemas: {
+        Song: {
+          type: 'object',
+          required: [
+            'title',
+          ],
+          description: 'A song',
+          properties: {
+            title: {
+              type: 'string',
+              description: '',
+            },
+            artist: {
+              type: 'string',
+              description: '',
+            },
+            year: {
+              type: 'number',
+              description: '',
+            },
+            album: {
+              type: 'string',
+              description: '',
+              nullable: true,
+            },
+            releaseDate: {
+              description: '',
+              oneOf: [
+                {
+                  type: 'object',
+                },
+                {
+                  type: 'number',
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+  const parsedJSDocs = jsdocInfo()(jsodInput);
+  const result = parseComponents({}, parsedJSDocs);
+  expect(result).toEqual(expected);
+});
