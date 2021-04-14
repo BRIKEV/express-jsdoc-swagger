@@ -11,6 +11,16 @@ const getSchema = (entity, message) => (type, enumValues = []) => {
   let schema = {
     ...refSchema(nameType),
   };
+
+  // If param has multiple types, check if null is part of them and remove it from array
+  if (type.elements) {
+    const nullIndex = type.elements.findIndex(el => el.type === 'NullLiteral');
+    if (nullIndex > 0) {
+      type.elements.splice(nullIndex, 1);
+      schema = { ...schema, nullable: true };
+    }
+  }
+
   schema = {
     ...schema,
     ...combineSchema(type.elements),
