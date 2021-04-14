@@ -60,7 +60,6 @@ test('should parse parameters from jsdoc-example', async () => {
               deprecated: false,
               schema: {
                 type: 'number',
-                nullable: true,
               },
             },
           ],
