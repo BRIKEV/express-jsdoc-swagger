@@ -47,46 +47,7 @@ test('should parse jsdoc path response with oneOf keyword', () => {
   expect(result).toEqual(expected);
 });
 
-test('should not parse when type is invalid', () => {
-  global.console = { ...global.console, warn: jest.fn() };
-  const jsodInput = [`
-      /**
-       * GET /api/v1
-       * @summary This is the summary of the endpoint
-       * @return {invalid|Song|Album} 200 - success response - application/json
-       */
-    `];
-  const expected = {
-    paths: {
-      '/api/v1': {
-        get: {
-          deprecated: false,
-          summary: 'This is the summary of the endpoint',
-          parameters: [],
-          tags: [],
-          security: [],
-          responses: {
-            200: {
-              description: 'success response',
-              content: {
-                'application/json': {
-                  schema: {},
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  };
-  const parsedJSDocs = jsdocInfo()(jsodInput);
-  const result = setPaths({}, parsedJSDocs);
-  expect(result).toEqual(expected);
-  // eslint-disable-next-line
-  expect(console.warn).toHaveBeenCalled();
-});
-
-test('should not parse component with anyOf keyword', () => {
+test('should parse component with anyOf keyword', () => {
   const jsodInput = [`
     /**
      * A song
@@ -193,7 +154,8 @@ test('should parse jsdoc path reference params with allOf keyword', () => {
   const result = setPaths({}, parsedJSDocs);
   expect(result).toEqual(expected);
 });
-test('should not parse component with anyOf array keyword', () => {
+
+test('should parse component with anyOf array keyword', () => {
   const jsodInput = [`
     /**
      * A song
