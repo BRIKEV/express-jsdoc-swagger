@@ -11,6 +11,7 @@ const getSchema = (entity, message) => (type, enumValues = []) => {
   let schema = {
     ...refSchema(nameType),
   };
+
   schema = {
     ...schema,
     ...combineSchema(type.elements),

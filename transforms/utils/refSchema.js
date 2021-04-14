@@ -31,7 +31,8 @@ const refSchema = value => {
 
   const nameValue = value.name || value;
   // support null
-  if (nameValue.type === 'NullLiteral') return {};
+  if (nameValue.type === 'NullLiteral') return { nullable: true };
+
   const isPrimitive = validateTypes(nameValue);
   return isPrimitive ? { type: nameValue } : { $ref: `${REF_ROUTE}${nameValue}` };
 };

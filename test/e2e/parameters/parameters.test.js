@@ -12,7 +12,7 @@ const options = {
   baseDir: __dirname,
 };
 
-test('should parse components jsdoc from jsdoc-example', async () => {
+test('should parse parameters from jsdoc-example', async () => {
   const expected = {
     openapi: '3.0.0',
     info: {
