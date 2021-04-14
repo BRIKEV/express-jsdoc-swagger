@@ -10,13 +10,20 @@ const combineSchema = elements => {
   if (!elements || elements.length === 0) return schema;
   const schemaType = elements[0].name;
   const [, ...types] = elements;
+
   if (validType(schemaType)) {
-    schema = {
-      [schemaType]: types.map(type => refSchema(type)),
-    };
+    if (types.length > 1) {
+      schema = {
+        [schemaType]: types.map(type => refSchema(type)),
+      };
+    } else {
+      // If there's only a type in the list, don't wrap it in 'oneOf' / 'anyOf' / 'allOf'
+      schema = refSchema(types[0]);
+    }
   } else {
     errorMessage(`SchemaType ${schemaType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`);
   }
+
   return schema;
 };
 
