@@ -1,17 +1,19 @@
 const swaggerUi = require('swagger-ui-express');
 const merge = require('merge');
+
+const defaultOptions = require('./config/default');
 const processSwagger = require('./processSwagger');
 const swaggerEvents = require('./swaggerEvents');
 
-const DEFAULT_SWAGGERUI_URL = '/api-docs';
-const DEFAULT_EXPOSE_SWAGGERUI = true;
-const DEFAULT_APIDOCS_URL = '/v3/api-docs';
-const DEFAULT_EXPOSE_APIDOCS = false;
-
-const expressJSDocSwagger = app => (options = {}, userSwagger = {}) => {
+const expressJSDocSwagger = app => (userOptions = {}, userSwagger = {}) => {
   const events = swaggerEvents();
   const { instance } = events;
   let swaggerObject = {};
+
+  const options = {
+    ...defaultOptions,
+    ...userOptions,
+  };
 
   processSwagger(options, events.processFile)
     .then(result => {
@@ -24,8 +26,8 @@ const expressJSDocSwagger = app => (options = {}, userSwagger = {}) => {
     })
     .catch(events.error);
 
-  if (options.exposeSwaggerUI || DEFAULT_EXPOSE_SWAGGERUI) {
-    app.use(options.swaggerUIPath || DEFAULT_SWAGGERUI_URL, (req, res, next) => {
+  if (options.exposeSwaggerUI) {
+    app.use(options.swaggerUIPath, (req, res, next) => {
       swaggerObject = {
         ...swaggerObject,
         host: req.get('host'),
@@ -35,8 +37,8 @@ const expressJSDocSwagger = app => (options = {}, userSwagger = {}) => {
     }, swaggerUi.serve, swaggerUi.setup(undefined, options.swaggerUiOptions));
   }
 
-  if (options.exposeApiDocs || DEFAULT_EXPOSE_APIDOCS) {
-    app.get(options.apiDocsPath || DEFAULT_APIDOCS_URL, (req, res) => {
+  if (options.exposeApiDocs) {
+    app.get(options.apiDocsPath, (req, res) => {
       res.json(swaggerObject);
     });
   }
