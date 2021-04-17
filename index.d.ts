@@ -55,6 +55,7 @@ interface Options {
   exposeApiDocs?: boolean;
   apiDocsPath?: string;
   swaggerUiOptions?: SwaggerUiOptions;
+  notRequiredAsNullable?: boolean;
 }
 
 type UserSwagger = Record<string, unknown>;
