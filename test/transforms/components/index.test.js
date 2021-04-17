@@ -712,4 +712,49 @@ describe('parseComponents method', () => {
     const result = parseComponents({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should parse jsdoc component spec with optional properties nullable by default', () => {
+    const jsdocInput = [`
+      /**
+       * A song
+       * @typedef {object} Song
+       * @property {string} title.required - The title
+       * @property {string} artist - The artist
+       * @property {number} year - The year - int64
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Song: {
+            type: 'object',
+            required: [
+              'title',
+            ],
+            description: 'A song',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              artist: {
+                type: 'string',
+                description: 'The artist',
+                nullable: true,
+              },
+              year: {
+                type: 'number',
+                description: 'The year',
+                format: 'int64',
+                nullable: true,
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsdocInput);
+    const result = parseComponents({}, parsedJSDocs, { notRequiredAsNullable: true });
+    expect(result).toEqual(expected);
+  });
 });

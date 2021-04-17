@@ -7,6 +7,7 @@ const options = {
   info: {
     version: '1.0.0',
     title: 'Albums store',
+    description: 'Example where we define which specific properties are nullable',
     license: {
       name: 'MIT',
     },
