@@ -5,21 +5,21 @@ const VALID_TYPES = ['oneOf', 'anyOf', 'allOf'];
 
 /**
  *  This method checks the first item of the data type list to validate if
- * it contains any of the keywords representing the different schema types
+ * it contains any of the keywords representing the different union types
  * in Swagger: 'oneOf', 'anyOf' or 'allOf'.
  *
  * @param {object[]} elements - List of data types for the property
- * @returns {string|null} Name of the schema type (if any)
+ * @returns {string|null} Name of the union type (if any)
  */
-const getSchemaType = elements => {
-  const schemaType = elements[0].name;
+const getUnionType = elements => {
+  const unionType = elements[0].name;
 
-  if (!VALID_TYPES.includes(schemaType)) {
-    errorMessage(`SchemaType ${schemaType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`);
+  if (!VALID_TYPES.includes(unionType)) {
+    errorMessage(`unionType ${unionType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`);
     return null;
   }
 
-  return schemaType;
+  return unionType;
 };
 
 /**
@@ -45,15 +45,15 @@ const combineSchema = elements => {
     schema = { nullable: true };
   }
 
-  const schemaType = getSchemaType(elements);
-  const types = !schemaType ? elements : elements.slice(1);
+  const unionType = getUnionType(elements);
+  const types = !unionType ? elements : elements.slice(1);
 
-  // If there are multiple types in the list, wrap them into a schema type
+  // If there are multiple types in the list, wrap them into a union type
   // ('oneOf' will be used by default if none is specified)
-  if (types.length > 1 || schemaType === 'allOf') {
+  if (types.length > 1 || unionType === 'allOf') {
     schema = {
       ...schema,
-      [schemaType || 'oneOf']: types.map(type => refSchema(type)),
+      [unionType || 'oneOf']: types.map(type => refSchema(type)),
     };
   } else {
     // If there's only a type in the list, don't wrap it in 'oneOf' or 'anyOf' blocks
