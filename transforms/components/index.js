@@ -31,6 +31,7 @@ const formatProperties = (properties, options = {}) => {
   if (!properties || !Array.isArray(properties)) return {};
   return properties.reduce((acum, property) => {
     const name = getPropertyName(property);
+    const isRequired = property.name.includes(REQUIRED);
     const {
       name: typeName, applications, expression, elements,
     } = property.type;
@@ -48,7 +49,7 @@ const formatProperties = (properties, options = {}) => {
         ...addEnumValues(enumValues),
 
         // Add nullable to non-required fields if option to do that is enabled
-        ...(!property.name.includes(REQUIRED) && options.notRequiredAsNullable ? {
+        ...(options.notRequiredAsNullable && !isRequired ? {
           nullable: true,
         } : {}),
       },
@@ -83,7 +84,6 @@ const parseSchema = (schema, options = {}) => {
   };
 };
 
-// TODO
 const parseComponents = (swaggerObject = {}, components = [], options = {}) => {
   if (!components || !Array.isArray(components)) return { components: { schemas: {} } };
   const componentSchema = components.reduce((acum, item) => ({
