@@ -32,7 +32,8 @@
     "eventEmitter": "node eventEmitter/index.js",
     "eventEmitter:multipleInstance": "node eventEmitter/multipleInstance.js",
     "merge": "node merge/simple.js",
-    "nullableFields": "node nullableFields/index.js"
+    "nullableFields:explicit": "node nullableFields/explicitNullable.js",
+    "nullableFields:byDefault": "node nullableFields/nullableByDefault.js"
   },
   "keywords": [],
   "author": "",
