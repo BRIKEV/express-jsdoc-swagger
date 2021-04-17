@@ -90,5 +90,5 @@ test('should parse basic info', async () => {
     },
   };
   const result = await processSwagger(options);
-  expect(result).toEqual(expected);
+  expect(result.swaggerObject).toEqual(expected);
 });
