@@ -27,7 +27,7 @@ const addRefSchema = (typeName, applications, elements) => {
   return {};
 };
 
-const formatProperties = properties => {
+const formatProperties = (properties, options = {}) => {
   if (!properties || !Array.isArray(properties)) return {};
   return properties.reduce((acum, property) => {
     const name = getPropertyName(property);
@@ -46,6 +46,11 @@ const formatProperties = properties => {
         ...addRefSchema(typeName, applications, elements),
         ...(format ? { format } : {}),
         ...addEnumValues(enumValues),
+
+        // Add nullable to non-required fields if option to do that is enabled
+        ...(!property.name.includes(REQUIRED) && options.notRequiredAsNullable ? {
+          nullable: true,
+        } : {}),
       },
     };
   }, {});
@@ -57,7 +62,7 @@ const getRequiredProperties = properties => (
 
 const formatRequiredProperties = requiredProperties => requiredProperties.map(getPropertyName);
 
-const parseSchema = schema => {
+const parseSchema = (schema, options = {}) => {
   const typedef = getTagInfo(schema.tags, 'typedef');
   const propertyValues = getTagsInfo(schema.tags, 'property');
   const requiredProperties = getRequiredProperties(propertyValues);
@@ -73,15 +78,16 @@ const parseSchema = schema => {
         required: formatRequiredProperties(requiredProperties),
       } : {}),
       type: 'object',
-      properties: formatProperties(propertyValues),
+      properties: formatProperties(propertyValues, options),
     },
   };
 };
 
-const parseComponents = (swaggerObject = {}, components = []) => {
+// TODO
+const parseComponents = (swaggerObject = {}, components = [], options = {}) => {
   if (!components || !Array.isArray(components)) return { components: { schemas: {} } };
   const componentSchema = components.reduce((acum, item) => ({
-    ...acum, ...parseSchema(item),
+    ...acum, ...parseSchema(item, options),
   }), {});
   return {
     ...swaggerObject,

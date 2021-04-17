@@ -32,7 +32,7 @@ const processSwagger = (options, logger = defaultLogger) => {
     .then(data => {
       swaggerObject = getPaths(swaggerObject, data);
       logger({ entity: 'paths', swaggerObject });
-      swaggerObject = getComponents(swaggerObject, data);
+      swaggerObject = getComponents(swaggerObject, data, options);
       logger({ entity: 'components', swaggerObject });
       swaggerObject = getTags(swaggerObject, data);
       logger({ entity: 'tags', swaggerObject });
