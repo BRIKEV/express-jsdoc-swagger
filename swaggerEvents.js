@@ -14,8 +14,8 @@ const processFile = eventEmitter => info => (
   eventEmitter.emit(PROCESS_EVENT_NAME, info)
 );
 
-const finish = eventEmitter => info => (
-  eventEmitter.emit(FINISH_EVENT_NAME, info)
+const finish = eventEmitter => (info, methods) => (
+  eventEmitter.emit(FINISH_EVENT_NAME, info, methods)
 );
 
 const swaggerEvents = () => {
