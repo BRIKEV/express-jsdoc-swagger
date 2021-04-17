@@ -45,6 +45,7 @@ const options = {
   exposeSwaggerUI: true, // Expose OpenAPI UI. Default true
   exposeApiDocs: false, // Expose Open API JSON Docs documentation in `apiDocsPath` path. Default false.
   apiDocsPath: '/v3/api-docs', // Open API JSON Docs endpoint. Default value '/v3/api-docs'.
+  notRequiredAsNullable: false, // Set non-required fields as nullable by default
 };
 
 const app = express();
