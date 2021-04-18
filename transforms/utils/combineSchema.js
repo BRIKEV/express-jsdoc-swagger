@@ -1,4 +1,3 @@
-const errorMessage = require('./errorMessage');
 const { refSchema } = require('./refSchema');
 
 const VALID_TYPES = ['oneOf', 'anyOf', 'allOf'];
@@ -15,7 +14,6 @@ const getUnionType = elements => {
   const unionType = elements[0].name;
 
   if (!VALID_TYPES.includes(unionType)) {
-    errorMessage(`unionType ${unionType} invalid, it should be one of these ${VALID_TYPES.join(', ')}`);
     return null;
   }
 
