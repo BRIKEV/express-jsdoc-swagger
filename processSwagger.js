@@ -36,7 +36,9 @@ const processSwagger = (options, logger = defaultLogger) => {
       logger({ entity: 'components', swaggerObject });
       swaggerObject = getTags(swaggerObject, data);
       logger({ entity: 'tags', swaggerObject });
-      return swaggerObject;
+      return {
+        swaggerObject, jsdocInfo, getPaths, getComponents, getTags,
+      };
     });
 };
 

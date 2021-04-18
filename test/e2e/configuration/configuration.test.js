@@ -90,5 +90,12 @@ test('should parse basic info', async () => {
     },
   };
   const result = await processSwagger(options);
-  expect(result).toEqual(expected);
+  expect(result.swaggerObject).toEqual(expected);
+});
+test('should get transforms(jsdocInfo, getPaths, getComponents, getTags) methods', async () => {
+  const result = await processSwagger(options);
+  expect(result).toHaveProperty('jsdocInfo');
+  expect(result).toHaveProperty('getPaths');
+  expect(result).toHaveProperty('getComponents');
+  expect(result).toHaveProperty('getTags');
 });
