@@ -39,13 +39,19 @@ const options = {
       scheme: 'basic',
     },
   },
-  filesPattern: './**/*.js', // Glob pattern to find your jsdoc files (it supports arrays too ['./**/*.controller.js', './**/*.route.js'])
-  swaggerUIPath: '/your-url', // SwaggerUI will be render in this url. Default: '/api-docs'
   baseDir: __dirname,
-  exposeSwaggerUI: true, // Expose OpenAPI UI. Default true
-  exposeApiDocs: false, // Expose Open API JSON Docs documentation in `apiDocsPath` path. Default false.
-  apiDocsPath: '/v3/api-docs', // Open API JSON Docs endpoint. Default value '/v3/api-docs'.
-  notRequiredAsNullable: false, // Set non-required fields as nullable by default
+  // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
+  filesPattern: './**/*.js',
+  // URL where SwaggerUI will be rendered
+  swaggerUIPath: '/api-docs',
+  // Expose OpenAPI UI
+  exposeSwaggerUI: true,
+  // Expose Open API JSON Docs documentation in `apiDocsPath` path.
+  exposeApiDocs: false,
+  // Open API JSON Docs endpoint.
+  apiDocsPath: '/v3/api-docs',
+  // Set non-required fields as nullable by default
+  notRequiredAsNullable: false,
 };
 
 const app = express();
@@ -83,8 +89,19 @@ const options = {
       scheme: 'basic',
     },
   },
-  filesPattern: './**/*.js', // Glob pattern to find your jsdoc files
   baseDir: __dirname,
+  // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
+  filesPattern: './**/*.js',
+  // URL where SwaggerUI will be rendered
+  swaggerUIPath: '/api-docs',
+  // Expose OpenAPI UI
+  exposeSwaggerUI: true,
+  // Expose Open API JSON Docs documentation in `apiDocsPath` path.
+  exposeApiDocs: false,
+  // Open API JSON Docs endpoint.
+  apiDocsPath: '/v3/api-docs',
+  // Set non-required fields as nullable by default
+  notRequiredAsNullable: false,
 };
 ```
 
