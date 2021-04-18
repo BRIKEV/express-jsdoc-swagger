@@ -19,10 +19,15 @@ const expressJSDocSwagger = app => (userOptions = {}, userSwagger = {}) => {
     .then(result => {
       swaggerObject = {
         ...swaggerObject,
-        ...result,
+        ...result.swaggerObject,
       };
       swaggerObject = merge.recursive(true, swaggerObject, userSwagger);
-      events.finish(swaggerObject);
+      events.finish(swaggerObject, {
+        jsdocInfo: result.jsdocInfo,
+        getPaths: result.getPaths,
+        getComponents: result.getComponents,
+        getTags: result.getTags,
+      });
     })
     .catch(events.error);
 
