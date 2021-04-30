@@ -53,6 +53,56 @@ describe('response tests', () => {
       .toEqual(expected);
   });
 
+  it('should parse jsdoc with responses, whether @return or @returns tags are used', () => {
+    const jsdocInput = [`
+      /**
+       * GET /api/v1
+       * @summary This is the summary of the endpoint
+       * @return {object} 200 - success response - application/json
+       * @returns {object} 400 - Bad request response
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: false,
+            summary: 'This is the summary of the endpoint',
+            parameters: [],
+            tags: [],
+            security: [],
+            responses: {
+              200: {
+                description: 'success response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+              400: {
+                description: 'Bad request response',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsdocInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result)
+      .toEqual(expected);
+  });
+
   it('should not parse jsdoc with wrong info and return warning in the console', () => {
     global.console = {
       ...global.console,
