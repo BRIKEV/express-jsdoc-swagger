@@ -38,7 +38,10 @@ const pathValues = tags => {
   const deprecated = getTagInfo(tags, 'deprecated');
   const isDeprecated = !!deprecated;
   /* Response info */
-  const returnValues = getTagsInfo(tags, 'return');
+  const returnValues = [
+    ...getTagsInfo(tags, 'return'),
+    ...getTagsInfo(tags, 'returns'),
+  ];
   const responseExamples = examples.filter(example => example.type === 'response');
   const responses = responsesGenerator(returnValues, responseExamples);
   /* Parameters info */
