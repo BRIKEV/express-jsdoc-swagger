@@ -1,5 +1,5 @@
 import express from 'express';
-import expressJSDocSwagger from '../../';
+import expressJSDocSwagger from 'express-jsdoc-swagger';
 
 const port = 3000;
 // Create a new express app instance
@@ -49,7 +49,7 @@ const options = {
       scheme: 'basic',
     },
   },
-  filesPattern: './main.js',
+  filesPattern: './simple.{ts,js}',
   baseDir: __dirname,
 };
 
@@ -64,6 +64,19 @@ app.get('/api/v1', (req, res) => {
   res.send('Hello World!');
 });
 
+/**
+ * POST /tag
+ *
+ * @summary create a tag
+ * @param {string} name the name fo the new tag
+ * @returns {object} 200 - success response
+ * @returns {object} 400 - Bad request response
+ * @example response - 200 - success response example
+ *   {
+ *     "_id": "Bury the light",
+ *     "name": "lorem ipsum",
+ *   }
+ */
 app.listen(port, () => {
   console.log('App is listening on port 3000!');
 });
