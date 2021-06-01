@@ -16,6 +16,10 @@ const options = {
       type: 'http',
       scheme: 'basic',
     },
+    BearerAuth: {
+      type: 'http',
+      scheme: 'bearer',
+    },
   },
   filesPattern: './basic-auth.js',
   baseDir: __dirname,
@@ -28,10 +32,26 @@ expressJSDocSwagger(app)(options);
 
 /**
  * GET /api/v1
- * @summary This is the summary of the endpoint
+ * @summary Endpoint with security info
  * @return {string} 200 - success response
  * @security BasicAuth
  */
 app.get('/api/v1', (req, res) => res.send('Hello World!'));
+
+/**
+ * GET /api/v2
+ * @summary Endpoint with multiple security configuration (AND logic)
+ * @return {string} 200 - success response
+ * @security BasicAuth & BearerAuth
+ */
+app.get('/api/v2', (req, res) => res.send('Hello World!'));
+
+/**
+ * GET /api/v3
+ * @summary Endpoint with multiple security configuration (OR logic)
+ * @return {string} 200 - success response
+ * @security BasicAuth | BearerAuth
+ */
+app.get('/api/v3', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));
