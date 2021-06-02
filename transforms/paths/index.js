@@ -7,15 +7,12 @@ const {
   validRequestBodyMethods: bodyMethods,
   validHTTPMethod,
 } = require('../utils/httpMethods');
+const formatSecurity = require('./security');
 
 const formatTags = (tags = []) => tags.map(({ description }) => {
   const { name } = formatDescriptionTag(description);
   return name;
 });
-
-const formatSecurity = (securityValues = []) => securityValues.map(({ description }) => ({
-  [description]: [],
-}));
 
 const formatSummary = summary => (summary || {}).description || '';
 
