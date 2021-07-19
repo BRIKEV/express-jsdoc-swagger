@@ -26,6 +26,7 @@ expressJSDocSwagger(app)(options);
  * @property {string} title.required - The title
  * @property {string} artist - The artist
  * @property {integer} year - The year - int64
+ * @property {string} createdAt - created - date
  */
 
 /**
