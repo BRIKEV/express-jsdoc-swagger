@@ -18,8 +18,8 @@ const finish = eventEmitter => (info, methods) => (
   eventEmitter.emit(FINISH_EVENT_NAME, info, methods)
 );
 
-const swaggerEvents = () => {
-  if (api) return api;
+const swaggerEvents = ({ multiple }) => {
+  if (api && !multiple) return api;
   const instance = new EventEmitter();
 
   api = {
