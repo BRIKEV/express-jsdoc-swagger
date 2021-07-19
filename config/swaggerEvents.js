@@ -1,5 +1,6 @@
+
 const swaggerEvents = options => ({
-  multiple: options.multiple ? options.multiple : false,
+  multiple: options.multiple !== undefined ? options.multiple : false,
 });
 
 module.exports = swaggerEvents;
