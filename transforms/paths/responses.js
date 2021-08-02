@@ -25,10 +25,12 @@ const formatResponses = (values, examples) => values.reduce((acc, value) => {
     ...acc,
     [status]: {
       description,
-      content: {
-        ...(hasOldContent(acc, status) ? { ...acc[status].content } : {}),
-        ...getContent(value.type, contentType, value.description, exampleList),
-      },
+      ...(value.type ? {
+        content: {
+          ...(hasOldContent(acc, status) ? { ...acc[status].content } : {}),
+          ...getContent(value.type, contentType, value.description, exampleList),
+        },
+      } : {}),
     },
   };
 }, {});
