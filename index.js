@@ -2,11 +2,13 @@ const swaggerUi = require('swagger-ui-express');
 const merge = require('merge');
 
 const defaultOptions = require('./config/default');
+const swaggerEventsOptions = require('./config/swaggerEvents');
 const processSwagger = require('./processSwagger');
 const swaggerEvents = require('./swaggerEvents');
 
+
 const expressJSDocSwagger = app => (userOptions = {}, userSwagger = {}) => {
-  const events = swaggerEvents();
+  const events = swaggerEvents(swaggerEventsOptions(userOptions));
   const { instance } = events;
   let swaggerObject = {};
 

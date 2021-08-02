@@ -56,6 +56,8 @@ const options = {
   // you can extend swagger-ui-express config. You can checkout an example of this
   // in the `example/configuration/swaggerOptions.js`
   swaggerUiOptions: {},
+  // multiple option in case you want more that one instance
+  multiple: true,
 };
 
 const app = express();

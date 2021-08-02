@@ -19,6 +19,7 @@ const optionsClientAPIInstance = {
   exposeSwaggerUI: true,
   exposeApiDocs: true,
   apiDocsPath: '/api/v1/client/api-docs',
+  multiple: true,
 };
 
 // It is a fictitious configuration
@@ -41,10 +42,19 @@ const optionsAdminAPIInstance = {
   exposeSwaggerUI: true,
   exposeApiDocs: true,
   apiDocsPath: '/api/v1/admin/api-docs',
+  multiple: true,
 };
 
-expressJSDocSwagger(app)(optionsClientAPIInstance);
-expressJSDocSwagger(app)(optionsAdminAPIInstance);
+const instance = expressJSDocSwagger(app)(optionsClientAPIInstance);
+const instance2 = expressJSDocSwagger(app)(optionsAdminAPIInstance);
+
+instance.on('finish', data => {
+  console.log(data);
+})
+
+instance2.on('finish', data => {
+  console.log(data);
+})
 
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));
