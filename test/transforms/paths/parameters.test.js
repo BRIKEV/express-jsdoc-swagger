@@ -7,6 +7,7 @@ describe('params tests', () => {
       /**
        * GET /api/v1
        * @param {string} name.query.required - name param description
+       * @operationId getInfo
        */
     `];
     const expected = {
@@ -18,6 +19,7 @@ describe('params tests', () => {
             responses: {},
             tags: [],
             security: [],
+            operationId: 'getInfo',
             parameters: [{
               deprecated: false,
               description: 'name param description',
