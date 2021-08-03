@@ -46,7 +46,12 @@ const expressJSDocSwagger = app => (userOptions = {}, userSwagger = {}) => {
 
   if (options.exposeApiDocs) {
     app.get(options.apiDocsPath, (req, res) => {
-      res.json(swaggerObject);
+      res.json({
+        ...swaggerObject,
+        // we skipped this as is not a valid prop in OpenAPI
+        // This is only being used in the SwaggerUI Library
+        host: undefined,
+      });
     });
   }
 
