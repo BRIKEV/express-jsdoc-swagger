@@ -26,6 +26,13 @@ const setRequestBody = (lowerCaseMethod, bodyValues, requestExamples) => {
 
 const bodyParams = ({ name }) => name.includes('request.body') || name.includes('.form');
 
+const getOperationId = operationIdTag => {
+  if (!operationIdTag) return {};
+  return {
+    operationId: operationIdTag.description,
+  };
+};
+
 const pathValues = tags => {
   const examplesValues = getTagsInfo(tags, 'example');
   const examples = examplesGenerator(examplesValues);
@@ -42,6 +49,7 @@ const pathValues = tags => {
   const responseExamples = examples.filter(example => example.type === 'response');
   const responses = responsesGenerator(returnValues, responseExamples);
   /* Parameters info */
+  const operationId = getTagsInfo(tags, 'operationId');
   const paramValues = getTagsInfo(tags, 'param');
   const parameters = parametersGenerator(paramValues);
   /* Tags info */
@@ -60,6 +68,7 @@ const pathValues = tags => {
     bodyValues,
     securityValues,
     examples,
+    operationId: operationId[0],
   };
 };
 
@@ -80,6 +89,7 @@ const parsePath = (path, state) => {
     tagsValues,
     securityValues,
     examples,
+    operationId,
   } = pathValues(tags);
   const requestExamples = examples.filter(example => example.type === 'request');
   return {
@@ -95,6 +105,7 @@ const parsePath = (path, state) => {
         parameters,
         tags: formatTags(tagsValues),
         ...(setRequestBody(lowerCaseMethod, bodyValues, requestExamples)),
+        ...(getOperationId(operationId)),
       },
     },
   };
