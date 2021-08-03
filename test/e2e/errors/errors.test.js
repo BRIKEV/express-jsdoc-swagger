@@ -2,31 +2,6 @@
 const chalk = require('chalk');
 const processSwagger = require('../../../processSwagger');
 
-test('should give a nice error message for responses', async () => {
-  const options = {
-    info: {
-      version: '1.0.0',
-      title: 'Albums store',
-      license: {
-        name: 'MIT',
-      },
-    },
-    filesPattern: './jsdoc-response-error.js',
-    baseDir: __dirname,
-  };
-  global.console = { ...global.console, warn: jest.fn() };
-  await processSwagger(options);
-  expect(console.warn).toHaveBeenCalledTimes(2);
-  expect(console.warn).toHaveBeenNthCalledWith(
-    1,
-    chalk.yellow('[express-jsdoc-swagger] Entity: @return could not be parsed. Value: "200 - success response - application/json" is wrong'),
-  );
-  expect(console.warn).toHaveBeenNthCalledWith(
-    2,
-    chalk.yellow('[express-jsdoc-swagger] Entity: @return could not be parsed. Value: "400 - Bad request response" is wrong'),
-  );
-});
-
 test('should give a nice error message for parameters', async () => {
   const options = {
     info: {

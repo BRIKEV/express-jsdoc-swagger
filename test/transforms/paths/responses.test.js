@@ -3,6 +3,42 @@ const jsdocInfo = require('../../../consumers/jsdocInfo');
 const setPaths = require('../../../transforms/paths');
 
 describe('response tests', () => {
+  it('should parse jsdoc path spec with more than one response without type', () => {
+    const jsodInput = [`
+      /**
+       * GET /api/v1
+       * @summary This is the summary of the endpoint
+       * @return 200 - success response - application/json
+       * @return 400 - Bad request response
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1': {
+          get: {
+            deprecated: false,
+            summary: 'This is the summary of the endpoint',
+            parameters: [],
+            tags: [],
+            security: [],
+            responses: {
+              200: {
+                description: 'success response',
+              },
+              400: {
+                description: 'Bad request response',
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result)
+      .toEqual(expected);
+  });
+
   it('should parse jsdoc path spec with more than one response', () => {
     const jsodInput = [`
       /**
