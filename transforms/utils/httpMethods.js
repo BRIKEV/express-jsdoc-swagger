@@ -1,6 +1,6 @@
 const validRequestBodyMethods = {
   get: false,
-  delete: false,
+  delete: true,
   head: false,
   post: true,
   put: true,
