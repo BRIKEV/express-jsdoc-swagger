@@ -145,6 +145,47 @@ describe('request body tests', () => {
     expect(result).toEqual(expected);
   });
 
+  it('should parse jsdoc request body for delete request', () => {
+    const jsdocInput = [`
+      /**
+       * DELETE /message
+       * @summary Delete messages listed under the specified tags
+       * @param {array<string>} request.body.required - Tags of the messages to delete
+       */
+    `];
+    const expected = {
+      paths: {
+        '/message': {
+          delete: {
+            deprecated: false,
+            summary: 'Delete messages listed under the specified tags',
+            responses: {},
+            tags: [],
+            security: [],
+            parameters: [],
+            requestBody: {
+              description: 'Tags of the messages to delete',
+              required: true,
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'array',
+                    items: {
+                      type: 'string',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsdocInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
   it('should parse jsdoc path multiple bodys', () => {
     const jsodInput = [`
       /**
