@@ -122,6 +122,7 @@ describe('form requestBody tests', () => {
         '/api/v1/': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -172,6 +173,7 @@ describe('form requestBody tests', () => {
         '/api/v1/': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -241,6 +243,7 @@ describe('form requestBody tests', () => {
         '/api/v1/': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],

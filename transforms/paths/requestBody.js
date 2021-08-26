@@ -56,10 +56,10 @@ const INITIAL_STATE = { content: {} };
 
 const requestBodyGenerator = (params = [], examples) => {
   if (!params || !Array.isArray(params)) return {};
-  const requestBody = params.reduce((acc, body) => (
+
+  return params.reduce((acc, body) => (
     { ...acc, ...parseBodyParameter(acc, body, examples) }
   ), INITIAL_STATE);
-  return requestBody;
 };
 
 module.exports = requestBodyGenerator;

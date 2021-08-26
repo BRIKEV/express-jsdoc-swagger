@@ -14,6 +14,7 @@ describe('Paths - tags', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             security: [],
             tags: [
@@ -43,6 +44,7 @@ describe('Paths - tags', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             security: [],
             tags: [
@@ -73,6 +75,7 @@ describe('Paths - tags', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             security: [],
             tags: [

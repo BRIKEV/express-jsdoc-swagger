@@ -10,7 +10,7 @@ const getContent = entity => (type, contentType, originalValue, examples, extend
         ...schema,
         ...extendSchema,
       },
-      examples,
+      ...(examples ? { examples } : {}),
     },
   };
 };

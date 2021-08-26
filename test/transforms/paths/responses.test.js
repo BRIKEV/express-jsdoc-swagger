@@ -17,6 +17,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -53,6 +54,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -103,6 +105,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -156,6 +159,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             responses: {},
             parameters: [],
@@ -191,6 +195,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -234,6 +239,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -276,6 +282,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -315,6 +322,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -359,6 +367,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -423,6 +432,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -534,6 +544,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -603,6 +614,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -660,6 +672,7 @@ describe('response tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
