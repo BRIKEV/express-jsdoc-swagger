@@ -15,6 +15,7 @@ describe('params tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -51,6 +52,7 @@ describe('params tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -77,6 +79,7 @@ describe('params tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -116,6 +119,7 @@ describe('params tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -163,6 +167,7 @@ describe('params tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -198,6 +203,7 @@ describe('params tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -236,6 +242,7 @@ describe('params tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -275,6 +282,7 @@ describe('params tests', () => {
         '/api/v1': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
