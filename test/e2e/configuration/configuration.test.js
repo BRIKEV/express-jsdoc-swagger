@@ -38,6 +38,13 @@ const options = {
       },
     },
   ],
+  security: {
+    BearerAuth: {
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+    },
+  },
   filesPattern: './main.js',
   baseDir: __dirname,
 };
@@ -82,11 +89,22 @@ test('should parse basic info', async () => {
         },
       },
     ],
-    security: undefined,
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
     paths: {},
     tags: [],
     components: {
       schemas: {},
+      securitySchemes: {
+        BearerAuth: {
+          bearerFormat: 'JWT',
+          scheme: 'bearer',
+          type: 'http',
+        },
+      },
     },
   };
   const result = await processSwagger(options);

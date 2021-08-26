@@ -19,7 +19,6 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             operationId: 'getInfo',
             parameters: [{
               deprecated: false,
@@ -56,7 +55,6 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
           },
         },
@@ -83,7 +81,6 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [{
               deprecated: true,
               description: 'name param description',
@@ -123,7 +120,6 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [{
               deprecated: true,
               description: 'name param description',
@@ -171,7 +167,6 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [{
               deprecated: false,
               description: 'name param description',
@@ -207,7 +202,6 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [{
               deprecated: true,
               description: 'name param description',
@@ -246,7 +240,6 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [{
               deprecated: false,
               description: 'name param description',
@@ -286,7 +279,6 @@ describe('params tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [{
               deprecated: false,
               description: 'name param description',

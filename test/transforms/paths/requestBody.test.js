@@ -17,7 +17,6 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
           },
         },
@@ -44,7 +43,6 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -83,7 +81,6 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: '',
@@ -124,7 +121,6 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -166,7 +162,6 @@ describe('request body tests', () => {
             summary: 'Delete messages listed under the specified tags',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: 'Tags of the messages to delete',
@@ -208,7 +203,6 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -249,7 +243,6 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -287,7 +280,6 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -330,7 +322,6 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -383,7 +374,6 @@ describe('request body tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
