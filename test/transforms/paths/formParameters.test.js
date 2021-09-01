@@ -18,7 +18,6 @@ describe('form requestBody tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               content: {
@@ -66,7 +65,6 @@ describe('form requestBody tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [
               {
                 deprecated: false,
@@ -126,7 +124,6 @@ describe('form requestBody tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [],
             requestBody: {
               description: 'name body description',
@@ -177,7 +174,6 @@ describe('form requestBody tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [
               {
                 deprecated: false,
@@ -247,7 +243,6 @@ describe('form requestBody tests', () => {
             summary: '',
             responses: {},
             tags: [],
-            security: [],
             parameters: [
               {
                 deprecated: false,

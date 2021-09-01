@@ -16,7 +16,6 @@ describe('Paths - tags', () => {
             deprecated: false,
             description: undefined,
             summary: '',
-            security: [],
             tags: [
               'album',
             ],
@@ -46,7 +45,6 @@ describe('Paths - tags', () => {
             deprecated: false,
             description: undefined,
             summary: '',
-            security: [],
             tags: [
               'album',
               'Years',
@@ -77,7 +75,6 @@ describe('Paths - tags', () => {
             deprecated: false,
             description: undefined,
             summary: '',
-            security: [],
             tags: [
               'album',
               'Years',

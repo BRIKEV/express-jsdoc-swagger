@@ -40,7 +40,6 @@ describe('setPaths method', () => {
             description: 'This is the description of the endpoint',
             parameters: [],
             tags: [],
-            security: [],
             responses: {
               200: {
                 description: 'success response',
@@ -79,7 +78,6 @@ describe('setPaths method', () => {
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
-            security: [],
             responses: {
               200: {
                 description: 'success response',
@@ -125,7 +123,6 @@ describe('setPaths method', () => {
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
-            security: [],
             responses: {
               200: {
                 description: 'success response',
@@ -147,7 +144,6 @@ describe('setPaths method', () => {
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
-            security: [],
             responses: {
               200: {
                 description: 'success response',
@@ -193,7 +189,6 @@ describe('setPaths method', () => {
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
-            security: [],
             responses: {
               200: {
                 description: 'success response',
@@ -213,7 +208,6 @@ describe('setPaths method', () => {
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
-            security: [],
             responses: {
               200: {
                 description: 'success response',

@@ -138,4 +138,58 @@ describe('Paths - security', () => {
     const result = setPaths({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should parse jsdoc empty security tag into empty array', () => {
+    const jsodInput = [`
+      /**
+       * POST /api/v1/song
+       * @summary Create new song
+       * @security
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1/song': {
+          post: {
+            deprecated: false,
+            description: undefined,
+            summary: 'Create new song',
+            security: [],
+            tags: [],
+            responses: {},
+            parameters: [],
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('Should parse jsdoc with no security tag and not include security in the swagger object', () => {
+    const jsodInput = [`
+      /**
+       * POST /api/v1/song
+       * @summary Create new song
+       */
+    `];
+    const expected = {
+      paths: {
+        '/api/v1/song': {
+          post: {
+            deprecated: false,
+            description: undefined,
+            summary: 'Create new song',
+            tags: [],
+            responses: {},
+            parameters: [],
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = setPaths({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });

@@ -24,6 +24,16 @@ const setRequestBody = (lowerCaseMethod, bodyValues, requestExamples) => {
   return bodyMethods[lowerCaseMethod] && hasBodyValues ? { requestBody } : {};
 };
 
+const setSecurity = securityValues => {
+  if (securityValues === null) {
+    // If securityValues are null then the tag was not set and we shouldn't override
+    return {};
+  }
+
+  // otherwise if securityValues is an array with values return that or return an empty
+  return { security: securityValues };
+};
+
 const bodyParams = ({ name }) => name.includes('request.body') || name.includes('.form');
 
 const getOperationId = operationIdTag => {
@@ -100,10 +110,10 @@ const parsePath = (path, state) => {
         deprecated: isDeprecated,
         summary: formatSummary(summary),
         description: formatDescription(description),
-        security: formatSecurity(securityValues),
         responses,
         parameters,
         tags: formatTags(tagsValues),
+        ...(setSecurity(formatSecurity(securityValues))),
         ...(setRequestBody(lowerCaseMethod, bodyValues, requestExamples)),
         ...(getOperationId(operationId)),
       },
