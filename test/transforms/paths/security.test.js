@@ -15,6 +15,7 @@ describe('Paths - security', () => {
         '/api/v1/song': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: 'Create new song',
             security: [
               {
@@ -47,6 +48,7 @@ describe('Paths - security', () => {
         '/api/v1/song': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: 'Create new song',
             security: [
               {
@@ -81,6 +83,7 @@ describe('Paths - security', () => {
         '/api/v1/song': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: 'Create new song',
             security: [
               {
@@ -113,6 +116,7 @@ describe('Paths - security', () => {
         '/api/v1/song': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: 'Create new song',
             security: [
               {

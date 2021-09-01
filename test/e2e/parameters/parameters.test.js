@@ -28,6 +28,7 @@ test('should parse parameters from jsdoc-example', async () => {
       '/api/v1': {
         get: {
           deprecated: false,
+          description: undefined,
           summary: 'This is the summary of the endpoint',
           responses: {
             200: {
@@ -70,6 +71,7 @@ test('should parse parameters from jsdoc-example', async () => {
       '/api/v1/albums': {
         get: {
           deprecated: false,
+          description: undefined,
           summary: 'This is the summary of the endpoint',
           responses: {
             200: {

@@ -15,6 +15,7 @@ test('should parse jsdoc path response with oneOf keyword', () => {
       '/api/v1': {
         get: {
           deprecated: false,
+          description: undefined,
           summary: 'This is the summary of the endpoint',
           parameters: [],
           tags: [],
@@ -125,6 +126,7 @@ test('should parse jsdoc path reference params with allOf keyword', () => {
       '/api/v1': {
         get: {
           deprecated: false,
+          description: undefined,
           summary: '',
           responses: {},
           tags: [],
