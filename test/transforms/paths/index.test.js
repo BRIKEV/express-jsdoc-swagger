@@ -143,6 +143,7 @@ describe('setPaths method', () => {
         '/api/v1/songs': {
           get: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],
@@ -208,6 +209,7 @@ describe('setPaths method', () => {
           },
           post: {
             deprecated: false,
+            description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
             tags: [],

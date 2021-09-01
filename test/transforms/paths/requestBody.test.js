@@ -13,6 +13,7 @@ describe('request body tests', () => {
         '/api/v1/': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -39,6 +40,7 @@ describe('request body tests', () => {
         '/api/v1': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -77,6 +79,7 @@ describe('request body tests', () => {
         '/api/v1/albums': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -117,6 +120,7 @@ describe('request body tests', () => {
         '/api/v1': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -158,6 +162,7 @@ describe('request body tests', () => {
         '/message': {
           delete: {
             deprecated: false,
+            description: undefined,
             summary: 'Delete messages listed under the specified tags',
             responses: {},
             tags: [],
@@ -199,6 +204,7 @@ describe('request body tests', () => {
         '/api/v1': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -239,6 +245,7 @@ describe('request body tests', () => {
         '/api/v1': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -276,6 +283,7 @@ describe('request body tests', () => {
         '/api/v1': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -318,6 +326,7 @@ describe('request body tests', () => {
         '/api/v1': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
@@ -370,6 +379,7 @@ describe('request body tests', () => {
         '/api/v1': {
           post: {
             deprecated: false,
+            description: undefined,
             summary: '',
             responses: {},
             tags: [],
