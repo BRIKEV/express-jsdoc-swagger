@@ -8,19 +8,34 @@
 
 # express-jsdoc-swagger
 
-With this library, you can document your express endpoints using swagger [OpenAPI 3 Specification](https://swagger.io/specification/) without writing YAML or JSON. You can write jsdoc comments on each endpoint, and the library is going to create the swagger UI.
+With this library, you can document your express endpoints using swagger [OpenAPI 3 Specification](https://swagger.io/specification/) without writing YAML or JSON. You can write comments similar to `jsdoc` on each endpoint, and the dependecy is going to create the swagger UI.
 
+## Table of Contents
+
+1. [Prerequisites](#Prerequisites)
+2. [Installation](#Installation)
+3. [Basic Usage](#BasicUsage)
+4. [Basic Examples](#BasicExamples)
+	- [Advanced examples](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples)
+	- [Official docs](https://brikev.github.io/express-jsdoc-swagger-docs/#/)
+5. [Validator](#Validator)
+6. [VSCode extension](https://marketplace.visualstudio.com/items?itemName=brikev.express-jsdoc-swagger-snippets)
+
+<a name="Prerequisites" />
 ## Prerequisites
 This library assumes you are using:
 1. [NodeJS](https://nodejs.org)
 2. [Express.js](http://www.expressjs.com)
 
+<a name="Installation" />
 ## Installation
+
 ```
 npm i express-jsdoc-swagger
 ```
 
-## Usage
+<a name="BasicUsage" />
+## Basic Usage
 ```javascript
 const express = require('express');
 const expressJSDocSwagger = require('express-jsdoc-swagger');
@@ -77,7 +92,8 @@ app.get('/api/v1', (req, res) => res.json({
 app.listen(PORT, () => console.log(`Example app listening at http://localhost:${PORT}`));
 ```
 
-## Examples
+<a name="BasicExamples" />
+## Basic Examples
 1. Basic configuration
 ```javascript
 const options = {
@@ -169,6 +185,7 @@ app.get('/api/v1/albums', (req, res) => (
 
 You can find more examples [here](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples), or visit our [documentation](https://brikev.github.io/express-jsdoc-swagger-docs/#/).
 
+<a name="Validator" />
 ## Validator
 
 We developed a new package works as a validator of your API endpoints and the documentation you create with this package. This package is [express-oas-validator](https://github.com/BRIKEV/express-oas-validator).
