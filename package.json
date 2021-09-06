@@ -1,6 +1,6 @@
 {
   "name": "express-jsdoc-swagger",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "Swagger OpenAPI 3.x generator",
   "main": "index.js",
   "dependencies": {
