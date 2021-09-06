@@ -74,6 +74,26 @@ describe('get only comments consumer method', () => {
     expect(result).toEqual(expected);
   });
 
+  it('should return only the JSdoc comment when we add a regex in the file pattern', () => {
+    const input = [`
+    const pattern = './*.js';
+    /**
+     * @param  {[type]}
+     * @param  {[type]}
+     * @return {[type]}
+     */
+
+    `];
+    const expected = [`/**
+     * @param  {[type]}
+     * @param  {[type]}
+     * @return {[type]}
+     */`];
+    const result = getOnlyComments(input);
+    expect(result).toHaveLength(1);
+    expect(result).toEqual(expected);
+  });
+
   it('should return multiline and JSdoc comment', () => {
     const input = [`
     /* this is a comment */
