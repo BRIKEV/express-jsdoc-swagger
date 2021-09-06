@@ -14,28 +14,28 @@ With this library, you can document your express endpoints using swagger [OpenAP
 
 1. [Prerequisites](#Prerequisites)
 2. [Installation](#Installation)
-3. [Basic Usage](#BasicUsage)
-4. [Basic Examples](#BasicExamples)
+3. [Basic Usage](#Basic-Usage)
+4. [Basic Examples](#Basic-Examples)
 	- [Advanced examples](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples)
 	- [Official docs](https://brikev.github.io/express-jsdoc-swagger-docs/#/)
 5. [Validator](#Validator)
 6. [VSCode extension](https://marketplace.visualstudio.com/items?itemName=brikev.express-jsdoc-swagger-snippets)
 
-<a name="Prerequisites" />
 ## Prerequisites
+
 This library assumes you are using:
+
 1. [NodeJS](https://nodejs.org)
 2. [Express.js](http://www.expressjs.com)
 
-<a name="Installation" />
 ## Installation
 
 ```
 npm i express-jsdoc-swagger
 ```
 
-<a name="BasicUsage" />
 ## Basic Usage
+
 ```javascript
 const express = require('express');
 const expressJSDocSwagger = require('express-jsdoc-swagger');
@@ -92,9 +92,10 @@ app.get('/api/v1', (req, res) => res.json({
 app.listen(PORT, () => console.log(`Example app listening at http://localhost:${PORT}`));
 ```
 
-<a name="BasicExamples" />
 ## Basic Examples
+
 1. Basic configuration
+
 ```javascript
 const options = {
   info: {
@@ -117,6 +118,7 @@ const options = {
 ```
 
 2. Components definition
+
 ```javascript
 /**
  * A song type
@@ -128,6 +130,7 @@ const options = {
 ```
 
 3. Endpoint that returns a `Songs` model array
+
 ```javascript
 /**
  * GET /api/v1/albums
@@ -143,6 +146,7 @@ app.get('/api/v1/albums', (req, res) => (
 ```
 
 4. Basic endpoint definition with tags, params and basic authentication
+
 ```javascript
 /**
  * GET /api/v1/album
@@ -161,6 +165,7 @@ app.get('/api/v1/album', (req, res) => (
 ```
 
 5. Basic endpoint definition with code example for response body
+
 ```javascript
 /**
  * GET /api/v1/albums
@@ -185,7 +190,7 @@ app.get('/api/v1/albums', (req, res) => (
 
 You can find more examples [here](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples), or visit our [documentation](https://brikev.github.io/express-jsdoc-swagger-docs/#/).
 
-<a name="Validator" />
+
 ## Validator
 
 We developed a new package works as a validator of your API endpoints and the documentation you create with this package. This package is [express-oas-validator](https://github.com/BRIKEV/express-oas-validator).
