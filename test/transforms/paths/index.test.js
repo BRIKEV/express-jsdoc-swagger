@@ -39,6 +39,7 @@ describe('setPaths method', () => {
             summary: 'This is the summary of the endpoint',
             description: 'This is the description of the endpoint',
             parameters: [],
+            security: [],
             tags: [],
             responses: {
               200: {
@@ -77,6 +78,7 @@ describe('setPaths method', () => {
             deprecated: true,
             summary: 'This is the summary of the endpoint',
             parameters: [],
+            security: [],
             tags: [],
             responses: {
               200: {
@@ -122,6 +124,7 @@ describe('setPaths method', () => {
             deprecated: true,
             summary: 'This is the summary of the endpoint',
             parameters: [],
+            security: [],
             tags: [],
             responses: {
               200: {
@@ -143,6 +146,7 @@ describe('setPaths method', () => {
             description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
+            security: [],
             tags: [],
             responses: {
               200: {
@@ -188,6 +192,7 @@ describe('setPaths method', () => {
             deprecated: true,
             summary: 'This is the summary of the endpoint',
             parameters: [],
+            security: [],
             tags: [],
             responses: {
               200: {
@@ -207,6 +212,7 @@ describe('setPaths method', () => {
             description: undefined,
             summary: 'This is the summary of the endpoint',
             parameters: [],
+            security: [],
             tags: [],
             responses: {
               200: {

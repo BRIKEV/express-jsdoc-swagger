@@ -184,6 +184,7 @@ describe('Paths - security', () => {
             tags: [],
             responses: {},
             parameters: [],
+            security: [],
           },
         },
       },

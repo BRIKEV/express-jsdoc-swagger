@@ -13,21 +13,19 @@ const formatOrValues = ({ description }) => {
 };
 
 const formatSecurity = (securityValues = []) => (
-  securityValues.length
-    ? flatArray(securityValues
-      .map(formatOrValues))
-      .map(({ description }) => {
-        const securityNames = description.split(AND_SEPARATOR);
-        return {
-          ...securityNames.reduce((acum, names) => (
-            {
-              ...acum,
-              [names]: [],
-            }
-          ), {}),
-        };
-      })
-    : null
+  flatArray(securityValues
+    .map(formatOrValues))
+    .map(({ description }) => {
+      const securityNames = description.split(AND_SEPARATOR);
+      return {
+        ...securityNames.reduce((acum, names) => (
+          {
+            ...acum,
+            [names]: [],
+          }
+        ), {}),
+      };
+    })
 );
 
 module.exports = formatSecurity;

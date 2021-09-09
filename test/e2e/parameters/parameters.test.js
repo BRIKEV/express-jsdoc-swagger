@@ -29,6 +29,7 @@ test('should parse parameters from jsdoc-example', async () => {
         get: {
           deprecated: false,
           description: undefined,
+          security: [],
           summary: 'This is the summary of the endpoint',
           responses: {
             200: {
@@ -71,6 +72,7 @@ test('should parse parameters from jsdoc-example', async () => {
         get: {
           deprecated: false,
           description: undefined,
+          security: [],
           summary: 'This is the summary of the endpoint',
           responses: {
             200: {

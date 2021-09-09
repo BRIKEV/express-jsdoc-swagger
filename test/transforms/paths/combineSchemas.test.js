@@ -19,6 +19,7 @@ test('should parse jsdoc path response with oneOf keyword', () => {
           summary: 'This is the summary of the endpoint',
           parameters: [],
           tags: [],
+          security: [],
           responses: {
             200: {
               description: 'success response',
@@ -128,6 +129,7 @@ test('should parse jsdoc path reference params with allOf keyword', () => {
           description: undefined,
           summary: '',
           responses: {},
+          security: [],
           tags: [],
           parameters: [{
             deprecated: false,

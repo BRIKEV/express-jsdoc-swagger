@@ -19,6 +19,7 @@ describe('form requestBody tests', () => {
             responses: {},
             tags: [],
             parameters: [],
+            security: [],
             requestBody: {
               content: {
                 'application/json': {
@@ -65,6 +66,7 @@ describe('form requestBody tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [
               {
                 deprecated: false,
@@ -125,6 +127,7 @@ describe('form requestBody tests', () => {
             responses: {},
             tags: [],
             parameters: [],
+            security: [],
             requestBody: {
               description: 'name body description',
               required: true,
@@ -174,6 +177,7 @@ describe('form requestBody tests', () => {
             summary: '',
             responses: {},
             tags: [],
+            security: [],
             parameters: [
               {
                 deprecated: false,
@@ -242,6 +246,7 @@ describe('form requestBody tests', () => {
             description: undefined,
             summary: '',
             responses: {},
+            security: [],
             tags: [],
             parameters: [
               {

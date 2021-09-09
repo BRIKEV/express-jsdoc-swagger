@@ -18,6 +18,7 @@ describe('params tests', () => {
             description: undefined,
             summary: '',
             responses: {},
+            security: [],
             tags: [],
             operationId: 'getInfo',
             parameters: [{
@@ -54,6 +55,7 @@ describe('params tests', () => {
             description: undefined,
             summary: '',
             responses: {},
+            security: [],
             tags: [],
             parameters: [],
           },
@@ -80,6 +82,7 @@ describe('params tests', () => {
             description: undefined,
             summary: '',
             responses: {},
+            security: [],
             tags: [],
             parameters: [{
               deprecated: true,
@@ -119,6 +122,7 @@ describe('params tests', () => {
             description: undefined,
             summary: '',
             responses: {},
+            security: [],
             tags: [],
             parameters: [{
               deprecated: true,
@@ -166,6 +170,7 @@ describe('params tests', () => {
             description: undefined,
             summary: '',
             responses: {},
+            security: [],
             tags: [],
             parameters: [{
               deprecated: false,
@@ -201,6 +206,7 @@ describe('params tests', () => {
             description: undefined,
             summary: '',
             responses: {},
+            security: [],
             tags: [],
             parameters: [{
               deprecated: true,
@@ -239,6 +245,7 @@ describe('params tests', () => {
             description: undefined,
             summary: '',
             responses: {},
+            security: [],
             tags: [],
             parameters: [{
               deprecated: false,
@@ -278,6 +285,7 @@ describe('params tests', () => {
             description: undefined,
             summary: '',
             responses: {},
+            security: [],
             tags: [],
             parameters: [{
               deprecated: false,
