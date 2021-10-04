@@ -172,6 +172,48 @@ describe('parseComponents method', () => {
     expect(result).toEqual(expected);
   });
 
+  it('Should parse jsdoc component spec with json options', () => {
+    const jsodInput = [`
+      /**
+       * A song
+       * @typedef {object} Song
+       * @property {string} title - The title
+       * @property {string} artist - The artist - json:{"maxLength": 300}
+       * @property {number} year - The year - int64 - json:{"minimum": 2000}
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Song: {
+            type: 'object',
+            description: 'A song',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The title',
+              },
+              artist: {
+                type: 'string',
+                description: 'The artist',
+                maxLength: 300,
+              },
+              year: {
+                type: 'number',
+                description: 'The year',
+                format: 'int64',
+                minimum: 2000,
+              },
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
   it('Should parse jsdoc component spec with require and format properties', () => {
     const jsodInput = [`
       /**

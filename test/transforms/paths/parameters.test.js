@@ -310,3 +310,56 @@ describe('params tests', () => {
     expect(result).toEqual(expected);
   });
 });
+
+it('should parse jsdoc path params with json options', () => {
+  const jsodInput = [`
+    /**
+     * GET /api/v1
+     * @param {string} name.query.required - name param description - enum:value1,value2 - json:{"minLength": 6}
+     * @param {integer} age.query - age param description - json:{"minimum": 0, "maximum": 130}
+     */
+  `];
+  const expected = {
+    paths: {
+      '/api/v1': {
+        get: {
+          deprecated: false,
+          description: undefined,
+          summary: '',
+          responses: {},
+          security: [],
+          tags: [],
+          parameters: [{
+            deprecated: false,
+            description: 'name param description',
+            in: 'query',
+            name: 'name',
+            required: true,
+            schema: {
+              type: 'string',
+              enum: [
+                'value1',
+                'value2',
+              ],
+              minLength: 6,
+            },
+          }, {
+            deprecated: false,
+            description: 'age param description',
+            in: 'query',
+            name: 'age',
+            required: false,
+            schema: {
+              type: 'integer',
+              minimum: 0,
+              maximum: 130,
+            },
+          }],
+        },
+      },
+    },
+  };
+  const parsedJSDocs = jsdocInfo()(jsodInput);
+  const result = setPaths({}, parsedJSDocs);
+  expect(result).toEqual(expected);
+});
