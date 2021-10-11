@@ -35,7 +35,7 @@ const formatProperties = (properties, options = {}) => {
     const {
       name: typeName, applications, expression, elements,
     } = property.type;
-    const [descriptionValue, enumValues] = formatDescription(property.description);
+    const [descriptionValue, enumValues, jsonOptions] = formatDescription(property.description);
     const [description, format] = mapDescription(descriptionValue);
     return {
       ...acum,
@@ -52,6 +52,7 @@ const formatProperties = (properties, options = {}) => {
         ...(options.notRequiredAsNullable && !isRequired ? {
           nullable: true,
         } : {}),
+        ...(jsonOptions || {}),
       },
     };
   }, {});
