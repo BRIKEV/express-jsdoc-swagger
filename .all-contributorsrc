@@ -121,6 +121,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "paulish",
+      "name": "Paul Ishenin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1762032?v=4",
+      "profile": "https://github.com/paulish",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
