@@ -44,6 +44,9 @@ test('should give a nice error message for requestBody', async () => {
   expect(console.warn).toHaveBeenCalledTimes(1);
   expect(console.warn).toHaveBeenNthCalledWith(
     1,
-    chalk.yellow('[express-jsdoc-swagger] If you want to add one @param as body you must provide "request.body" instead of body.body.required'),
+    chalk.yellow(
+      // eslint-disable-next-line max-len
+      '[express-jsdoc-swagger] If you want to add one @param as body you must provide "request.body" instead of body.body.required',
+    ),
   );
 });

@@ -323,6 +323,9 @@ You can visit our [documentation](https://brikev.github.io/express-jsdoc-swagger
     <td align="center"><a href="https://github.com/gandazgul"><img src="https://avatars.githubusercontent.com/u/108850?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Carlos Ravelo</b></sub></a><br /><a href="https://github.com/BRIKEV/express-jsdoc-swagger/commits?author=gandazgul" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/paulish"><img src="https://avatars.githubusercontent.com/u/1762032?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Paul Ishenin</b></sub></a><br /><a href="https://github.com/BRIKEV/express-jsdoc-swagger/commits?author=paulish" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/sbingner"><img src="https://avatars.githubusercontent.com/u/354533?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sam Bingner</b></sub></a><br /><a href="https://github.com/BRIKEV/express-jsdoc-swagger/commits?author=sbingner" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
