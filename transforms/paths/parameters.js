@@ -35,7 +35,7 @@ const parameterPayload = (options, schema) => ({
     defaultValue: false,
   }),
   explode: setProperty(options, 'explode', {
-    type: 'boolean'
+    type: 'boolean',
   }),
   schema,
 });
