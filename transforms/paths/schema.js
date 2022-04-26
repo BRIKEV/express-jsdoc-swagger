@@ -1,9 +1,10 @@
 const errorMessage = require('../utils/errorMessage');
 const combineSchema = require('../utils/combineSchema');
+const addDefaultValue = require('../utils/defaultValue');
 const addEnumValues = require('../utils/enumValues');
 const { refSchema, formatRefSchema } = require('../utils/refSchema');
 
-const getSchema = (entity, message) => (type, enumValues = [], jsonOptions = {}) => {
+const getSchema = (entity, message) => (type, defaultValue = '', enumValues = [], jsonOptions = {}) => {
   if (!type) {
     return errorMessage(`Entity: ${entity} could not be parsed. Value: "${message}" is wrong`);
   }
@@ -15,6 +16,7 @@ const getSchema = (entity, message) => (type, enumValues = [], jsonOptions = {})
   schema = {
     ...schema,
     ...combineSchema(type.elements),
+    ...addDefaultValue(defaultValue),
     ...addEnumValues(enumValues),
     ...jsonOptions,
   };

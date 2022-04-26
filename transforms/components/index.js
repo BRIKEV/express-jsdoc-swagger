@@ -1,6 +1,7 @@
 const { getTagInfo, getTagsInfo } = require('../utils/tags');
 const mapDescription = require('../utils/mapDescription');
 const { refSchema, formatRefSchema } = require('../utils/refSchema');
+const addDefaultValue = require('../utils/defaultValue');
 const addEnumValues = require('../utils/enumValues');
 const formatDescription = require('../utils/formatDescription');
 const combineSchema = require('../utils/combineSchema');
@@ -35,7 +36,7 @@ const formatProperties = (properties, options = {}) => {
     const {
       name: typeName, applications, expression, elements,
     } = property.type;
-    const [descriptionValue, enumValues, jsonOptions] = formatDescription(property.description);
+    const [descriptionValue, defaultValue, enumValues, jsonOptions] = formatDescription(property.description);
     const [description, format] = mapDescription(descriptionValue);
     return {
       ...acum,
@@ -46,6 +47,7 @@ const formatProperties = (properties, options = {}) => {
         ...addTypeApplication(applications, expression),
         ...addRefSchema(typeName, applications, elements),
         ...(format ? { format } : {}),
+        ...addDefaultValue(defaultValue),
         ...addEnumValues(enumValues),
 
         // Add nullable to non-required fields if option to do that is enabled

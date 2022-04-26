@@ -12,6 +12,7 @@
     "parameters:headers": "node parameters/headers.js",
     "parameters:multiple": "node parameters/multiple.js",
     "parameters:components": "node parameters/components.js",
+    "parameters:default": "node parameters/default.js",
     "parameters:enum": "node parameters/enum.js",
     "responses:simple": "node responses/simple.js",
     "responses:multiple": "node responses/multiple.js",
@@ -42,6 +43,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "swagger-ui-express": "^4.3.0",
     "winston": "^3.2.1"
   }
 }
