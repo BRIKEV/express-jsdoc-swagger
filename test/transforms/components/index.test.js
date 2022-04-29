@@ -847,4 +847,48 @@ describe('parseComponents method', () => {
     const result = parseComponents({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should parse jsdoc component spec dictionary', () => {
+    const jsodInput = [`
+       /**
+        * Profile
+        * @typedef {object} Profile
+        *
+        * @property {string} email
+        */
+      `,
+    `
+       /**
+        * Profiles dict
+        * @typedef {Object.<string, Profile>} Profiles
+        */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Profile: {
+            type: 'object',
+            description: 'Profile',
+            properties: {
+              email: {
+                type: 'string',
+                description: '',
+              },
+            },
+          },
+          Profiles: {
+            type: 'object',
+            description: 'Profiles dict',
+            properties: {},
+            additionalProperties: {
+              $ref: '#/components/schemas/Profile',
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
