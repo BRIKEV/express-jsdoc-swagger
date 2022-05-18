@@ -68,19 +68,27 @@ const parseSchema = (schema, options = {}) => {
   const typedef = getTagInfo(schema.tags, 'typedef');
   const propertyValues = getTagsInfo(schema.tags, 'property');
   const requiredProperties = getRequiredProperties(propertyValues);
+  const [descriptionValue, enumValues, jsonOptions] = formatDescription(schema.description);
+  const [description, format] = mapDescription(descriptionValue);
   if (!typedef || !typedef.name) return {};
   const {
     elements,
   } = typedef.type;
+  const type = typedef.type.name || 'object';
   return {
     [typedef.name]: {
       ...combineSchema(elements),
-      description: schema.description,
+      description,
       ...(requiredProperties.length ? {
         required: formatRequiredProperties(requiredProperties),
       } : {}),
-      type: 'object',
-      properties: formatProperties(propertyValues, options),
+      type,
+      ...(type === 'object' ? {
+        properties: formatProperties(propertyValues, options),
+      } : {}),
+      ...(format ? { format } : {}),
+      ...addEnumValues(enumValues),
+      ...(jsonOptions || {}),
     },
   };
 };

@@ -799,4 +799,52 @@ describe('parseComponents method', () => {
     const result = parseComponents({}, parsedJSDocs, { notRequiredAsNullable: true });
     expect(result).toEqual(expected);
   });
+
+  it('Should parse jsdoc component spec with string type', () => {
+    const jsodInput = [`
+      /**
+       * A song
+       * @typedef {string} Song
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Song: {
+            type: 'string',
+            description: 'A song',
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
+
+  it('Should parse jsdoc component spec with string type and a format', () => {
+    const jsodInput = [`
+      /**
+       * A song - enum:value1,value2
+       * @typedef {string} Song
+       */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Song: {
+            type: 'string',
+            description: 'A song',
+            enum: [
+              'value1',
+              'value2',
+            ],
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });

@@ -6,6 +6,8 @@ const generator = require('../utils/generator');
 
 const REQUIRED = 'required';
 const DEPRECATED = 'deprecated';
+const EXPLODE = 'explode';
+const NOEXPLODE = 'noexplode';
 const BODY_PARAM = 'body';
 const FORM_TYPE = 'form';
 
@@ -32,6 +34,9 @@ const parameterPayload = (options, schema) => ({
     type: 'boolean',
     defaultValue: false,
   }),
+  explode: setProperty(options, 'explode', {
+    type: 'boolean',
+  }),
   schema,
 });
 
@@ -52,6 +57,8 @@ const parseParameter = param => {
   }
   const isRequired = extraOptions.includes(REQUIRED);
   const isDeprecated = extraOptions.includes(DEPRECATED);
+  const shouldExplode = extraOptions.includes(EXPLODE);
+  const shouldNotExplode = extraOptions.includes(NOEXPLODE);
   const [description, enumValues, jsonOptions] = formatDescription(param.description);
   const options = {
     name,
@@ -60,6 +67,12 @@ const parseParameter = param => {
     deprecated: isDeprecated,
     description,
   };
+  // Used this format because default when undefined is different depending on if it is a query/form or not
+  if (shouldExplode) {
+    options.explode = true;
+  } else if (shouldNotExplode) {
+    options.explode = false;
+  }
   const schema = getSchema('@param', param.name)(param.type, enumValues, jsonOptions);
   return parameterPayload(options, schema);
 };
