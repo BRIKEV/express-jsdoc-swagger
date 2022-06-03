@@ -860,7 +860,7 @@ describe('parseComponents method', () => {
     `
        /**
         * Profiles dict
-        * @typedef {Object.<string, Profile>} Profiles
+        * @typedef {Dictionary<Profile>} Profiles
         */
     `];
     const expected = {
