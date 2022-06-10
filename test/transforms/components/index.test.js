@@ -647,13 +647,29 @@ describe('parseComponents method', () => {
   });
 
   it('Should parse an album schema with an array of Songs schemas.', () => {
-    const jsodInput = [`
-      /**
-       * Album
-       * @typedef {object} Album
-       * @property {array<Song>} Songs
-       */
-    `];
+    const jsodInput = [
+      [`
+        /**
+         * Album
+         * @typedef {object} Album
+         * @property {array<Song>} Songs
+         */
+      `],
+      [`
+        /**
+         * Album
+         * @typedef {object} Album
+         * @property {Array<Song>} Songs
+         */
+      `],
+      [`
+        /**
+         * Album
+         * @typedef {object} Album
+         * @property {Song[]} Songs
+         */
+      `],
+    ];
     const expected = {
       components: {
         schemas: {
@@ -673,9 +689,11 @@ describe('parseComponents method', () => {
         },
       },
     };
-    const parsedJSDocs = jsdocInfo()(jsodInput);
-    const result = parseComponents({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    jsodInput.forEach(jsod => {
+      const parsedJSDocs = jsdocInfo()(jsod);
+      const result = parseComponents({}, parsedJSDocs);
+      expect(result).toEqual(expected);
+    });
   });
 
   it('Should parse a SingleAlbum schema with allOf reference of Song.', () => {
