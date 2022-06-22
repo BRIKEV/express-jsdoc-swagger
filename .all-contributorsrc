@@ -148,6 +148,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "joelabrahamsson",
+      "name": "Joel Abrahamsson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/218986?v=4",
+      "profile": "http://joelabrahamsson.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
