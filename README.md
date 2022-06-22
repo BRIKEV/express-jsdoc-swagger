@@ -325,6 +325,7 @@ You can visit our [documentation](https://brikev.github.io/express-jsdoc-swagger
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/sbingner"><img src="https://avatars.githubusercontent.com/u/354533?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sam Bingner</b></sub></a><br /><a href="https://github.com/BRIKEV/express-jsdoc-swagger/commits?author=sbingner" title="Code">💻</a></td>
+    <td align="center"><a href="https://stackoverflow.com/users/5059657/alexander-staroselsky"><img src="https://avatars.githubusercontent.com/u/34102969?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alexander Staroselsky</b></sub></a><br /><a href="https://github.com/BRIKEV/express-jsdoc-swagger/commits?author=alexstaroselsky" title="Code">💻</a></td>
   </tr>
 </table>
 
