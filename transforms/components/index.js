@@ -64,6 +64,18 @@ const getRequiredProperties = properties => (
 
 const formatRequiredProperties = requiredProperties => requiredProperties.map(getPropertyName);
 
+const addDictionaryAdditionalProperties = typedef => {
+  if (!typedef.type.expression || typedef.type.expression.name !== 'Dictionary') {
+    return {};
+  }
+
+  return {
+    additionalProperties: {
+      $ref: `#/components/schemas/${typedef.type.applications[0].name}`,
+    },
+  };
+};
+
 const parseSchema = (schema, options = {}) => {
   const typedef = getTagInfo(schema.tags, 'typedef');
   const propertyValues = getTagsInfo(schema.tags, 'property');
@@ -88,6 +100,7 @@ const parseSchema = (schema, options = {}) => {
       } : {}),
       ...(format ? { format } : {}),
       ...addEnumValues(enumValues),
+      ...addDictionaryAdditionalProperties(typedef),
       ...(jsonOptions || {}),
     },
   };
