@@ -23,7 +23,7 @@ const getSchema = (entity, message) => (type, enumValues = [], jsonOptions = {})
     const parseItems = formatRefSchema(type.applications);
     schema = {
       ...schema,
-      type: type.expression.name,
+      type: type.expression.name.toLowerCase(),
       items: parseItems.items ? parseItems.items : parseItems,
     };
   }

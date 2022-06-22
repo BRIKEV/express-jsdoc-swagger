@@ -192,12 +192,26 @@ describe('params tests', () => {
   });
 
   it('should parse jsdoc path params with array of references', () => {
-    const jsodInput = [`
-      /**
-       * GET /api/v1
-       * @param {array<Song>} name.query.required.deprecated - name param description
-       */
-    `];
+    const jsodInput = [
+      [`
+        /**
+         * GET /api/v1
+         * @param {array<Song>} name.query.required.deprecated - name param description
+         */
+      `],
+      [`
+        /**
+         * GET /api/v1
+         * @param {Array<Song>} name.query.required.deprecated - name param description
+         */
+      `],
+      [`
+        /**
+         * GET /api/v1
+         * @param {Song[]} name.query.required.deprecated - name param description
+         */
+      `],
+    ];
     const expected = {
       paths: {
         '/api/v1': {
@@ -225,9 +239,11 @@ describe('params tests', () => {
         },
       },
     };
-    const parsedJSDocs = jsdocInfo()(jsodInput);
-    const result = setPaths({}, parsedJSDocs);
-    expect(result).toEqual(expected);
+    jsodInput.forEach(jsod => {
+      const parsedJSDocs = jsdocInfo()(jsod);
+      const result = setPaths({}, parsedJSDocs);
+      expect(result).toEqual(expected);
+    });
   });
 
   it('should parse jsdoc path params with enum values', () => {
