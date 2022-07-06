@@ -1,6 +1,7 @@
 const mapDescription = require('./mapDescription');
 const errorMessage = require('./errorMessage');
 
+const DEFAULT_IDENTIFIER = 'default:';
 const ENUM_IDENTIFIER = 'enum:';
 const JSON_IDENTIFIER = 'json:';
 const DESCRIPTION_DIVIDER = ' - ';
@@ -10,9 +11,14 @@ const formatDescription = description => {
   const descriptionValue = descriptionTypes.filter(value => (
     !value.includes(ENUM_IDENTIFIER) && !value.includes(JSON_IDENTIFIER)
   )).join(DESCRIPTION_DIVIDER);
+  const defaultOption = descriptionTypes.find(value => value.includes(DEFAULT_IDENTIFIER));
   const enumOption = descriptionTypes.find(value => value.includes(ENUM_IDENTIFIER));
   const jsonOption = descriptionTypes.find(value => value.includes(JSON_IDENTIFIER));
   const res = [descriptionValue];
+  if (defaultOption) { 
+    const defaultValue = defaultOption.replace('default:', '');
+    res.push(defaultValue); } 
+  else { res.push(undefined);  }
   if (enumOption) {
     const [, enumOptions] = enumOption.split('enum:');
     const enumValues = enumOptions.split(',');
