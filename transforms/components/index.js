@@ -4,6 +4,7 @@ const { refSchema, formatRefSchema } = require('../utils/refSchema');
 const addEnumValues = require('../utils/enumValues');
 const formatDescription = require('../utils/formatDescription');
 const combineSchema = require('../utils/combineSchema');
+const validateTypes = require('../utils/validateTypes');
 
 const REQUIRED = 'required';
 
@@ -65,15 +66,21 @@ const getRequiredProperties = properties => (
 const formatRequiredProperties = requiredProperties => requiredProperties.map(getPropertyName);
 
 const addDictionaryAdditionalProperties = typedef => {
-  if (!typedef.type.expression || typedef.type.expression.name !== 'Dictionary') {
-    return {};
+  if (
+    typedef.type.expression
+    && typedef.type.expression.name === 'Dictionary'
+  ) {
+    const typeName = typedef.type.applications[0].name;
+    const isPrimitive = validateTypes(typeName);
+
+    return {
+      additionalProperties: {
+        ...(isPrimitive ? { type: typeName } : { $ref: `#/components/schemas/${typeName}` }),
+      },
+    };
   }
 
-  return {
-    additionalProperties: {
-      $ref: `#/components/schemas/${typedef.type.applications[0].name}`,
-    },
-  };
+  return {};
 };
 
 const parseSchema = (schema, options = {}) => {
