@@ -88,7 +88,7 @@ describe('basic transform method', () => {
         version: '1.0.0',
       },
       servers: [{
-        url: 'http://url.com',
+        url: 'https://url.com',
         variables: {
           enum: ['300', '200'],
           default: 200,
@@ -104,7 +104,7 @@ describe('basic transform method', () => {
       },
       servers: [
         {
-          url: 'http://url.com',
+          url: 'https://url.com',
           description: '',
           variables: {
             enum: ['300', '200'],

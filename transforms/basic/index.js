@@ -1,13 +1,10 @@
 const info = require('./info');
 const servers = require('./servers');
 
-const getBasicInfo = (swaggerObjet = {}) => {
-  const updatedOptions = {
-    ...swaggerObjet,
-    info: { ...info(swaggerObjet.info) },
-    servers: servers(swaggerObjet.servers),
-  };
-  return updatedOptions;
-};
+const getBasicInfo = (swaggerObjet = {}) => ({
+  ...swaggerObjet,
+  info: { ...info(swaggerObjet.info) },
+  servers: servers(swaggerObjet.servers),
+});
 
 module.exports = getBasicInfo;

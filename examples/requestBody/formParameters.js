@@ -28,7 +28,7 @@ expressJSDocSwagger(app)(options);
  * @param {string} title.form.required - This is the song title - application/x-www-form-urlencoded
  * @return {object} 200 - song response
  */
-app.post('/api/v1/songs', (req, res) => res.json({}));
+app.post('/api/v1/songs', (_req, res) => res.json({}));
 
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

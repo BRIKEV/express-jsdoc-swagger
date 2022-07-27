@@ -54,7 +54,7 @@ const parseBodyParameter = (currentState, body, examples) => {
 
 const INITIAL_STATE = { content: {} };
 
-const requestBodyGenerator = (params = [], examples) => {
+const requestBodyGenerator = (examples, params = []) => {
   if (!params || !Array.isArray(params)) return {};
 
   return params.reduce((acc, body) => (

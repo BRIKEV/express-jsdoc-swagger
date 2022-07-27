@@ -7,8 +7,8 @@ const refSchema = value => {
   if (value && value.type === 'UnionType') {
     const items = [];
     value.elements.forEach(el => {
-      const isPrimitive = validateTypes(el.name);
-      items.push(isPrimitive ? { type: el.name } : { $ref: `${REF_ROUTE}${el.name}` });
+      const isPrimitiveType = validateTypes(el.name);
+      items.push(isPrimitiveType ? { type: el.name } : { $ref: `${REF_ROUTE}${el.name}` });
     });
     return {
       anyOf: items,
@@ -17,8 +17,8 @@ const refSchema = value => {
 
   // support * @property {anyOf|Song[]|Album|string|string[]} firstSong
   if (value && value.expression && value.expression.name.toLowerCase() === 'array' && value.type === 'TypeApplication') {
-    const isPrimitive = validateTypes(value.applications[0].name);
-    return isPrimitive ? {
+    const isPrimitiveType = validateTypes(value.applications[0].name);
+    return isPrimitiveType ? {
       type: 'array',
       items: { type: value.applications[0].name },
     } : {

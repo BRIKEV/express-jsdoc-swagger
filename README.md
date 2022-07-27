@@ -37,6 +37,7 @@ npm i express-jsdoc-swagger
 ## Basic Usage
 
 ```javascript
+// index.js file
 const express = require('express');
 const expressJSDocSwagger = require('express-jsdoc-swagger');
 
@@ -54,6 +55,7 @@ const options = {
       scheme: 'basic',
     },
   },
+  // Base directory which we use to locate your JSDOC files
   baseDir: __dirname,
   // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
   filesPattern: './**/*.js',
@@ -94,7 +96,7 @@ app.listen(PORT, () => console.log(`Example app listening at http://localhost:${
 
 ## Basic Examples
 
-1. Basic configuration
+1. Basic configuration options.
 
 ```javascript
 const options = {
@@ -129,7 +131,7 @@ const options = {
  */
 ```
 
-3. Endpoint that returns a `Songs` model array
+3. Endpoint which returns a `Songs` model array in the response.
 
 ```javascript
 /**
@@ -139,6 +141,24 @@ const options = {
  * @return {array<Song>} 200 - success response - application/json
  */
 app.get('/api/v1/albums', (req, res) => (
+  res.json([{
+    title: 'abum 1',
+  }])
+));
+```
+
+3. Endpoint PUT with body and path params which returns a `Songs` model array in the response.
+
+```javascript
+/**
+ * PUT /api/v1/albums/{id}
+ * @summary Update album
+ * @tags album
+ * @param {string} name.path - name param description
+ * @param {Song} request.body.required - songs info
+ * @return {array<Song>} 200 - success response - application/json
+ */
+app.put('/api/v1/albums/:id', (req, res) => (
   res.json([{
     title: 'abum 1',
   }])
@@ -203,23 +223,34 @@ Install using the node package registry:
 npm install --save express-oas-validator
 ```
 
-After this you have to initialize using the `finish` event. More info in this [sections](eventEmitter.md).
+We have to wait until we have the full swagger schema to initiate the validator.
 
 ```js
-const instance = expressJSDocSwagger(app)(options);
+// validator.js
+const { init } = require('express-oas-validator');
 
-instance.on('finish', data => {
-  init(data);
-  resolve(app);
+const validators = instance => new Promise((resolve, reject) => {
+  instance.on('finish', (swaggerDef) => {
+    const { validateRequest, validateResponse } = init(swaggerDef);
+    resolve({ validateRequest, validateResponse });
+  });
+
+  instance.on('error', (error) => {
+    reject(error);
+  });
 });
+
+module.exports = validators;
+
 ```
 
-This is a full example of how it works.
+You can check out this also in our [example folder](https://github.com/BRIKEV/express-jsdoc-swagger/tree/master/examples/validator).
 
 ```js
+// index.js
 const express = require('express');
 const expressJSDocSwagger = require('express-jsdoc-swagger');
-const { init, validateRequest, validateResponse } = require('express-oas-validator');
+const validator = require('./validator');
 
 const options = {
   info: {
@@ -236,15 +267,10 @@ const options = {
 const app = express();
 const instance = expressJSDocSwagger(app)(options);
 
-const serverApp = () => new Promise(resolve => {
-  instance.on('finish', data => {
-    init(data);
-    resolve(app);
-  });
-
+const serverApp = async () => {
+  const { validateRequest, validateResponse } = await validator(instance);
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
-
   /**
    * A song
    * @typedef {object} Song
@@ -292,9 +318,21 @@ const serverApp = () => new Promise(resolve => {
   app.use((err, req, res, next) => {
     res.status(err.status).json(err);
   });
-});
 
-module.exports = serverApp;
+  return app;
+};
+
+const PORT = process.env.PORT || 4000;
+
+serverApp()
+  .then(app => 
+    app.listen(PORT, () =>
+      console.log(`Listening PORT: ${PORT}`)
+    ))
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
 ```
 
 You can visit our [documentation](https://brikev.github.io/express-jsdoc-swagger-docs/#/validator).

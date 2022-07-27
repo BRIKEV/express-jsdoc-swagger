@@ -20,7 +20,7 @@ const formatDescription = description => (description || {}).description || unde
 
 const setRequestBody = (lowerCaseMethod, bodyValues, requestExamples) => {
   const hasBodyValues = bodyValues.length > 0;
-  const requestBody = requestBodyGenerator(bodyValues, requestExamples);
+  const requestBody = requestBodyGenerator(requestExamples, bodyValues);
   return bodyMethods[lowerCaseMethod] && hasBodyValues ? { requestBody } : {};
 };
 

@@ -5,7 +5,7 @@ const formatSecurity = securitySchemes => {
 
 const parseSecuritySchemas = (swaggerObject = {}) => {
   const { security } = swaggerObject;
-  const updatedSwaggerObject = {
+  return {
     ...swaggerObject,
     ...(security ? { security: formatSecurity(security) } : {}),
     components: {
@@ -13,7 +13,6 @@ const parseSecuritySchemas = (swaggerObject = {}) => {
       ...(security ? { securitySchemes: security } : {}),
     },
   };
-  return updatedSwaggerObject;
 };
 
 module.exports = parseSecuritySchemas;

@@ -26,7 +26,7 @@ expressJSDocSwagger(app)(options);
  * @param {string} name.query.required - name param description
  * @return {string} 200 - success response
  */
-app.get('/api/v1', (req, res) => res.send('Hello World!'));
+app.get('/api/v1', (_req, res) => res.send('Hello World!'));
 
 /**
  * GET /api/v1/albums
@@ -34,7 +34,7 @@ app.get('/api/v1', (req, res) => res.send('Hello World!'));
  * @param {array<string>} name.query.required.deprecated - name param description
  * @return {object} 200 - success response - application/json
  */
-app.get('/api/v1/albums', (req, res) => (
+app.get('/api/v1/albums', (_req, res) => (
   res.json([{
     title: 'abum 1',
   }])

@@ -57,7 +57,7 @@ expressJSDocSwagger(app)(options);
  *   "message": "you cannot access pet data"
  * }
  */
-app.get('/api/v1/pet', (req, res) => (
+app.get('/api/v1/pet', (_req, res) => (
   res.json([{
     name: 'Hachiko',
     type: 'Dog',

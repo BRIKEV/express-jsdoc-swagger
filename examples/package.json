@@ -32,6 +32,7 @@
     "tags:simple": "node tags/simple.js",
     "combineSchemas": "node combineSchemas/index.js",
     "eventEmitter": "node eventEmitter/index.js",
+    "validator": "node validator/index.js",
     "eventEmitter:multipleInstance": "node eventEmitter/multipleInstance.js",
     "merge": "node merge/simple.js",
     "nullableFields:explicit": "node nullableFields/explicitNullable.js",
@@ -42,6 +43,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "express-oas-validator": "^3.0.0",
     "winston": "^3.2.1"
   }
 }

@@ -11,8 +11,7 @@ const setProperty = entity => {
 
   return (item, key, options) => {
     if (!item || !key || !options) {
-      const requiredParamsError = new Error('item, key and options para are required');
-      throw requiredParamsError;
+      throw (new Error('item, key and options para are required'));
     }
     const value = item[key];
     if (options.required && value === undefined) throw requiredError(key, item);

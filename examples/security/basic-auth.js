@@ -36,7 +36,7 @@ expressJSDocSwagger(app)(options);
  * @return {string} 200 - success response
  * @security BasicAuth
  */
-app.get('/api/v1', (req, res) => res.send('Hello World!'));
+app.get('/api/v1', (_req, res) => res.send('Hello World!'));
 
 /**
  * GET /api/v2
@@ -44,7 +44,7 @@ app.get('/api/v1', (req, res) => res.send('Hello World!'));
  * @return {string} 200 - success response
  * @security BasicAuth & BearerAuth
  */
-app.get('/api/v2', (req, res) => res.send('Hello World!'));
+app.get('/api/v2', (_req, res) => res.send('Hello World!'));
 
 /**
  * GET /api/v3
@@ -52,6 +52,6 @@ app.get('/api/v2', (req, res) => res.send('Hello World!'));
  * @return {string} 200 - success response
  * @security BasicAuth | BearerAuth
  */
-app.get('/api/v3', (req, res) => res.send('Hello World!'));
+app.get('/api/v3', (_req, res) => res.send('Hello World!'));
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

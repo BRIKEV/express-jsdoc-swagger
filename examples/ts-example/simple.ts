@@ -60,7 +60,7 @@ expressJSDocSwagger(app)(options);
  * @summary This is the summary of the endpoint
  * @return {string} 200 - success response
  */
-app.get('/api/v1', (req, res) => {
+app.get('/api/v1', (_req, res) => {
   res.send('Hello World!');
 });
 

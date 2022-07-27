@@ -2,7 +2,7 @@ const doctrine = require('doctrine');
 
 const jsdocInfo = (options = { unwrap: true }) => comments => {
   if (!comments || !Array.isArray(comments)) return [];
-  const parsed = comments.map(comment => {
+  return comments.map(comment => {
     const parsedValue = doctrine.parse(comment, options);
     const tags = parsedValue.tags.map(tag => ({
       ...tag,
@@ -15,7 +15,6 @@ const jsdocInfo = (options = { unwrap: true }) => comments => {
       description,
     };
   });
-  return parsed;
 };
 
 module.exports = jsdocInfo;

@@ -33,7 +33,7 @@ expressJSDocSwagger(app)(options);
  * @param {Song} request.body.required - song info - application/x-www-form-urlencoded
  * @return {object} 200 - song response
  */
-app.post('/api/v1/songs', (req, res) => res.send('You save a song!'));
+app.post('/api/v1/songs', (_req, res) => res.send('You save a song!'));
 
 
 

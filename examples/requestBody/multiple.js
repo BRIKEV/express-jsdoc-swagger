@@ -28,6 +28,6 @@ expressJSDocSwagger(app)(options);
  * @param {array<string>} request.body.required - name body description
  * @return {object} 200 - album response
  */
-app.post('/api/v1/album', (req, res) => res.send('Hello World!'));
+app.post('/api/v1/album', (_req, res) => res.send('Hello World!'));
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

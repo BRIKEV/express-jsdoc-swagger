@@ -27,7 +27,7 @@ const filterDuplicateTags = tags => (
   tags.filter(({ name }, i) => getIndexBy(tags, FILTER_TAG_KEY, name) === i)
 );
 
-const parseTags = (swaggerObject = {}, data) => {
+const parseTags = (swaggerObject, data) => {
   if (!data || !Array.isArray(data)) return { tags: [] };
   const tags = flatArray(data.map(formatTags));
   const ordererTags = sortByDescription(tags);

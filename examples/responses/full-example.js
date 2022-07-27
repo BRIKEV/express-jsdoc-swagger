@@ -42,7 +42,7 @@ expressJSDocSwagger(app)(options);
  * @return {object} 200 - success response - application/json
  * @return {object} 400 - Bad request response
  */
-app.get('/api/v2/album', (req, res) => (
+app.get('/api/v2/album', (_req, res) => (
   res.json({
     title: 'abum 1',
   })
@@ -56,7 +56,7 @@ app.get('/api/v2/album', (req, res) => (
  * @return {object} 200 - success response - application/json
  * @return {object} 400 - Bad request response
  */
-app.get('/api/v1/album', (req, res) => (
+app.get('/api/v1/album', (_req, res) => (
   res.json({
     title: 'abum 1',
   })
@@ -68,7 +68,7 @@ app.get('/api/v1/album', (req, res) => (
  * @tags album
  * @return {array<Song>} 200 - success response - application/json
  */
-app.get('/api/v1/albums', (req, res) => (
+app.get('/api/v1/albums', (_req, res) => (
   res.json([{
     title: 'abum 1',
   }])
