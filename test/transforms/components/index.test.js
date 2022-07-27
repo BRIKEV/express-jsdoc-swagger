@@ -909,4 +909,30 @@ describe('parseComponents method', () => {
     const result = parseComponents({}, parsedJSDocs);
     expect(result).toEqual(expected);
   });
+
+  it('Should parse jsdoc component spec record type', () => {
+    const jsodInput = [`
+      /**
+      * Records dict
+      * @typedef {Dictionary<string>} Records map
+      */
+    `];
+    const expected = {
+      components: {
+        schemas: {
+          Records: {
+            type: 'object',
+            description: 'Records dict',
+            properties: {},
+            additionalProperties: {
+              type: 'string',
+            },
+          },
+        },
+      },
+    };
+    const parsedJSDocs = jsdocInfo()(jsodInput);
+    const result = parseComponents({}, parsedJSDocs);
+    expect(result).toEqual(expected);
+  });
 });
