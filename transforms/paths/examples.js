@@ -68,8 +68,7 @@ const parseExample = ({ description: exampleTagDescription }) => {
 
   const [type, ...metadata] = mapDescription(description);
 
-  const example = getParsedExample({ type, metadata, content });
-  return example;
+  return getParsedExample({ type, metadata, content });
 };
 
 /**
