@@ -36,6 +36,6 @@ expressJSDocSwagger(app)(options);
  * @param {Song} request.body.required - Song to add
  * @return {string} 200 - Success message
  */
-app.post('/api/v1/songs', (req, res) => res.send('You saved a song!'));
+app.post('/api/v1/songs', (_req, res) => res.send('You saved a song!'));
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

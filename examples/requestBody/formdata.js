@@ -34,7 +34,7 @@ expressJSDocSwagger(app)(options);
  * @param {Song} request.body.required - songs info - multipart/form-data
  * @return {object} 200 - Album created
  */
-app.post('/api/v1/album', (req, res) => res.send('You save a song!'));
+app.post('/api/v1/album', (_req, res) => res.send('You save a song!'));
 
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

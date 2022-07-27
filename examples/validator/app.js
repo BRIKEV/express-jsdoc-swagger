@@ -34,14 +34,14 @@ const serverApp = async () => {
    * @param {Song} request.body.required - song info
    * @return {object} 200 - song response
    */
-  app.post('/api/v1/songs', validateRequest(), (req, res) => res.send('You save a song!'));
+  app.post('/api/v1/songs', validateRequest(), (_req, res) => res.send('You save a song!'));
 
   /**
    * POST /api/v1/name
    * @param {string} request.body.required - name body description
    * @return {object} 200 - song response
    */
-  app.post('/api/v1/name', (req, res, next) => {
+  app.post('/api/v1/name', (_req, res, next) => {
     try {
       // Validate response
       validateResponse('Error string', req);
@@ -58,7 +58,7 @@ const serverApp = async () => {
    * @param {array<string>} license.query - name param description
    * @return {object} 200 - success response - application/json
    */
-  app.get('/api/v1/authors', validateRequest({ headers: false }), (req, res) => (
+  app.get('/api/v1/authors', validateRequest({ headers: false }), (_req, res) => (
     res.json([{
       title: 'album 1',
     }])
@@ -66,7 +66,7 @@ const serverApp = async () => {
 
 
   // eslint-disable-next-line no-unused-vars
-  app.use((err, req, res, next) => {
+  app.use((err, _req, res, _next) => {
     res.status(err.status).json(err);
   });
 

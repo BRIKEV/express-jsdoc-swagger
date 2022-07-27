@@ -37,14 +37,14 @@ expressJSDocSwagger(app)(options);
  * @param {Song} request.body.required - Song to add
  * @return {string} 200 - Success message
  */
- app.post('/api/v1/songs', (req, res) => res.send('You saved a song!'));
+ app.post('/api/v1/songs', (_req, res) => res.send('You saved a song!'));
 
 /**
  * GET /api/v1/song
  * @summary Nullable props in response
  * @return {array<Song>} 200 - List of songs
  */
-app.get('/api/v1/song', (req, res) => res.json([
+app.get('/api/v1/song', (_req, res) => res.json([
   {
     id: 1,
     title: 'Song from album',

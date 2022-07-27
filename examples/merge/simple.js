@@ -35,7 +35,7 @@ expressJSDocSwagger(app)(options, userSwagger);
  * @param {array<object>} name.query.required - name param description
  * @return {array<object>} 200 - success response - application/json
  */
-app.get('/api/v1/albums', (req, res) => (
+app.get('/api/v1/albums', (_req, res) => (
   res.json([{
     title: 'abum 1',
   }])

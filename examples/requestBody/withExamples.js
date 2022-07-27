@@ -46,7 +46,7 @@ expressJSDocSwagger(app)(options);
  *   "year": 2020
  * }
  */
-app.post('/api/v1/song', (req, res) => res.send({
+app.post('/api/v1/song', (_req, res) => res.send({
   message: 'You added a song!',
 }));
 

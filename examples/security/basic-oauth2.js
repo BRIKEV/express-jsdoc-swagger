@@ -33,6 +33,6 @@ expressJSDocSwagger(app)(options, oauthDetails);
  * @return {string} 200 - success response
  * @security oAuthSample
  */
- app.get('/api/v1', (req, res) => res.send('Hello World!'));
+ app.get('/api/v1', (_req, res) => res.send('Hello World!'));
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

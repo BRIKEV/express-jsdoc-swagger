@@ -51,6 +51,6 @@ expressJSDocSwagger(app)(options);
  * @summary This is the summary of the endpoint
  * @return {array<Song>} 200 - success response - application/json
  */
-app.get('/api/v1/albums', (req, res) => res.json([]));
+app.get('/api/v1/albums', (_req, res) => res.json([]));
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));

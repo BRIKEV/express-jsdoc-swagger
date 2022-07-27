@@ -27,7 +27,7 @@ expressJSDocSwagger(app)(options);
  * @param {number} id.path - phone number
  * @return {string} 200 - success response
  */
-app.get('/api/v1/:id', (req, res) => res.send('Hello World!'));
+app.get('/api/v1/:id', (_req, res) => res.send('Hello World!'));
 
 /**
  * GET /api/v1/albums/{id}
@@ -36,7 +36,7 @@ app.get('/api/v1/:id', (req, res) => res.send('Hello World!'));
  * @param {number} id.path
  * @return {object} 200 - success response - application/json
  */
-app.get('/api/v1/albums/:id', (req, res) => (
+app.get('/api/v1/albums/:id', (_req, res) => (
   res.json([{
     title: 'abum 1',
   }])

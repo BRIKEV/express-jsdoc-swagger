@@ -43,7 +43,7 @@ expressJSDocSwagger(app)(options);
  * @param {number} id.path - song id
  * @return {oneOf|IntrumentalSong|PopSong} 200 - success response - application/json
  */
-app.get('/api/v1/song/:id', (req, res) => (
+app.get('/api/v1/song/:id', (_req, res) => (
   res.json({
     title: 'abum 1',
   })

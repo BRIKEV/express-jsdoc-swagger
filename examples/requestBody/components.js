@@ -34,14 +34,14 @@ expressJSDocSwagger(app)(options);
  * @param {Song} request.body.required - song info
  * @return {object} 200 - song response
  */
-app.post('/api/v1/songs', (req, res) => res.send('You save a song!'));
+app.post('/api/v1/songs', (_req, res) => res.send('You save a song!'));
 
 /**
  * POST /api/v1/album
  * @param {array<Song>} request.body.required - songs info
  * @return {object} 200 - album response
  */
-app.post('/api/v1/album', (req, res) => res.send('You save a song!'));
+app.post('/api/v1/album', (_req, res) => res.send('You save a song!'));
 
 
 app.listen(port, () => logger.info(`Example app listening at http://localhost:${port}`));
