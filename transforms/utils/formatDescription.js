@@ -9,7 +9,7 @@ const DESCRIPTION_DIVIDER = ' - ';
 const formatDescription = description => {
   const descriptionTypes = mapDescription(description);
   const descriptionValue = descriptionTypes.filter(value => (
-    !value.includes(ENUM_IDENTIFIER) && !value.includes(JSON_IDENTIFIER) && !value.includes(DEFAULT_IDENTIFIER)
+    !value.includes(ENUM_IDENTIFIER) && !value.includes(JSON_IDENTIFIER)
   )).join(DESCRIPTION_DIVIDER);
   const defaultOption = descriptionTypes.find(value => value.includes(DEFAULT_IDENTIFIER));
   const enumOption = descriptionTypes.find(value => value.includes(ENUM_IDENTIFIER));

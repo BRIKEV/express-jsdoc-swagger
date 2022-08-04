@@ -1,4 +1,4 @@
-const addDefaultValue = (value: string) => {
+const addDefaultValue = (value = "") => {
   if (value === "") return {};
   return { default: value };
 };
