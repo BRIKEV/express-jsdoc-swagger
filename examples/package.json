@@ -42,7 +42,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-oas-validator": "^3.0.0",
     "winston": "^3.2.1"
   }
