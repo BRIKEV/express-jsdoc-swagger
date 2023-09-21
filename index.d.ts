@@ -29,10 +29,37 @@ interface InfoObject {
   license?: LicenseObject;
 }
 
-interface SecurityObject {
-  type: string;
-  scheme: string;
-}
+type SecurityObject = {
+  type: "http" | "https" | "ws" | "wss";
+  description?: string;
+} & (
+    {
+      scheme: 'basic';
+    } | 
+    { 
+      scheme: 'apiKey';
+      name: string; 
+      in: "query" | "header"; 
+    } | (
+    {
+      scheme: "oauth2";
+      scopes: {[key:string]: string}
+    } & ({
+      flow: "implicit";
+      authorizationUrl: string;
+    } | {
+      flow: "password";
+      tokenUrl: string;
+    } | {
+      flow: "application";
+      tokenUrl: string;
+    } | {
+      flow: "accessCode";
+      authorizationUrl: string;
+      tokenUrl: string;
+    })
+  )
+)
 
 interface Security {
   [key: string]: SecurityObject;

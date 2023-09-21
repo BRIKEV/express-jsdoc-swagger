@@ -62,6 +62,38 @@ describe('Transform security schemas', () => {
     expect(result).toEqual(expected);
   });
 
+  it('Should return a security array and securitySchemes within components field', () => {
+    const input = {
+      security: {
+        ApiKeyAuth: {
+          type: 'http',
+          scheme: "apiKey",
+          name: "api_key",
+          in: "header"
+        },
+      },
+    };
+    const expected = {
+      security: [
+        {
+          ApiKeyAuth: [],
+        },
+      ],
+      components: {
+        securitySchemes: {
+          ApiKeyAuth: {
+            type: 'http',
+            scheme: "apiKey",
+            name: "api_key",
+            in: "header"
+          },
+        },
+      },
+    };
+    const result = parseSecuritySchemas(input);
+    expect(result).toEqual(expected);
+  });
+
   it('Should return a security array and securitySchemes, both with each security type', () => {
     const input = {
       security: {
