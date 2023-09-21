@@ -34,7 +34,7 @@ describe('Transform security schemas', () => {
     expect(result).toEqual(expected);
   });
 
-  it('Should return a security array and securitySchemes within components field', () => {
+  it('Should return a security array and securitySchemes within components field for http', () => {
     const input = {
       security: {
         BasicAuth: {
@@ -62,14 +62,43 @@ describe('Transform security schemas', () => {
     expect(result).toEqual(expected);
   });
 
-  it('Should return a security array and securitySchemes within components field', () => {
+  it('Should return a security array and securitySchemes within components field for http', () => {
+    const input = {
+      security: {
+        HTTPAuth: {
+          type: 'http',
+          scheme: "basic",
+          bearerFormat: 'JWT'
+        },
+      },
+    };
+    const expected = {
+      security: [
+        {
+          HTTPAuth: [],
+        },
+      ],
+      components: {
+        securitySchemes: {
+          HTTPAuth: {
+            type: 'http',
+            scheme: "basic",
+            bearerFormat: 'JWT'
+          },
+        },
+      },
+    };
+    const result = parseSecuritySchemas(input);
+    expect(result).toEqual(expected);
+  });
+
+  it('Should return a security array and securitySchemes within components field for apiKey', () => {
     const input = {
       security: {
         ApiKeyAuth: {
-          type: 'http',
-          scheme: "apiKey",
+          type: "apiKey",
+          in: "header",
           name: "api_key",
-          in: "header"
         },
       },
     };
@@ -82,10 +111,9 @@ describe('Transform security schemas', () => {
       components: {
         securitySchemes: {
           ApiKeyAuth: {
-            type: 'http',
-            scheme: "apiKey",
+            type: "apiKey",
+            in: "header",
             name: "api_key",
-            in: "header"
           },
         },
       },

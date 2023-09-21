@@ -29,41 +29,67 @@ interface InfoObject {
   license?: LicenseObject;
 }
 
-type SecurityObject = {
-  scheme: 'http' | 'https' | 'ws' | 'wss'
-  description?: string
-} & (
+
+interface FlowObjectDefaults {
+  refreshUrl?: string
+  scopes: { [key: string]: string }
+}
+type SecurityObject =
   | {
-      type: 'basic'
-    }
-  | {
-      type: 'apiKey'
-      name: string
-      in: 'query' | 'header'
-    }
-  | ({
-      type: 'oauth2'
-      scopes: { [key: string]: string }
+      description?: string
     } & (
       | {
-          flow: 'implicit'
-          authorizationUrl: string
+          type: "mutualTLS"
         }
       | {
-          flow: 'password'
-          tokenUrl: string
+          type: "apiKey"
+          name: string
+          in: "query" | "header" | "cookie"
         }
       | {
-          flow: 'application'
-          tokenUrl: string
+          type: "http"
+          scheme:
+            | "basic"
+            | "digest"
+            | "dpop"
+            | "hoba"
+            | "mutual"
+            | "negotiate"
+            | "oauth"
+            | "scram-sha-1"
+            | "scram-sha-256"
+            | "vapid"
         }
       | {
-          flow: 'accessCode'
-          authorizationUrl: string
-          tokenUrl: string
+          type: "http"
+          scheme: "bearer"
+          bearerFormat: string
         }
-    ))
-)
+      | {
+          type: "oauth2"
+          flows: {
+            implicit?: FlowObjectDefaults & {
+              authorizationUrl: string
+            }
+            password?: FlowObjectDefaults & {
+              tokenUrl: string
+            }
+            clientCredentials?: FlowObjectDefaults & {
+              tokenUrl: string
+            }
+            authorizationCode?: FlowObjectDefaults & {
+              authorizationUrl: string
+              tokenUrl: string
+            }
+          }
+        }
+      | {
+          type: "openIdConnect"
+          openIdConnectUrl: string
+        }
+    )
+
+
 
 interface Security {
   [key: string]: SecurityObject;
