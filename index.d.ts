@@ -30,35 +30,39 @@ interface InfoObject {
 }
 
 type SecurityObject = {
-  type: "http" | "https" | "ws" | "wss";
-  description?: string;
+  scheme: 'http' | 'https' | 'ws' | 'wss'
+  description?: string
 } & (
-    {
-      scheme: 'basic';
-    } | 
-    { 
-      scheme: 'apiKey';
-      name: string; 
-      in: "query" | "header"; 
-    } | (
-    {
-      scheme: "oauth2";
-      scopes: {[key:string]: string}
-    } & ({
-      flow: "implicit";
-      authorizationUrl: string;
-    } | {
-      flow: "password";
-      tokenUrl: string;
-    } | {
-      flow: "application";
-      tokenUrl: string;
-    } | {
-      flow: "accessCode";
-      authorizationUrl: string;
-      tokenUrl: string;
-    })
-  )
+  | {
+      type: 'basic'
+    }
+  | {
+      type: 'apiKey'
+      name: string
+      in: 'query' | 'header'
+    }
+  | ({
+      type: 'oauth2'
+      scopes: { [key: string]: string }
+    } & (
+      | {
+          flow: 'implicit'
+          authorizationUrl: string
+        }
+      | {
+          flow: 'password'
+          tokenUrl: string
+        }
+      | {
+          flow: 'application'
+          tokenUrl: string
+        }
+      | {
+          flow: 'accessCode'
+          authorizationUrl: string
+          tokenUrl: string
+        }
+    ))
 )
 
 interface Security {
