@@ -29,10 +29,67 @@ interface InfoObject {
   license?: LicenseObject;
 }
 
-interface SecurityObject {
-  type: string;
-  scheme: string;
+
+interface FlowObjectDefaults {
+  refreshUrl?: string
+  scopes: { [key: string]: string }
 }
+type SecurityObject =
+  | {
+      description?: string
+    } & (
+      | {
+          type: "mutualTLS"
+        }
+      | {
+          type: "apiKey"
+          name: string
+          in: "query" | "header" | "cookie"
+        }
+      | {
+          type: "http"
+          scheme:
+            | "basic"
+            | "digest"
+            | "dpop"
+            | "hoba"
+            | "mutual"
+            | "negotiate"
+            | "oauth"
+            | "scram-sha-1"
+            | "scram-sha-256"
+            | "vapid"
+        }
+      | {
+          type: "http"
+          scheme: "bearer"
+          bearerFormat: string
+        }
+      | {
+          type: "oauth2"
+          flows: {
+            implicit?: FlowObjectDefaults & {
+              authorizationUrl: string
+            }
+            password?: FlowObjectDefaults & {
+              tokenUrl: string
+            }
+            clientCredentials?: FlowObjectDefaults & {
+              tokenUrl: string
+            }
+            authorizationCode?: FlowObjectDefaults & {
+              authorizationUrl: string
+              tokenUrl: string
+            }
+          }
+        }
+      | {
+          type: "openIdConnect"
+          openIdConnectUrl: string
+        }
+    )
+
+
 
 interface Security {
   [key: string]: SecurityObject;
