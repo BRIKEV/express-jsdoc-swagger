@@ -157,6 +157,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "MakakWasTaken",
+      "name": "Markus Moltke",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11789635?v=4",
+      "profile": "https://github.com/MakakWasTaken",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -164,5 +173,7 @@
   "projectOwner": "BRIKEV",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitType": "docs",
+  "commitConvention": "angular"
 }
