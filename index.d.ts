@@ -102,6 +102,7 @@ interface Servers {
 }
 
 interface Options {
+  openapi?: string;
   info: InfoObject;
   baseDir: string;
   filesPattern: string | string[];
