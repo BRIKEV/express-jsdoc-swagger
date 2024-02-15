@@ -14,7 +14,7 @@ const defaultLogger = () => null;
 
 const processSwagger = (options, logger = defaultLogger) => {
   let swaggerObject = {
-    openapi: '3.0.0',
+    openapi: options.openapi || '3.0.0',
     info: options.info,
     servers: options.servers,
     security: options.security,
