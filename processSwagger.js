@@ -18,6 +18,7 @@ const processSwagger = (options, logger = defaultLogger) => {
     info: options.info,
     servers: options.servers,
     security: options.security,
+    jsonSchemaDialect: options.jsonSchemaDialect || 'https://json-schema.org/draft/2019-09/schema'
   };
 
   swaggerObject = getBasicInfo(swaggerObject);

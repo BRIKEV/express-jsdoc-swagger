@@ -107,6 +107,7 @@ interface Options {
   baseDir: string;
   filesPattern: string | string[];
   security?: Security;
+  jsonSchemaDialect?: string;
   servers?: string[] | Servers[];
   exposeSwaggerUI?: boolean;
   swaggerUIPath?: string;
