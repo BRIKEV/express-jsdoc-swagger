@@ -102,10 +102,12 @@ interface Servers {
 }
 
 interface Options {
+  openapi?: string;
   info: InfoObject;
   baseDir: string;
   filesPattern: string | string[];
   security?: Security;
+  jsonSchemaDialect?: string;
   servers?: string[] | Servers[];
   exposeSwaggerUI?: boolean;
   swaggerUIPath?: string;

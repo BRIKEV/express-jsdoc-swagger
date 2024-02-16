@@ -14,10 +14,11 @@ const defaultLogger = () => null;
 
 const processSwagger = (options, logger = defaultLogger) => {
   let swaggerObject = {
-    openapi: '3.0.0',
+    openapi: options.openapi || '3.0.0',
     info: options.info,
     servers: options.servers,
     security: options.security,
+    jsonSchemaDialect: options.jsonSchemaDialect || 'https://json-schema.org/draft/2019-09/schema'
   };
 
   swaggerObject = getBasicInfo(swaggerObject);
