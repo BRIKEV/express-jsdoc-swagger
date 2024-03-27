@@ -6,7 +6,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "doctrine": "^3.0.0",
-    "express": "^4.17.3",
+    "express": "^4.19.2",
     "glob": "^7.1.6",
     "merge": "^2.1.1",
     "swagger-ui-express": "^4.3.0"
