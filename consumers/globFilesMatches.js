@@ -1,4 +1,4 @@
-const glob = require('glob');
+const { glob } = require('glob');
 const path = require('path');
 
 const DEFAULT_EXCLUDED_FOLDER = 'node_modules';
